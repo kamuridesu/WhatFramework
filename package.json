@@ -1,0 +1,24 @@
+{
+  "name": "whatsbot",
+  "version": "0.0.1b",
+  "description": "A simple WhatsApp Bot Framework on top of Baileys",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "whatsbot",
+    "whatsapp",
+    "bot",
+    "baileys"
+  ],
+  "author": "kamuridesu",
+  "license": "GPLv3",
+  "type": "module",
+  "dependencies": {
+    "@adiwajshing/baileys": "^5.0.0",
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
