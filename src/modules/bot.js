@@ -76,7 +76,7 @@ class Bot {
     /**
      * Send a message to the target.
      * @param {Object} ctx message context
-     * @param {Object} text text message to be sent
+     * @param {String} text text message to be sent
      * @param {Object} mentions users to be mentioned in the message
     */
     async replyText(ctx, text, mentions) {

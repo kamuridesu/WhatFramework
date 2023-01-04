@@ -52,6 +52,11 @@ async function checkMessageData(message) {
     return messageData;
 }
 
+/**
+ * Send a message to the target.
+ * @param {Object} message received message
+ * @param {Bot} ctx Bot instance to send messages
+*/
 async function messageHandler(message, ctx) {
     if (!message.message) return
     message.message = (Object.keys(message.message)[0] === 'ephemeralMessage') ? message.message.ephemeralMessage.message : message.message
