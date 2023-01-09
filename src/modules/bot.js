@@ -7,6 +7,9 @@ const {
     useMultiFileAuthState,
 } = pkg;
 import fs from 'fs';
+import { sendRequest } from '../funcs/networking.js';
+import { MessageData } from '../types/messageData.js';
+import { parseMedia } from '../funcs/mediaParsers.js';
 
 const storage = makeInMemoryStore({
     logger: P().child({
@@ -75,7 +78,7 @@ class Bot {
 
     /**
      * Send a message to the target.
-     * @param {Object} ctx message context
+     * @param {MessageData} ctx message context
      * @param {String} text text message to be sent
     */
     async replyText(ctx, text) {
@@ -90,6 +93,40 @@ class Bot {
             await this.connection.sendPresenceUpdate('paused', ctx.origin);
         } catch (e) {
             console.log(e);
+        }
+    }
+
+    /**
+     * @param {MessageData} ctx 
+     * @param {Object} media 
+     * @param {string} messageType 
+     * @param {string} mimeType 
+     * @param {string} mediaCaption 
+     */
+    async replyMedia(ctx, media, messageType, mimeType, mediaCaption, options) {
+        try {
+            await this.connection.presenceSubscribe(ctx.origin);
+            await this.connection.sendPresenceUpdate(ctx.origin);
+            if (fs.existsSync(media)) {
+                media = fs.readFileSync(media);
+            } else if (typeof(media) == "string") {
+                media = await sendRequest(media);
+                if (media.error) {
+                    caption = media.error.code;
+                    media = media.media;
+                    messageType = "image";
+                    mimeType = "image/png";
+                }
+            }
+
+            const params = parseMedia(media, messageType, mimeType, mediaCaption);
+            await this.connection.sendMessage(ctx.origin, params, {
+                quoted: ctx.originalMessage,
+                ...options
+            });
+            await this.connection.sendPresenceUpdate('paused', ctx.origin);
+        } catch(e) {
+            await this.replyText(ctx, "Ocorreu um erro ao enviar a midia!");
         }
     }
 }

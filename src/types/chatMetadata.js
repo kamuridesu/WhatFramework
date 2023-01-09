@@ -20,4 +20,4 @@ class ChatMetadata {
 
 export {
     ChatMetadata
-}
+};

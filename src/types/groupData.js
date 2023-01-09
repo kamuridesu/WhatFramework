@@ -30,4 +30,4 @@ class GroupData {
 
 export {
     GroupData
-}
+};

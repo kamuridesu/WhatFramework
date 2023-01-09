@@ -24,4 +24,4 @@ class MessageData {
 
 export {
     MessageData
-}
+};

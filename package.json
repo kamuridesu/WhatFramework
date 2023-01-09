@@ -19,6 +19,8 @@
   "dependencies": {
     "@adiwajshing/baileys": "^5.0.0",
     "@adiwajshing/keyed-db": "^0.2.4",
+    "axios": "^1.2.2",
+    "jimp": "^0.16.2",
     "qrcode-terminal": "^0.12.0"
   }
 }

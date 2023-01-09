@@ -26,8 +26,14 @@ async function messageHandler(message, ctx) {
         return ctx.replyText(messageData, "VAI TOMAR NO CU");
     }
 
+    if (messageData.originalMessage.pushName == '➖Chris' && Math.floor(Math.random() * 2) == 1) {
+        return ctx.replyText(messageData, "VAI TOMAR NO CU");
+    }
+
     if (messageData.body === "test") {
         return ctx.replyText(messageData, "textando");
+    } else if (messageData.body === "kb") {
+        return ctx.replyMedia(messageData, "https://images.kabum.com.br/produtos/fotos/114587/teclado-mecanico-gamer-husky-blizzard-rgb-switch-gateron-red-abnt2-branco-tc-hbl-br_1619467058_gg.jpg", "image", "image/jpg", "tecladao");
     } else {
         console.log(messageData);
     }
@@ -35,4 +41,4 @@ async function messageHandler(message, ctx) {
 
 export {
     messageHandler
-}
+};

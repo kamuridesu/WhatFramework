@@ -36,7 +36,7 @@ function checkMessageData(message) {
         case "extendedTextMessage":
             body = message.message.extendedTextMessage.text;
             hasQuotedMessage = true;
-            for (let quoteType in quotedMessageTypes) {
+            for (let quoteType of quotedMessageTypes) {
                 if (JSON.stringify(message.message).includes(quoteType)) {
                     quotedMessageType = quoteType;
                 }
@@ -52,17 +52,19 @@ function checkMessageData(message) {
  * Checks the message data and populate a data object
  * @param {MessageData} messageData message instance to check data
  * @param {Bot} ctx bot context to use some functions to retrieve info
- * @returns {GroupData} message_data with all retrieved information
+ * @param {ChatMetadata} chatMetadata chat metadata
+ * @returns {GroupData} GroupData with all retrieved information
 */
-async function checkGroupData(messageData, messageMetadata, ctx) {
+async function checkGroupData(messageData, chatMetadata, ctx) {
     const groupMetadata = await ctx.connection.groupMetadata(messageData.origin)
     const name = groupMetadata.subject;
     const groupId = groupMetadata.id;
     const description = groupMetadata.desc;
     const members = groupMetadata.participants;
     const groupOwner = groupMetadata.owner;
-    const isLocked = groupMetadata.announce !== undefined ? JSON.parse(JSON.stringify(groupMetadata.announce).replace(/"/g, '')) : false
     const admins = [];
+    const isLocked = groupMetadata.announce !== undefined ? JSON.parse(JSON.stringify(groupMetadata.announce).replace(/"/g, '')) : false
+
     let senderIsGroupOwner = false;
     let senderIsAdmin = false;
     let botIsAdmin = false;
@@ -73,7 +75,7 @@ async function checkGroupData(messageData, messageMetadata, ctx) {
         if (element.admin == "superadmin") {
             senderIsGroupOwner = true;
         }
-        if (element.id == messageMetadata.sender && (element.admin == "admin" || element.admin == "superadmin")) {
+        if (element.id == chatMetadata.sender && (element.admin == "admin" || element.admin == "superadmin")) {
             senderIsAdmin = true;
         }
         if (element.id == ctx.botData.botNumber && (element.admin == "admin" || element.admin == "superadmin")) {
@@ -108,4 +110,4 @@ export {
     checkMessageData,
     checkGroupData,
     checkChatMetaData
-}
+};
