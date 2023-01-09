@@ -10,7 +10,7 @@ import fs from 'fs';
 
 const storage = makeInMemoryStore({
     logger: P().child({
-        level: 'info',
+        level: 'error',
         'stream': 'store'
     })
 })
@@ -27,7 +27,7 @@ const {
 class Bot {
     constructor() {
         this.connection = undefined;
-        this.bot_data = {
+        this.botData = {
             token: "!",
             bot_number: "",
         }
@@ -77,20 +77,17 @@ class Bot {
      * Send a message to the target.
      * @param {Object} ctx message context
      * @param {String} text text message to be sent
-     * @param {Object} mentions users to be mentioned in the message
     */
-    async replyText(ctx, text, mentions) {
-        const recipient = ctx.origin;
-        const message = ctx.message;
+    async replyText(ctx, text) {
         try {
-            await this.connection.presenceSubscribe(recipient);
-            await this.connection.sendPresenceUpdate(recipient);
-            await this.connection.sendMessage(recipient, {
+            await this.connection.presenceSubscribe(ctx.origin);
+            await this.connection.sendPresenceUpdate(ctx.origin);
+            await this.connection.sendMessage(ctx.origin, {
                 text: text,
-                mentions: mentions,
-                quoted: message
+            }, {
+                quoted: ctx.originalMessage
             });
-            await this.connection.sendPresenceUpdate('paused', recipient);
+            await this.connection.sendPresenceUpdate('paused', ctx.origin);
         } catch (e) {
             console.log(e);
         }
