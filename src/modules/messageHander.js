@@ -20,8 +20,6 @@ async function messageHandler(message, ctx) {
         groupData = await checkGroupData(messageData, messageMetadata, ctx);
     }
 
-    console.log(groupData)
-
     // console.log(messageMetadata);
 
     if (messageData.originalMessage.pushName == "Yarlen Lima" && Math.floor(Math.random() * 3) == 2) {

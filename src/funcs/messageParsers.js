@@ -11,13 +11,13 @@ function checkMessageData(message) {
     const type = Object.keys(message.message).at(-1);  // get message type (text, image, video, audio, sticker, location, contact, etc)
     const isMedia = (type === 'imageMessage' || type === 'videoMessage');
 
-    const quotedMessageTypes = {
-        audio: "audioMessage",
-        video: "videoMessage",
-        text: "conversation",
-        image: "imageMessage",
-        sticker: "stickerMessage"
-    }
+    const quotedMessageTypes = [
+        "audioMessage",
+        "videoMessage",
+        "conversation",
+        "imageMessage",
+        "stickerMessage"
+    ]
 
     let body = undefined;
     let hasQuotedMessage = false;
@@ -36,9 +36,9 @@ function checkMessageData(message) {
         case "extendedTextMessage":
             body = message.message.extendedTextMessage.text;
             hasQuotedMessage = true;
-            for (let key in quotedMessageTypes) {
-                if (JSON.stringify(message.message).includes(quotedMessageTypes[key])) {
-                    quotedMessageType = quotedMessageTypes[key];
+            for (let quoteType in quotedMessageTypes) {
+                if (JSON.stringify(message.message).includes(quoteType)) {
+                    quotedMessageType = quoteType;
                 }
             }
             break;
