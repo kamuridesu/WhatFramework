@@ -30,10 +30,12 @@ async function messageHandler(message, ctx) {
         return ctx.replyText(messageData, "VAI TOMAR NO CU");
     }
 
-    if (messageData.body === "test") {
-        return ctx.replyText(messageData, "textando");
-    } else if (messageData.body === "kb") {
-        return ctx.replyMedia(messageData, "https://images.kabum.com.br/produtos/fotos/114587/teclado-mecanico-gamer-husky-blizzard-rgb-switch-gateron-red-abnt2-branco-tc-hbl-br_1619467058_gg.jpg", "image", "image/jpg", "tecladao");
+    if (messageData.body != undefined) {
+        if (messageData.body === "test") {
+            return ctx.replyText(messageData, "textando");
+        } else if (messageData.body.startsWith("kb")) {
+            return ctx.replyMedia(messageData, "https://images.kabum.com.br/produtos/fotos/114587/teclado-mecanico-gamer-husky-blizzard-rgb-switch-gateron-red-abnt2-branco-tc-hbl-br_1619467058_gg.jpg", "image", "image/jpg", messageData.body.split('kb')[1]);
+        }
     } else {
         console.log(messageData);
     }

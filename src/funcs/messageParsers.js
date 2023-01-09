@@ -8,16 +8,26 @@ import { ChatMetadata } from "../types/chatMetadata.js";
  * @returns {MessageData} message_data with all retrieved information
 */
 function checkMessageData(message) {
-    const type = Object.keys(message.message).at(-1);  // get message type (text, image, video, audio, sticker, location, contact, etc)
-    const isMedia = (type === 'imageMessage' || type === 'videoMessage');
+    let type = undefined;
 
-    const quotedMessageTypes = [
+    const messageTypes = [
         "audioMessage",
         "videoMessage",
         "conversation",
         "imageMessage",
         "stickerMessage"
     ]
+
+    const extendedMessageTypes = messageTypes.slice()
+    extendedMessageTypes.push("extendedTextMessage");
+    for(const messageType of extendedMessageTypes) {
+        if (Object.keys(message.message).includes(messageType)) {
+            type = messageType;
+            break;
+        }
+    }
+
+    const isMedia = (type === 'imageMessage' || type === 'videoMessage');
 
     let body = undefined;
     let hasQuotedMessage = false;
@@ -36,7 +46,7 @@ function checkMessageData(message) {
         case "extendedTextMessage":
             body = message.message.extendedTextMessage.text;
             hasQuotedMessage = true;
-            for (let quoteType of quotedMessageTypes) {
+            for (let quoteType of messageTypes) {
                 if (JSON.stringify(message.message).includes(quoteType)) {
                     quotedMessageType = quoteType;
                 }
