@@ -19,7 +19,7 @@ function checkMessageData(message) {
     ]
 
     const extendedMessageTypes = messageTypes.slice()
-    extendedMessageTypes.push("extendedTextMessage");
+    extendedMessageTypes.push("extendedTextMessage", "reactionMessage");
     for(const messageType of extendedMessageTypes) {
         if (Object.keys(message.message).includes(messageType)) {
             type = messageType;
@@ -32,6 +32,8 @@ function checkMessageData(message) {
     let body = undefined;
     let hasQuotedMessage = false;
     let quotedMessageType = undefined;
+    let isReactionMessage = false;
+    let reactionMessage = undefined;
 
     switch (type) {
         case "conversation":
@@ -52,10 +54,14 @@ function checkMessageData(message) {
                 }
             }
             break;
+        case "reactionMessage":
+            isReactionMessage = true
+            reactionMessage = message.message.reactionMessage;
+            break;
         default:
             body = undefined;
     }
-    return new MessageData(message, type, body, message.key.remoteJid, isMedia, hasQuotedMessage, quotedMessageType);
+    return new MessageData(message, type, body, message.key.remoteJid, isMedia, hasQuotedMessage, quotedMessageType, isReactionMessage, reactionMessage);
 }
 
 /**

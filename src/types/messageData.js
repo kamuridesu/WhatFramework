@@ -10,8 +10,10 @@ class MessageData {
      * @param {boolean} isMedia message is media
      * @param {boolean} hasQuotedMessage message is quoting message
      * @param {string} quotedMessageType if hasQuotedMessage, is quoting what
+     * @param {boolean} isReactionMessage the message is a reaction message
+     * @param {*} reactionMessage reactin to the message
      */
-    constructor(originalMessage, type, body, origin, isMedia, hasQuotedMessage, quotedMessageType) {
+    constructor(originalMessage, type, body, origin, isMedia, hasQuotedMessage, quotedMessageType, isReactionMessage, reactionMessage) {
         this.originalMessage = originalMessage;
         this.type = type;
         this.body = body;
@@ -19,6 +21,8 @@ class MessageData {
         this.isMedia = isMedia;
         this.hasQuotedMessage = hasQuotedMessage;
         this.quotedMessageType = quotedMessageType;
+        this.isReactionMessage = isReactionMessage;
+        this.reactionMessage = reactionMessage;
     }
 }
 
