@@ -1,4 +1,5 @@
 import axios from "axios";
+import fs from "fs";
 
 /**
  * @param {string} url 
@@ -29,6 +30,18 @@ async function sendRequest(url, headers, responseType, method, options) {
     }
 }
 
+/**
+ * @param {bytes | Buffer} content
+ * @param {string} headers
+ * @return {string} file path
+*/
+function saveTempFile(content, extension) {
+    const randomFilename = "temp/sticker" + (Math.random() * 1000) + (extension ? extension : "");
+    fs.writeFileSync(randomFilename, content);
+    return randomFilename;
+}
+
 export {
-    sendRequest
+    sendRequest,
+    saveTempFile
 };

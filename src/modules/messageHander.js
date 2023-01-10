@@ -1,4 +1,7 @@
 import { checkChatMetaData, checkGroupData, checkMessageData } from "../funcs/messageParsers.js";
+import { createStickerFromMedia } from "../libs/sticker.js";
+import { saveTempFile } from "../funcs/networking.js";
+import { downloadMediaMessage } from "@adiwajshing/baileys";
 
 
 /**
@@ -20,17 +23,17 @@ async function messageHandler(message, ctx) {
         groupData = await checkGroupData(messageData, messageMetadata, ctx);
     }
 
-    // console.log(messageMetadata);
+    if (messageData.hasQuotedMessage) {
+        console.log(messageData.originalMessage.message.extendedTextMessage.contextInfo);
+    }
 
     if (messageData.originalMessage.pushName == "Yarlen Lima" && Math.floor(Math.random() * 3) == 2) {
-        return ctx.replyText(messageData, "VAI TOMAR NO CU");
+        ctx.replyText(messageData, "GOSTOSA");
     }
 
     if (messageData.originalMessage.pushName == '➖Chris' && Math.floor(Math.random() * 2) == 1) {
-        return ctx.replyText(messageData, "VAI TOMAR NO CU");
+        ctx.replyText(messageData, "GOSTOSA");
     }
-
-    console.log(messageData);
 
     if (messageData.body != undefined) {
         if (messageData.body === "test") {
@@ -38,7 +41,16 @@ async function messageHandler(message, ctx) {
         } else if (messageData.body.startsWith("kb")) {
             return ctx.replyMedia(messageData, "https://images.kabum.com.br/produtos/fotos/114587/teclado-mecanico-gamer-husky-blizzard-rgb-switch-gateron-red-abnt2-branco-tc-hbl-br_1619467058_gg.jpg", "image", "image/jpg", messageData.body.split('kb')[1]);
         }
+        if(messageData.body.startsWith("/sticker") && (["imageMessage", "videoMessage"].includes(messageData.type) || ["imageMessage", "videoMessage"].includes(messageData.quotedMessageType))) {
+            const messageMedia = messageData.hasQuotedMessage ? JSON.parse(JSON.stringify(messageData.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : messageData.originalMessage;
+            console.log(messageMedia)
+            const mediaBuffer = await downloadMediaMessage(messageMedia, "buffer");
+            const tempFile = saveTempFile(mediaBuffer);
+            console.log(tempFile);
+            return createStickerFromMedia(tempFile, ctx, messageData);
+        }
     }
+
 }
 
 export {

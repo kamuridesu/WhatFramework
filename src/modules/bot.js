@@ -34,7 +34,7 @@ class Bot {
             token: "!",
             bot_number: "",
         }
-        this.reconnect_on_close = true;
+        this.reconnectOnClose = true;
     }
 
     /**
@@ -56,7 +56,7 @@ class Bot {
             } = update;
 
             if (connection === 'close') {
-                if (!this.reconnect_on_close) {
+                if (this.reconnectOnClose) {
                     this.init(messageHandler);
                 } else if ((lastDisconnect.error)?.output?.statusCode !== DisconnectReason.loggedOut) {
                     this.init(messageHandler);
@@ -82,18 +82,9 @@ class Bot {
      * @param {String} text text message to be sent
     */
     async replyText(ctx, text) {
-        try {
-            await this.connection.presenceSubscribe(ctx.origin);
-            await this.connection.sendPresenceUpdate(ctx.origin);
-            await this.connection.sendMessage(ctx.origin, {
-                text: text,
-            }, {
-                quoted: ctx.originalMessage
-            });
-            await this.connection.sendPresenceUpdate('paused', ctx.origin);
-        } catch (e) {
-            console.log(e);
-        }
+        this.sendTextMessage(ctx, text, {
+            quoted: ctx.originalMessage
+        });
     }
 
     /**
@@ -104,6 +95,7 @@ class Bot {
      * @param {string} mediaCaption 
      */
     async replyMedia(ctx, media, messageType, mimeType, mediaCaption, options) {
+        console.log("sebdubg nedua: ", media);
         try {
             await this.connection.presenceSubscribe(ctx.origin);
             await this.connection.sendPresenceUpdate(ctx.origin);
@@ -127,6 +119,26 @@ class Bot {
             await this.connection.sendPresenceUpdate('paused', ctx.origin);
         } catch(e) {
             await this.replyText(ctx, "Ocorreu um erro ao enviar a midia!");
+        }
+    }
+
+    /**
+     * @param {MessageData | string} ctx
+     * @param {string} text
+     * @param {*} options
+    */
+    async sendTextMessage(ctx, text, options) {
+        const recipient = ctx.originalMessage ? ctx.origin : ctx
+        options = options ? options : {};
+        try {
+            await this.connection.presenceSubscribe(recipient);
+            await this.connection.sendPresenceUpdate(recipient);
+            await this.connection.sendMessage(recipient, {
+                text: text,
+            }, options);
+            await this.connection.sendPresenceUpdate('paused', recipient);
+        } catch (e) {
+            console.log(e);
         }
     }
 }
