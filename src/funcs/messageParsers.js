@@ -30,6 +30,7 @@ function checkMessageData(message) {
     const isMedia = (type === 'imageMessage' || type === 'videoMessage');
 
     let body = undefined;
+    let mentionedUsers = [];
     let hasQuotedMessage = false;
     let quotedMessageType = undefined;
     let isReactionMessage = false;
@@ -53,6 +54,9 @@ function checkMessageData(message) {
                     quotedMessageType = quoteType;
                 }
             }
+            if (message.message.extendedTextMessage.contextInfo.mentionedJid) {
+                mentionedUsers = mentionedUsers.concat(message.message.extendedTextMessage.contextInfo.mentionedJid);
+            }
             break;
         case "reactionMessage":
             isReactionMessage = true
@@ -61,7 +65,7 @@ function checkMessageData(message) {
         default:
             body = undefined;
     }
-    return new MessageData(message, type, body, message.key.remoteJid, isMedia, hasQuotedMessage, quotedMessageType, isReactionMessage, reactionMessage);
+    return new MessageData(message, type, body, mentionedUsers, message.key.remoteJid, isMedia, hasQuotedMessage, quotedMessageType, isReactionMessage, reactionMessage);
 }
 
 /**
@@ -122,8 +126,22 @@ function checkChatMetaData(messageData, ctx) {
     return new ChatMetadata(messageSender, senderName, messageIsFrom, senderIsOwner, isGroup);
 }
 
+/**
+ * 
+ * @param {string} text 
+ * @returns string with number replaced with mention
+ */
+function convertNumberToMention(text) {
+    const regex = /@[0-9]{12}/g;
+    if(regex.test(text)) {
+        return text.match(regex).map(number => number.replace("@", "") + "@s.whatsapp.net");
+    }
+    return "";
+}
+
 export {
     checkMessageData,
     checkGroupData,
-    checkChatMetaData
+    checkChatMetaData,
+    convertNumberToMention
 };

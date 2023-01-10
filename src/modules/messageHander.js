@@ -24,15 +24,15 @@ async function messageHandler(message, ctx) {
     }
 
     if (messageData.hasQuotedMessage) {
-        console.log(messageData.originalMessage.message.extendedTextMessage.contextInfo);
+        console.log(messageData.mentionedUsers);
     }
 
     if (messageData.originalMessage.pushName == "Yarlen Lima" && Math.floor(Math.random() * 3) == 2) {
-        ctx.replyText(messageData, "GOSTOSA");
+        ctx.replyText(messageData, "me faz um pix ai\n\nbot pidao");
     }
 
     if (messageData.originalMessage.pushName == '➖Chris' && Math.floor(Math.random() * 2) == 1) {
-        ctx.replyText(messageData, "GOSTOSA");
+        ctx.replyText(messageData, "me faz um pix ai\n\nbot pidao");
     }
 
     if (messageData.body != undefined) {

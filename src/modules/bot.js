@@ -81,10 +81,10 @@ class Bot {
      * @param {MessageData} ctx message context
      * @param {String} text text message to be sent
     */
-    async replyText(ctx, text) {
-        this.sendTextMessage(ctx, text, {
-            quoted: ctx.originalMessage
-        });
+    async replyText(ctx, text, options) {
+        options = options ? options : {}
+        options.quoted = ctx.originalMessage;
+        this.sendTextMessage(ctx, text, options);
     }
 
     /**
@@ -110,7 +110,6 @@ class Bot {
                     mimeType = "image/png";
                 }
             }
-
             const params = parseMedia(media, messageType, mimeType, mediaCaption);
             await this.connection.sendMessage(ctx.origin, params, {
                 quoted: ctx.originalMessage,
