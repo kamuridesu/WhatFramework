@@ -54,7 +54,7 @@ function checkMessageData(message) {
                     quotedMessageType = quoteType;
                 }
             }
-            if (message.message.extendedTextMessage.contextInfo.mentionedJid) {
+            if (quotedMessageType === "conversation") {
                 mentionedUsers = mentionedUsers.concat(message.message.extendedTextMessage.contextInfo.mentionedJid);
             }
             break;
