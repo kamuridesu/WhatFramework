@@ -66,7 +66,7 @@ class Bot {
         this.connection.ev.on('messages.upsert', async (handle) => {
             const message = handle.messages[0];
             if (!message.key.fromMe && handle.type === 'notify') {
-                messageHandler(message, this);
+                messageHandler.handle(message, this);
             }
         });
     }
@@ -80,7 +80,7 @@ class Bot {
     */
     async replyText(ctx, text, options = {}) {
         options.quoted = ctx.originalMessage;
-        sendTextMessage(ctx, text, options);
+        this.sendTextMessage(ctx, text, options);
     }
 
     /**
@@ -113,7 +113,7 @@ class Bot {
             });
             await this.connection.sendPresenceUpdate('paused', ctx.origin);
         } catch (e) {
-            await replyText(ctx, "Ocorreu um erro ao enviar a midia!");
+            await this.replyText(ctx, "Ocorreu um erro ao enviar a midia!");
         }
     }
 

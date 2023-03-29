@@ -1,5 +1,5 @@
 {
-  "name": "whatsbot",
+  "name": "whatframework",
   "version": "0.0.1b",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
   "main": "index.js",
@@ -16,6 +16,7 @@
   "author": "kamuridesu",
   "license": "GPLv3",
   "type": "module",
+  "bin": "package.js",
   "dependencies": {
     "@adiwajshing/baileys": "^5.0.0",
     "@adiwajshing/keyed-db": "^0.2.4",
