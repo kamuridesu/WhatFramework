@@ -37,10 +37,12 @@ class MessageHandler {
         }
 
         if (this.isModule) {
-            if (messageData.body.startsWith("/")) {
-                return await this.commandHandlers(ctx, messageData.body, messageData, groupData, messageMetadata);
+            if (messageData.body){
+                if (messageData.body.startsWith("/")) {
+                    return await this.commandHandlers(ctx, messageData.body, messageData, groupData, messageMetadata);
+                }
+                return await this.chatHandlers(ctx, messageData.body, messageData, groupData, messageMetadata);
             }
-            return await this.chatHandlers(ctx, messageData.body, messageData, groupData, messageMetadata);
         }
     }
 }

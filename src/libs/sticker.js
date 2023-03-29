@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { Bot } from "../modules/bot.js";
 import { MessageData } from "../types/messageData.js";
+import { saveTempFile } from "../funcs/networking.js";
 const ffmpeg = pkgff;
 
 /**
@@ -13,13 +14,13 @@ const ffmpeg = pkgff;
     @param {object} bot - The WhatsApp bot instance.
     @returns {Promise<string>} - A Promise that resolves with the sticker URL, or rejects with an error.
 */
-async function createSticker(message, context, bot) {
+async function createSticker(message, context, bot, author, packname) {
     const isStickerMedia = message.startsWith("/sticker") && (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
     if (isStickerMedia){
         const messageMedia = context.hasQuotedMessage ? JSON.parse(JSON.stringify(context.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : context.originalMessage;
         const mediaBuffer = await downloadMediaMessage(messageMedia, "buffer");
         const tempFile = saveTempFile(mediaBuffer);
-        return createStickerFromMedia(tempFile, bot, context);
+        return createStickerFromMedia(tempFile, bot, context, packname, author);
     }
 }
 
@@ -115,5 +116,6 @@ async function stickerMetadata(author, packName) {
 }
 
 export {
-    createSticker
+    createSticker,
+    createStickerFromMedia
 };
