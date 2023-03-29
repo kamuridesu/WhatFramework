@@ -6,6 +6,17 @@ import { Bot } from "../modules/bot.js";
 import { MessageData } from "../types/messageData.js";
 const ffmpeg = pkgff;
 
+
+async function createSticker(message, context, bot) {
+    const isStickerMedia = message.startsWith("/sticker") && (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
+    if (isStickerMedia){
+        const messageMedia = context.hasQuotedMessage ? JSON.parse(JSON.stringify(context.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : context.originalMessage;
+        const mediaBuffer = await downloadMediaMessage(messageMedia, "buffer");
+        const tempFile = saveTempFile(mediaBuffer);
+        return createStickerFromMedia(tempFile, bot, context);
+    }
+}
+
 /**
  * 
  * @param {string} media media filename
@@ -98,5 +109,5 @@ async function stickerMetadata(author, packName) {
 }
 
 export {
-    createStickerFromMedia
+    createSticker
 };

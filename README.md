@@ -14,7 +14,7 @@ npm install --save whatframework
 
 ## Create your entrypoint:
 
-The framework requires you to create a `modules` folder and, inside that folder, a `entrypoint.js` file.
+The framework requires you to create a `modules` folder and, inside that folder, an `entrypoint.js` file.
 
 The file must contain a class `Entrypoint` with two methods, `commandsHandler` and `chatsHandler`. Each method must receive the following parameters:
 - `bot`: a bot instance;
@@ -25,7 +25,7 @@ The file must contain a class `Entrypoint` with two methods, `commandsHandler` a
 
 ## Helpers
 
-The bot will have some libs to help the developer to build their bots. The first is a function called `createStickerFromMedia`, which creates a sticker from a media file, then sends it.
+The bot will have some libs to help the developer to build their bots. The first is a function called `createSticker`, which creates a sticker from a media message, then sends it.
 
 Helper libs will be available in `whatframework/src/libs/`
 
