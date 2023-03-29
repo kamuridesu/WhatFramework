@@ -41,12 +41,10 @@ async function messageHandler(message, ctx) {
         } else if (messageData.body.startsWith("kb")) {
             return ctx.replyMedia(messageData, "https://images.kabum.com.br/produtos/fotos/114587/teclado-mecanico-gamer-husky-blizzard-rgb-switch-gateron-red-abnt2-branco-tc-hbl-br_1619467058_gg.jpg", "image", "image/jpg", messageData.body.split('kb')[1]);
         }
-        if(messageData.body.startsWith("/sticker") && (["imageMessage", "videoMessage"].includes(messageData.type) || ["imageMessage", "videoMessage"].includes(messageData.quotedMessageType))) {
+        if (messageData.body.startsWith("/sticker") && (["imageMessage", "videoMessage"].includes(messageData.type) || ["imageMessage", "videoMessage"].includes(messageData.quotedMessageType))) {
             const messageMedia = messageData.hasQuotedMessage ? JSON.parse(JSON.stringify(messageData.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : messageData.originalMessage;
-            console.log(messageMedia)
             const mediaBuffer = await downloadMediaMessage(messageMedia, "buffer");
             const tempFile = saveTempFile(mediaBuffer);
-            console.log(tempFile);
             return createStickerFromMedia(tempFile, ctx, messageData);
         }
     }

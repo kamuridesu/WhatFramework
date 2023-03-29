@@ -2,7 +2,7 @@ import P from 'pino';
 import pkg from '@adiwajshing/baileys';
 const {
     default: makeWASocket,
-    DisconnectReason, 
+    DisconnectReason,
     makeInMemoryStore,
     useMultiFileAuthState,
 } = pkg;
@@ -39,8 +39,8 @@ class Bot {
 
     /**
      * Initiates the bot and starts to handle connections
-     * @param {CallableFunction} messageHandler message instance to check data
-    */
+     * @param {CallableFunction} messageHandler function to handle incoming messages
+     */
     async init(messageHandler) {
         this.connection = makeWASocket({
             printQRInTerminal: true,
@@ -49,59 +49,55 @@ class Bot {
 
         this.connection.ev.on('creds.update', saveCreds);
 
-        this.connection.ev.on('connection.update', (update) => {
-            const {
-                connection,
-                lastDisconnect
-            } = update;
+        this.connection.ev.on('connection.update', async (update) => {
+            const { connection, lastDisconnect } = update;
 
             if (connection === 'close') {
-                if (this.reconnectOnClose) {
-                    this.init(messageHandler);
-                } else if ((lastDisconnect.error)?.output?.statusCode !== DisconnectReason.loggedOut) {
-                    this.init(messageHandler);
+                if (this.reconnectOnClose || ((lastDisconnect.error)?.output?.statusCode !== DisconnectReason.loggedOut)) {
+                    await this.init(messageHandler);
                 } else {
                     console.warn("Connection closed!");
                 }
             }
-        })
+        });
 
         storage.bind(this.connection.ev);
 
-        this.connection.ev.on('messages.upsert', async handle => {
+        this.connection.ev.on('messages.upsert', async (handle) => {
             const message = handle.messages[0];
             if (!message.key.fromMe && handle.type === 'notify') {
                 messageHandler(message, this);
             }
-        })
+        });
     }
+
 
     /**
      * Send a message to the target.
      * @param {MessageData} ctx message context
      * @param {String} text text message to be sent
+     * @param {Object} options additional options for sending message (optional)
     */
-    async replyText(ctx, text, options) {
-        options = options ? options : {}
+    async replyText(ctx, text, options = {}) {
         options.quoted = ctx.originalMessage;
-        this.sendTextMessage(ctx, text, options);
+        sendTextMessage(ctx, text, options);
     }
 
     /**
      * @param {MessageData} ctx 
-     * @param {Object} media 
+     * @param {Object|string} media 
      * @param {string} messageType 
      * @param {string} mimeType 
      * @param {string} mediaCaption 
+     * @param {Object} options additional options for sending message (optional)
      */
-    async replyMedia(ctx, media, messageType, mimeType, mediaCaption, options) {
-        console.log("sebdubg nedua: ", media);
+    async replyMedia(ctx, media, messageType, mimeType, mediaCaption, options = {}) {
         try {
             await this.connection.presenceSubscribe(ctx.origin);
             await this.connection.sendPresenceUpdate(ctx.origin);
             if (fs.existsSync(media)) {
                 media = fs.readFileSync(media);
-            } else if (typeof(media) == "string") {
+            } else if (typeof (media) == "string") {
                 media = await sendRequest(media);
                 if (media.error) {
                     caption = media.error.code;
@@ -116,8 +112,8 @@ class Bot {
                 ...options
             });
             await this.connection.sendPresenceUpdate('paused', ctx.origin);
-        } catch(e) {
-            await this.replyText(ctx, "Ocorreu um erro ao enviar a midia!");
+        } catch (e) {
+            await replyText(ctx, "Ocorreu um erro ao enviar a midia!");
         }
     }
 
@@ -127,8 +123,7 @@ class Bot {
      * @param {*} options
     */
     async sendTextMessage(ctx, text, options) {
-        const recipient = ctx.originalMessage ? ctx.origin : ctx
-        options = options ? options : {};
+        const recipient = ctx.originalMessage ? ctx.origin : ctx;
         try {
             await this.connection.presenceSubscribe(recipient);
             await this.connection.sendPresenceUpdate(recipient);

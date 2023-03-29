@@ -1,47 +1,42 @@
 import axios from "axios";
-import fs from "fs";
+import fs from "fs/promises";
 
 /**
- * @param {string} url 
- * @param {Object} headers 
- * @param {string} responseType 
- * @param {*} options 
+ * Send a HTTP request to the given URL
+ * @param {string} url - The URL to send the request to
+ * @param {Object} [config] - Optional request configuration options
+ * @returns {Promise<Buffer>} - A promise that resolves with the response content as a buffer
  */
-async function sendRequest(url, headers, responseType, method, options) {
-    const encodedURI = encodeURI(url);
-    try {
-        options = options ? options : {};
-        const response = await axios({
-            method: method ? method : 'get',
-            url: encodedURI,
-            headers: headers ? headers : {
-                "DNT": 1,
-                "Upgrade-Insecure-Request": 1
-            },
-            ...options,
-            responseType: responseType ? responseType : 'arraybuffer'
-        });
-        return response.data;
-    } catch (e) {
-        return {
-            media: fs.readFileSync("./media/errorImage.jpeg"),
-            error: e
-        };
-    }
+async function sendRequest(url, config = {}) {
+  const defaultHeaders = {
+    "DNT": 1,
+    "Upgrade-Insecure-Request": 1
+  };
+
+  try {
+    const response = await axios({
+      url,
+      headers: { ...defaultHeaders, ...config.headers },
+      responseType: "arraybuffer",
+      ...config
+    });
+    return response.data;
+  } catch (error) {
+    const errorImage = await fs.readFile("./media/errorImage.jpeg");
+    return { media: errorImage, error };
+  }
 }
 
 /**
- * @param {bytes | Buffer} content
- * @param {string} headers
- * @return {string} file path
-*/
-function saveTempFile(content, extension) {
-    const randomFilename = "temp/sticker" + (Math.random() * 1000) + (extension ? extension : "");
-    fs.writeFileSync(randomFilename, content);
-    return randomFilename;
+ * Save the given content to a temporary file and return the file path
+ * @param {Buffer} content - The content to save to file
+ * @param {string} [extension] - Optional file extension
+ * @returns {Promise<string>} - A promise that resolves with the path to the saved file
+ */
+async function saveTempFile(content, extension = "") {
+  const randomFilename = `temp/sticker${Math.random() * 1000}${extension}`;
+  await fs.writeFile(randomFilename, content);
+  return randomFilename;
 }
 
-export {
-    sendRequest,
-    saveTempFile
-};
+export { sendRequest, saveTempFile };
