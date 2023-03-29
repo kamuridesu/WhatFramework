@@ -1,11 +1,11 @@
 {
   "name": "whatframework",
-  "version": "0.0.1b",
+  "version": "0.0.3b",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
-  "main": "index.js",
+  "main": "cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node cli.js"
   },
   "keywords": [
     "whatsbot",
@@ -16,7 +16,7 @@
   "author": "kamuridesu",
   "license": "GPLv3",
   "type": "module",
-  "bin": "package.js",
+  "bin": "cli.js",
   "dependencies": {
     "@adiwajshing/baileys": "^5.0.0",
     "@adiwajshing/keyed-db": "^0.2.4",
