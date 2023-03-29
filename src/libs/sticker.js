@@ -6,7 +6,13 @@ import { Bot } from "../modules/bot.js";
 import { MessageData } from "../types/messageData.js";
 const ffmpeg = pkgff;
 
-
+/**
+ Creates a sticker from an image or video message.
+    @param {string} message - The command message sent by the user.
+    @param {object} context - The message context object.
+    @param {object} bot - The WhatsApp bot instance.
+    @returns {Promise<string>} - A Promise that resolves with the sticker URL, or rejects with an error.
+*/
 async function createSticker(message, context, bot) {
     const isStickerMedia = message.startsWith("/sticker") && (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
     if (isStickerMedia){

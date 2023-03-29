@@ -22,4 +22,4 @@ async function main() {
     await bot.init(messageHandler);
 }
 
-main()
+main();

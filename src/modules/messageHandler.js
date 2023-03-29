@@ -1,15 +1,12 @@
 import { checkChatMetaData, checkGroupData, checkMessageData } from "../funcs/messageParsers.js";
-import { createStickerFromMedia } from "../libs/sticker.js";
-import { saveTempFile } from "../funcs/networking.js";
-import { downloadMediaMessage } from "@adiwajshing/baileys";
-
 
 /**
- * Send a message to the target.
- * @param {Object} message received message
- * @param {Bot} ctx Bot instance to send messages
+    * A class for handling incoming messages in a chat.
+    @param {Object} entrypoint - The entrypoint object containing the commandHandlers and chatHandlers functions.
+    @prop {Boolean} isModule - Indicates whether the message handler is initialized with an entrypoint object.
+    @prop {Function} commandHandlers - The function that handles commands.
+    @prop {Function} chatHandlers - The function that handles chat messages.
 */
-
 class MessageHandler {
     constructor(entrypoint) {
         this.isModule = false;
@@ -20,7 +17,11 @@ class MessageHandler {
         }
     }
 
-
+    /**
+     * Send a message to the target.
+     * @param {Object} message received message
+     * @param {Bot} ctx Bot instance to send messages
+    */
     async handle(message, ctx) {
         if (!message.message ||
             message.key && message.key.remoteJid === 'status@broadcast' ||
