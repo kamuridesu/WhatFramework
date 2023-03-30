@@ -28,12 +28,11 @@ const {
  * @returns {Bot} A instance of bot with a working connetion.
 */
 class Bot {
-    constructor() {
+    constructor(prefix="!", botNumber="", ownerNumber="") {
         this.connection = undefined;
-        this.botData = {
-            token: "!",
-            bot_number: "",
-        }
+        this.prefix = prefix;
+        this.botNumber = botNumber;
+        this.ownerNumber = ownerNumber;
         this.reconnectOnClose = true;
     }
 
@@ -113,6 +112,7 @@ class Bot {
             });
             await this.connection.sendPresenceUpdate('paused', ctx.origin);
         } catch (e) {
+            console.error(e);
             await this.replyText(ctx, "Ocorreu um erro ao enviar a midia!");
         }
     }

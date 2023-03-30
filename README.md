@@ -16,6 +16,12 @@ npm install --save whatframework
 
 The framework requires you to create a `modules` folder and, inside that folder, an `entrypoint.js` file.
 
+The class may hold the following informations:
+
+- `prefix`: prefix for the bot commands
+- `botNumber`: number of the bot
+- `ownerNumber`: number of the owner
+
 The file must contain a class `Entrypoint` with two methods, `commandsHandler` and `chatsHandler`. Each method must receive the following parameters:
 - `bot`: a bot instance;
 - `message`: a string with the message. `undefined` if the message does not exists;

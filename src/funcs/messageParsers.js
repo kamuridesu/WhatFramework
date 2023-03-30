@@ -1,6 +1,7 @@
 import { MessageData } from "../types/messageData.js"
 import { GroupData } from "../types/groupData.js";
 import { ChatMetadata } from "../types/chatMetadata.js";
+import { Bot } from "../modules/bot.js";
 
 const messageTypes = [
   "audioMessage",
@@ -54,7 +55,6 @@ function checkMessageData(message) {
   return new MessageData(message, type, body, mentionedUsers, message.key.remoteJid, isMedia, hasQuotedMessage, quotedMessageType, isReactionMessage, reactionMessage);
 }
 
-
 /**
  * Checks the message data and populates a GroupData object with retrieved information
  * @param {MessageData} messageData - The message instance to check data
@@ -68,12 +68,11 @@ async function checkGroupData(messageData, chatMetadata, ctx) {
     const admins = members.filter(element => element.admin === "admin" || element.admin === "superadmin");
     const senderIsGroupOwner = members.some(element => element.admin === "superadmin");
     const senderIsAdmin = members.some(element => element.id === chatMetadata.sender && (element.admin === "admin" || element.admin === "superadmin"));
-    const botIsAdmin = members.some(element => element.id === ctx.botData.botNumber && (element.admin === "admin" || element.admin === "superadmin"));
+    const botIsAdmin = members.some(element => element.id === ctx.botNumber && (element.admin === "admin" || element.admin === "superadmin"));
     const isLocked = announce !== undefined ? JSON.parse(JSON.stringify(announce).replace(/"/g, '')) : false;
     
     return new GroupData(name, description, groupId, members, admins, groupOwner, senderIsGroupOwner, botIsAdmin, senderIsAdmin, isLocked);
 }
-
 
 /**
  * Checks the message data and populates a data object
@@ -86,15 +85,10 @@ function checkChatMetaData(messageData, ctx) {
     const senderName = messageData.originalMessage.pushName;
     const isGroup = messageIsFrom.includes("@g.us");
     let messageSender = messageIsFrom;
-    let senderIsOwner = false;
-  
     if (isGroup) {
       messageSender = messageData.originalMessage.key.participant;
     }
-  
-    if (ctx.botData.ownerJid == messageSender || ctx.botData.ownerJid == messageIsFrom) {
-      senderIsOwner = true;
-    }
+    let senderIsOwner = (ctx.ownerNumber == messageSender.split("@")[0]);
   
     return new ChatMetadata(
       messageSender,
@@ -104,7 +98,6 @@ function checkChatMetaData(messageData, ctx) {
       isGroup
     );
   }
-
 
 /**
  * 

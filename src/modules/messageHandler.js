@@ -1,4 +1,5 @@
 import { checkChatMetaData, checkGroupData, checkMessageData } from "../funcs/messageParsers.js";
+import { Bot } from "./bot.js";
 
 /**
     * A class for handling incoming messages in a chat.
@@ -38,7 +39,7 @@ class MessageHandler {
 
         if (this.isModule) {
             if (messageData.body){
-                if (messageData.body.startsWith("/")) {
+                if (messageData.body.startsWith(ctx.prefix)) {
                     return await this.commandHandlers(ctx, messageData.body, messageData, groupData, messageMetadata);
                 }
                 return await this.chatHandlers(ctx, messageData.body, messageData, groupData, messageMetadata);

@@ -26,6 +26,7 @@
     "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {
+    "kamtube": "^0.1.13",
     "nodemon": "^2.0.20"
   }
 }

@@ -1,3 +1,4 @@
+
 /**
  * 
  * @param {*} media 
@@ -23,8 +24,15 @@ function parseMedia(media, mediaType, mimeType, caption) {
         case "audio":
             return {
                 [mediaType]: media,
+                mimetype: mimeType,
                 caption: caption
             };
+        case "voice":
+            return {
+                audio: media,
+                mimetype: mimeType,
+                ptt: true,
+            }
         default:
             throw new Error(`Unknown media type: ${mediaType}`);
     }
