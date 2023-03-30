@@ -29,11 +29,14 @@ const {
  * @returns {Bot} A instance of bot with a working connetion.
 */
 class Bot {
-    constructor(prefix="!", botNumber="", ownerNumber="") {
+    constructor(botName = "bot", prefix = "!", botNumber = "", ownerNumber = "", commandsFilename = "", language = "") {
         this.connection = undefined;
+        this.botName = botName;
         this.prefix = prefix;
         this.botNumber = botNumber;
         this.ownerNumber = ownerNumber;
+        this.commandsFilename = commandsFilename;
+        this.language = language;
         this.reconnectOnClose = true;
     }
 
@@ -121,17 +124,18 @@ class Bot {
     /**
      * @param {MessageData | string} ctx
      * @param {string} text
-     * @param {*} options
+     * @param {Object} options
     */
     async sendTextMessage(ctx, text, options) {
         const recipient = ctx.originalMessage ? ctx.origin : ctx;
         try {
-            const text_data = checkJidInTextAndConvert(text);
+            const textData = checkJidInTextAndConvert(text);
             await this.connection.presenceSubscribe(recipient);
             await this.connection.sendPresenceUpdate(recipient);
             await this.connection.sendMessage(recipient, {
-                text: text_data.text,
-                mentions: text_data.mentions
+                text: textData.text,
+                mentions: textData.mentions,
+                linkPreview: { 'canonical-url': '', 'matched-text': '', title: '', }
             }, options);
             await this.connection.sendPresenceUpdate('paused', recipient);
         } catch (e) {

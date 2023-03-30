@@ -38,7 +38,7 @@ class MessageHandler {
         }
 
         if (this.isModule) {
-            if (messageData.body){
+            if (messageData.body) {
                 if (messageData.body.startsWith(ctx.prefix)) {
                     return await this.commandHandlers(ctx, messageData.body, messageData, groupData, messageMetadata);
                 }

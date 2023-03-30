@@ -27,11 +27,11 @@ function parseTextWithQuotation(text) {
 }
 
 function checkMentionsInText(text) {
-    const regex = /@[0-9]{12}/g;
-    if(regex.test(text)) {
-        return text.match(regex).map(number => number.replace("@", "") + "@s.whatsapp.net");
-    }
-    return "";
+	const regex = /@[0-9]{12}/g;
+	if (regex.test(text)) {
+		return text.match(regex).map(number => number.replace("@", "") + "@s.whatsapp.net");
+	}
+	return "";
 }
 
 

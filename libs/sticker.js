@@ -17,7 +17,7 @@ const ffmpeg = pkgff;
 */
 async function createSticker(context, bot, author, packname) {
     const isStickerMedia = (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
-    if (isStickerMedia){
+    if (isStickerMedia) {
         const messageMedia = context.hasQuotedMessage ? JSON.parse(JSON.stringify(context.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : context.originalMessage;
         const mediaBuffer = await downloadMediaMessage(messageMedia, "buffer");
         const tempFile = await saveTempFile(mediaBuffer);
