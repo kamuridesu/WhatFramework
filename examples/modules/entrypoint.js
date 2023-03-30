@@ -1,4 +1,7 @@
 class Entrypoint {
+    prefix = "!"
+    botNumber = "55YYXXXXXXXX";
+    ownerNumber = "55YYXXXXXXXX";
     async chatHandlers(bot, message, context, group, metadata) {
         if (message === "test") {
             bot.replyText(context, "YEEEEEEy");

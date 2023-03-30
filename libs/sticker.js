@@ -2,9 +2,10 @@ import { exec } from "child_process";
 import pkgff from "fluent-ffmpeg";
 import fs from "fs";
 import path from "path";
-import { Bot } from "../modules/bot.js";
-import { MessageData } from "../types/messageData.js";
-import { saveTempFile } from "../funcs/networking.js";
+import { Bot } from "../src/modules/bot.js";
+import { MessageData } from "../src/types/messageData.js";
+import { saveTempFile } from "../src/funcs/networking.js";
+import { downloadMediaMessage } from "@adiwajshing/baileys";
 const ffmpeg = pkgff;
 
 /**
@@ -14,12 +15,12 @@ const ffmpeg = pkgff;
     @param {object} bot - The WhatsApp bot instance.
     @returns {Promise<string>} - A Promise that resolves with the sticker URL, or rejects with an error.
 */
-async function createSticker(message, context, bot, author, packname) {
-    const isStickerMedia = message.startsWith("/sticker") && (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
+async function createSticker(context, bot, author, packname) {
+    const isStickerMedia = (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
     if (isStickerMedia){
         const messageMedia = context.hasQuotedMessage ? JSON.parse(JSON.stringify(context.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : context.originalMessage;
         const mediaBuffer = await downloadMediaMessage(messageMedia, "buffer");
-        const tempFile = saveTempFile(mediaBuffer);
+        const tempFile = await saveTempFile(mediaBuffer);
         return createStickerFromMedia(tempFile, bot, context, packname, author);
     }
 }
@@ -39,12 +40,12 @@ async function createStickerFromMedia(media, ctx, messageData, packName, author)
         .on('start', (cmd) => {
             console.info(cmd);
         })
-        .on('error', (err) => {
+        .on('error', async (err) => {
             console.error(err);
             fs.unlinkSync(media);
         })
         .on('end', async () => {
-            exec(`webpmux -set exif ${await stickerMetadata(author, packName)} ${randomFilename} -o ${randomFilename}`, async (error) => {
+            exec(`webpmux -set exif \"${await stickerMetadata(author, packName)}\" ${randomFilename} -o ${randomFilename}`, async (error) => {
                 if (error) {
                     console.error(error);
                     fs.unlinkSync(media);

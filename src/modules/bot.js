@@ -10,6 +10,7 @@ import fs from 'fs';
 import { sendRequest } from '../funcs/networking.js';
 import { MessageData } from '../types/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
+import { checkJidInTextAndConvert } from '../../libs/text.js';
 
 const storage = makeInMemoryStore({
     logger: P().child({
@@ -125,10 +126,12 @@ class Bot {
     async sendTextMessage(ctx, text, options) {
         const recipient = ctx.originalMessage ? ctx.origin : ctx;
         try {
+            const text_data = checkJidInTextAndConvert(text);
             await this.connection.presenceSubscribe(recipient);
             await this.connection.sendPresenceUpdate(recipient);
             await this.connection.sendMessage(recipient, {
-                text: text,
+                text: text_data.text,
+                mentions: text_data.mentions
             }, options);
             await this.connection.sendPresenceUpdate('paused', recipient);
         } catch (e) {

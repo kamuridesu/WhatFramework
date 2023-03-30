@@ -33,7 +33,7 @@ The file must contain a class `Entrypoint` with two methods, `commandsHandler` a
 
 The bot will have some libs to help the developer to build their bots. The first is a function called `createSticker`, which creates a sticker from a media message, then sends it.
 
-Helper libs will be available in `whatframework/src/libs/`
+Helper libs will be available in `whatframework/libs/`
 
 ## Running
 
