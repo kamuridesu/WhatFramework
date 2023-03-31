@@ -18,9 +18,12 @@ The framework requires you to create a `modules` folder and, inside that folder,
 
 The class may hold the following informations:
 
-- `prefix`: prefix for the bot commands
-- `botNumber`: number of the bot
-- `ownerNumber`: number of the owner
+- `botName`: name of the bot that will be presented sometimes;
+- `prefix`: prefix for the bot commands;
+- `botNumber`: number of the bot;
+- `ownerNumber`: number of the owner;
+- `commandsFilename`: path for your commands, check [examples](examples/modules/);
+- `language`: language of the bot, supported are: pt-br, en-us, defaults to en-us.
 
 The file must contain a class `Entrypoint` with two methods, `commandsHandler` and `chatsHandler`. Each method must receive the following parameters:
 - `bot`: a bot instance;
@@ -34,6 +37,8 @@ The file must contain a class `Entrypoint` with two methods, `commandsHandler` a
 The bot will have some libs to help the developer to build their bots. The first is a function called `createSticker`, which creates a sticker from a media message, then sends it.
 
 Helper libs will be available in `whatframework/libs/`
+
+Documentation will be in [examples](examples/libs/).
 
 ## Running
 
