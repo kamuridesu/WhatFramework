@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "module": "es2022",
+        "target": "es2017",
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "sourceMap": true,
+    },
+    "include": ["src/**/*", "libs/**/*", "cli.ts"],
+    "exclude": [
+        "node_modules",
+        "tools"
+    ],
+    "outFile": "./dist/compiled.ts",
+    "resolve": {
+        "extensions": [".ts", ".js"]
+    }
+}

@@ -1,3 +1,4 @@
+import {AnyMediaMessageContent} from '@adiwajshing/baileys'
 
 /**
  * 
@@ -7,35 +8,53 @@
  * @param {string} caption 
  * @returns {Object} with the content type and media
  */
-function parseMedia(media, mediaType, mimeType, caption) {
+function parseMedia(media: any, mediaType: string | undefined, mimeType: string | undefined, caption: string | undefined): AnyMediaMessageContent {
+    let info: AnyMediaMessageContent;
     switch (mediaType) {
         case "sticker":
-            return {
+            info = {
                 sticker: media
             };
+            break;
         case "image/gif":
-            return {
+            info = {
                 video: media,
                 gifPlayback: true,
                 caption: caption
             };
+            break;
         case "image":
-        case "video":
-        case "audio":
-            return {
-                [mediaType]: media,
+            info = {
+                image: media,
                 mimetype: mimeType,
                 caption: caption
             };
+            break;
+        case "video":
+            info = {
+                video: media,
+                mimetype: mimeType,
+                caption: caption
+            };
+            break;
+        case "audio":
+            info = {
+                audio: media,
+                mimetype: mimeType,
+                caption: caption
+            };
+            break;
         case "voice":
-            return {
+            info = {
                 audio: media,
                 mimetype: mimeType,
                 ptt: true,
-            }
+            };
+            break;
         default:
             throw new Error(`Unknown media type: ${mediaType}`);
     }
+    return info;
 }
 
 export {

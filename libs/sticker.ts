@@ -6,20 +6,21 @@ import { Bot } from "../src/modules/bot.js";
 import { MessageData } from "../src/types/messageData.js";
 import { saveTempFile } from "../src/funcs/networking.js";
 import { downloadMediaMessage } from "@adiwajshing/baileys";
+
 const ffmpeg = pkgff;
 
 /**
- Creates a sticker from an image or video message.
-    @param {string} message - The command message sent by the user.
-    @param {object} context - The message context object.
-    @param {object} bot - The WhatsApp bot instance.
-    @returns {Promise<string>} - A Promise that resolves with the sticker URL, or rejects with an error.
-*/
-async function createSticker(context, bot, author, packname) {
+ * Creates a sticker from an image or video message.
+ * @param message - The command message sent by the user.
+ * @param context - The message context object.
+ * @param bot - The WhatsApp bot instance.
+ * @returns A Promise that resolves with the sticker URL, or rejects with an error.
+ */
+async function createSticker(context: MessageData, bot: Bot, author: string, packname: string): Promise<void> {
     const isStickerMedia = (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
     if (isStickerMedia) {
         const messageMedia = context.hasQuotedMessage ? JSON.parse(JSON.stringify(context.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : context.originalMessage;
-        const mediaBuffer = await downloadMediaMessage(messageMedia, "buffer");
+        const mediaBuffer = await downloadMediaMessage(messageMedia, "buffer", {});
         const tempFile = await saveTempFile(mediaBuffer);
         return createStickerFromMedia(tempFile, bot, context, packname, author);
     }
@@ -33,19 +34,20 @@ async function createSticker(context, bot, author, packname) {
  * @param {string | undefined} packName 
  * @param {string | undefined} author 
  */
-async function createStickerFromMedia(media, ctx, messageData, packName, author) {
-    const randomFilename = "temp/sticker" + (Math.random() * 1000) + ".png";
+async function createStickerFromMedia(media: string, ctx: Bot, messageData: MessageData, packName?: string, author?: string): Promise<void> {
+    const randomFilename = `temp/sticker${Math.random() * 1000}.png`;
+
     ffmpeg(`${media}`)
         .input(media)
-        .on('start', (cmd) => {
+        .on('start', (cmd: string) => {
             console.info(cmd);
         })
-        .on('error', async (err) => {
+        .on('error', async (err: Error) => {
             console.error(err);
             fs.unlinkSync(media);
         })
         .on('end', async () => {
-            exec(`webpmux -set exif \"${await stickerMetadata(author, packName)}\" ${randomFilename} -o ${randomFilename}`, async (error) => {
+            exec(`webpmux -set exif \"${await stickerMetadata(author ? author : "bot", packName ? packName : "bot")}\" ${randomFilename} -o ${randomFilename}`, async (error) => {
                 if (error) {
                     console.error(error);
                     fs.unlinkSync(media);
@@ -68,12 +70,7 @@ async function createStickerFromMedia(media, ctx, messageData, packName, author)
         .save(randomFilename);
 }
 
-/**
- * @param {string} author 
- * @param {string} packName 
- * @returns {Promise<string>} Promise
- */
-async function stickerMetadata(author, packName) {
+async function stickerMetadata(author: string, packName: string): Promise<string> {
     const packageName = packName ? packName : "bot";
     const authorName = author ? author.replace(/[^a-zA-Z0-9]/g, '') : "bot";
     const filename = path.join(process.cwd(), "temp", `${authorName}_${packageName}.exif`);
@@ -87,7 +84,7 @@ async function stickerMetadata(author, packName) {
         "sticker-pack-name": packageName,
         "sticker-pack-publisher": authorName,
     });
-    let lastJsonByteHex = undefined;
+    let lastJsonByteHex = "";
 
     let jsonSize = jsonPayload.length;
 
@@ -108,11 +105,7 @@ async function stickerMetadata(author, packName) {
     const jsonPayloadBuffer = Buffer.from(jsonPayload);
     const exifDataBuffer = Buffer.concat([littleEndian, lastJsonByteHexBuffer, exifHeaderBuffer, jsonPayloadBuffer]);
 
-    fs.writeFileSync(filename, exifDataBuffer, (error) => {
-        if (error) {
-            console.error(error);
-        }
-    });
+    fs.writeFileSync(filename, exifDataBuffer);
     return filename;
 }
 

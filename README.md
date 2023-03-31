@@ -25,9 +25,25 @@ The class may hold the following informations:
 - `commandsFilename`: path for your commands, check [examples](examples/modules/);
 - `language`: language of the bot, supported are: pt-br, en-us, defaults to en-us.
 
-The file must contain a class `Entrypoint` with two methods, `commandsHandler` and `chatsHandler`. Each method must receive the following parameters:
+The file must contain a class `Entrypoint` with two methods, `commandHandlers` and `chatHandlers`.
+
+### `chatHandlers`
+
+`chatHandlers` must have the following parameters:
+
 - `bot`: a bot instance;
-- `message`: a string with the message. `undefined` if the message does not exists;
+- `message`: a string with the message;
+- `context`: a MessageData instance containing all the data for that message;
+- `group`: a GroupData instance holding all the data for a group. If the chat is not a group, the value is `undefined`;
+- `metadata`: a ChatMetadata instance containing some meta info for the chat.
+
+### `commandHandlers`
+
+`commandHandlers` must have the following parameters:
+
+- `bot`: a bot instance;
+- `command`: a string with the command;
+- `args`: command arguments, if any;
 - `context`: a MessageData instance containing all the data for that message;
 - `group`: a GroupData instance holding all the data for a group. If the chat is not a group, the value is `undefined`;
 - `metadata`: a ChatMetadata instance containing some meta info for the chat.

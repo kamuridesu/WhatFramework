@@ -8,7 +8,7 @@ import { MessageHandler } from './src/modules/messageHandler.js';
 
 const SUPPORTED_LANGUAGES = ["en-us", "pt-br"];
 
-async function initializeFramework() {
+async function initializeFramework(): Promise<void> {
     const rootPath = process.cwd();
     const modulesPath = process.env.DEBUG
         ? path.join(rootPath, 'test_modules')
@@ -18,11 +18,11 @@ async function initializeFramework() {
 
     const entryPoint = path.join(modulesPath, 'entrypoint.js');
     const entryPointModule = await load(entryPoint);
-    const entryPointClass = new entryPointModule.Entrypoint();
+    const entryPointClass: any = new entryPointModule.Entrypoint();
     const messageHandler = new MessageHandler(entryPointClass);
     if (entryPointClass.language) {
         if (!SUPPORTED_LANGUAGES.includes(entryPointClass.language)) {
-            throw Error("Language is not supported!");
+            throw new Error("Language is not supported!");
         }
     }
     const commandsFilename = path.join(modulesPath, entryPointClass.commandsFilename);
