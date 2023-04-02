@@ -1,12 +1,11 @@
-interface Translations {
-    commands: string;
-    closingTagMissing: string;
-  }
-  
-  const TRANSLATIONS: Translations = {
-    commands: "Comandos",
-    closingTagMissing: "Erro! Algumas categorias não possuem tags de fechamento!",
-  };
-  
-  export { TRANSLATIONS };
-  
+import Translations from "./interface.js";
+
+
+const TRANSLATIONS: Translations = {
+  commands: "Comandos",
+  closingTagMissing: "Erro! Algumas categorias não possuem tags de fechamento!",
+  missingStickerMedia: "Erro! Preciso que a mensagem seja uma imagem, vídeo ou gif!",
+  sendingMediaError: "Ocorreu um erro ao enviar a mídia!",
+};
+
+export { TRANSLATIONS };

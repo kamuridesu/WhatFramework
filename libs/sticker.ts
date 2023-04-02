@@ -6,6 +6,7 @@ import { Bot } from "../src/modules/bot.js";
 import { MessageData } from "../src/types/messageData.js";
 import { saveTempFile } from "../src/funcs/networking.js";
 import { downloadMediaMessage } from "@adiwajshing/baileys";
+import Language from "./lang/language.js";
 
 const ffmpeg = pkgff;
 
@@ -17,6 +18,7 @@ const ffmpeg = pkgff;
  * @returns A Promise that resolves with the sticker URL, or rejects with an error.
  */
 async function createSticker(context: MessageData, bot: Bot, author: string, packname: string): Promise<void> {
+    const language = new Language(bot);
     const isStickerMedia = (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
     if (isStickerMedia) {
         const messageMedia = context.hasQuotedMessage ? JSON.parse(JSON.stringify(context.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : context.originalMessage;
@@ -24,6 +26,7 @@ async function createSticker(context: MessageData, bot: Bot, author: string, pac
         const tempFile = await saveTempFile(mediaBuffer);
         return createStickerFromMedia(tempFile, bot, context, packname, author);
     }
+    return bot.replyText(context, language.TRANSLATIONS.missingStickerMedia);
 }
 
 /**
@@ -56,7 +59,7 @@ async function createStickerFromMedia(media: string, ctx: Bot, messageData: Mess
                         error: error
                     };
                 }
-                await ctx.replyMedia(messageData, randomFilename, "sticker");
+                await ctx.replyMedia(messageData, fs.readFileSync(randomFilename), "sticker");
                 fs.unlinkSync(media);
                 fs.unlinkSync(randomFilename);
             });

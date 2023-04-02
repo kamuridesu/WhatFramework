@@ -31,6 +31,7 @@ function checkMessageData(message: WAMessage): MessageData | undefined {
   let mentionedUsers: string[] | undefined | null = [];
   let hasQuotedMessage: boolean = false;
   let quotedMessageType: string | undefined;
+  let quotedMessage: string | undefined;
   let isReactionMessage: boolean = false;
   let reactionMessage: any = undefined;
 
@@ -50,6 +51,7 @@ function checkMessageData(message: WAMessage): MessageData | undefined {
       quotedMessageType = messageTypes.find(type => JSON.stringify(message.message).includes(type));
       if (quotedMessageType === "conversation") {
         mentionedUsers = message.message?.extendedTextMessage?.contextInfo?.mentionedJid;
+        quotedMessage = JSON.parse(JSON.stringify(message).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo;
       }
       break;
     case "reactionMessage":
@@ -61,7 +63,7 @@ function checkMessageData(message: WAMessage): MessageData | undefined {
   mentionedUsers = mentionedUsers ? mentionedUsers : [];
   const origin = message.key.remoteJid ? message.key.remoteJid : "";
   quotedMessageType = quotedMessageType ? quotedMessageType : "";
-  return new MessageData(message, type as string, body, mentionedUsers, origin, isMedia, hasQuotedMessage, quotedMessageType, isReactionMessage, reactionMessage);
+  return new MessageData(message, type as string, body, mentionedUsers, origin, isMedia, hasQuotedMessage, quotedMessageType, quotedMessage, isReactionMessage, reactionMessage);
 }
 
 

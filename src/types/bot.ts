@@ -2,6 +2,7 @@ import makeWASocket from "@adiwajshing/baileys";
 import { WAMessage } from "@adiwajshing/baileys";
 import { Media } from "../modules/bot.js";
 import { MessageData } from "./messageData.js";
+import Language from "../../libs/lang/language.js";
 
 
 interface Bot {
@@ -13,6 +14,7 @@ interface Bot {
     readonly ownerNumber: string;
     readonly commandsFilename: string;
     readonly language: string;
+    readonly lang: Language;
     reconnectOnClose: boolean;
 
     init(messageHandler: { handle: (message: WAMessage, bot: Bot) => void }): Promise<void>;
@@ -28,6 +30,8 @@ interface Bot {
     ): Promise<void>;
 
     sendTextMessage(ctx: MessageData | string, text: string, options: any): Promise<void>;
+
+    loadMessage(ctx: MessageData): Promise<MessageData|undefined>;
 }
 
 export {

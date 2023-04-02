@@ -13,6 +13,7 @@ class MessageData {
      * @param {boolean} isMedia message is media
      * @param {boolean} hasQuotedMessage message is quoting message
      * @param {string} quotedMessageType if hasQuotedMessage, is quoting what
+     * @param {any} quotedMessage
      * @param {boolean} isReactionMessage the message is a reaction message
      * @param {*} reactionMessage reactin to the message
      */
@@ -25,6 +26,7 @@ class MessageData {
         public isMedia: boolean,
         public hasQuotedMessage: boolean,
         public quotedMessageType: any,
+        public quotedMessage: any,
         public isReactionMessage: boolean,
         public reactionMessage: any,
     ) {}

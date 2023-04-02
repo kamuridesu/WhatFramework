@@ -1,11 +1,12 @@
 import Pino from 'pino';
-import { default as makeWASocket, DisconnectReason, makeInMemoryStore, useMultiFileAuthState, WAMessage } from '@adiwajshing/baileys'
+import { default as makeWASocket, proto, DisconnectReason, makeInMemoryStore, useMultiFileAuthState, WAMessage, WAMessageCursor } from '@adiwajshing/baileys'
 import { Boom } from '@hapi/boom'
 import { MessageData } from '../types/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
 import { Bot } from "../types/bot.js";
-
+import Language from "../../libs/lang/language.js";
+import { checkMessageData } from '../funcs/messageParsers.js';
 
 
 interface Media {
@@ -21,6 +22,10 @@ const logger = Pino().child({
 });
 
 const storage = makeInMemoryStore({ logger });
+storage.readFromFile("./states/baileys_storage_dump.json");
+setInterval(() => {
+    storage.writeToFile("./states/baileys_storage_dump.json");
+}, 10_000);
 
 const {
     state,
@@ -40,6 +45,7 @@ class WABot implements Bot {
     public readonly ownerNumber: string;
     public readonly commandsFilename: string;
     public readonly language: string;
+    public readonly lang: Language;
 
     constructor(
         botName = 'bot',
@@ -57,6 +63,7 @@ class WABot implements Bot {
         this.commandsFilename = commandsFilename;
         this.language = language;
         this.reconnectOnClose = true;
+        this.lang = new Language(this);
     }
 
     /**
@@ -102,7 +109,7 @@ class WABot implements Bot {
 
     async replyMedia(
         ctx: MessageData,
-        media: string | Media,
+        media: string | Media | Buffer,
         messageType: string,
         mimeType?: string,
         mediaCaption?: string,
@@ -110,7 +117,7 @@ class WABot implements Bot {
     ): Promise<void> {
         try {
             await this.connection?.presenceSubscribe(ctx.origin);
-            await this.connection?.sendPresenceUpdate("composing", ctx.origin);
+            await this.connection?.sendPresenceUpdate('recording', ctx.origin);
 
             const params = parseMedia(media, messageType, mimeType, mediaCaption);
             await this.connection?.sendMessage(ctx.origin, params, {
@@ -120,7 +127,7 @@ class WABot implements Bot {
             await this.connection?.sendPresenceUpdate("paused", ctx.origin);
         } catch (e) {
             console.error(e);
-            await this.replyText(ctx, "Ocorreu um erro ao enviar a mídia!");
+            await this.replyText(ctx, this.lang.TRANSLATIONS.sendingMediaError);
         }
     }
 
@@ -144,6 +151,17 @@ class WABot implements Bot {
         } catch (e) {
             console.error(e);
         }
+    }
+
+    async loadMessage(ctx: MessageData): Promise<MessageData|undefined> {
+        if (!ctx.hasQuotedMessage || ctx.quotedMessageType != "conversation") {
+            return undefined;
+        }
+        const messageInformation = await storage.loadMessage(ctx.origin, ctx.quotedMessage.stanzaId);
+        if(messageInformation){
+            return checkMessageData(messageInformation);
+        }
+        return undefined;
     }
 }
 

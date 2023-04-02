@@ -1,14 +1,13 @@
 import fs from "fs";
 import { parseTextWithQuotation } from "./text.js";
 import { Bot } from "../src/modules/bot.js";
-import { TRANSLATIONS as PT } from "./lang/pt-bt.js"
-import { TRANSLATIONS as EN } from "./lang/en-us.js"
+import Language from "./lang/language.js";
 
 class Help {
     commandsFilename: string;
     botName: string;
     language: string;
-    TRANSLATIONS: any;
+    lang: Language;
 
     /**
      * 
@@ -17,12 +16,7 @@ class Help {
     constructor(bot: Bot) {
         this.commandsFilename = bot.commandsFilename;
         this.botName = bot.botName;
-        this.language = bot.language;
-        const languages = {
-            ptbr: PT,
-            enus: EN,
-        };
-        this.TRANSLATIONS = languages[this.language.replace("-", "")];
+        this.lang = new Language(bot);
     }
 
 
@@ -32,7 +26,7 @@ class Help {
             return cmd.split(":")[0].replace(/"/g, '').replace(/'/g, '');
         });
 
-        const document_string = `${this.botName}\n${this.TRANSLATIONS.commands}: \n-|${cases.join("\n-|")}`
+        const document_string = `${this.botName}\n${this.lang.TRANSLATIONS.commands}: \n-|${cases.join("\n-|")}`
         return document_string;
     }
 
@@ -51,7 +45,7 @@ class Help {
         for (let i = 0; i < command_lines.length; i++) {
             const category = command_lines[i].replace(/[^a-zA-Z0-9]/g, '').trim();
             if (command_lines[i].trim().includes("$%")) {
-                if (category.includes(last_category || '')) {
+                if (category.includes(last_category)) {
                     category_ends.push(i);
                 } else {
                     category_indexes.push({
@@ -72,13 +66,14 @@ class Help {
         let category_indexes: { name: string; start: number; end?: number | undefined; }[] = [];
         let category_ends: number[] = [];
         let categories = await this.processCategories();
+        console.log(categories);
         category_indexes = categories[0];
         category_ends = categories[1];
         if (category_ends.length != category_indexes.length) {
-            return this.TRANSLATIONS.closingTagMissing;
+            return this.lang.TRANSLATIONS.closingTagMissing;
         }
 
-        let text = `--==${this.botName}==--\n\n${this.TRANSLATIONS.commands}:`;
+        let text = `--==${this.botName}==--\n\n${this.lang.TRANSLATIONS.commands}:`;
         for (let i = 0; i < category_indexes.length; i++) {
             let command_text = command_lines
                 .slice(category_indexes[i].start, category_ends[i])
