@@ -1,13 +1,17 @@
 {
   "name": "whatframework",
-  "version": "0.0.11b",
+  "version": "0.1.1b",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
-  "main": "cli.js",
+  "main": "dist/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/cli.js",
-    "build": "tsc --outDir dist"
+    "build": "tsc --outDir dist && sed -i 's/this.connection = makeWASocket/this.connection = makeWASocket.default/' dist/src/modules/bot.js",
+    "prepack": "npm run build"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "whatsbot",
     "whatsapp",
@@ -17,7 +21,7 @@
   "author": "kamuridesu",
   "license": "GPLv3",
   "type": "module",
-  "bin": "cli.js",
+  "bin": "dist/cli.js",
   "dependencies": {
     "@adiwajshing/baileys": "^5.0.0",
     "@adiwajshing/keyed-db": "^0.2.4",
@@ -28,6 +32,7 @@
     "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {
+    "@types/fluent-ffmpeg": "^2.1.21",
     "@types/node": "^18.15.11",
     "@types/ws": "^8.5.4",
     "kamtube": "^0.1.13",

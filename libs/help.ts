@@ -6,7 +6,6 @@ import Language from "./lang/language.js";
 class Help {
     commandsFilename: string;
     botName: string;
-    language: string;
     lang: Language;
 
     /**
@@ -41,7 +40,7 @@ class Help {
         const command_lines = await this.getFileLines();
         let category_indexes: Array<{ name: string, start: number, end?: number }> = [];
         let category_ends: number[] = [];
-        let last_category: string | undefined = undefined;
+        let last_category: string = "";
         for (let i = 0; i < command_lines.length; i++) {
             const category = command_lines[i].replace(/[^a-zA-Z0-9]/g, '').trim();
             if (command_lines[i].trim().includes("$%")) {

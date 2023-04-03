@@ -5,11 +5,11 @@ import { ChatMetadata } from "./chatMetadata.js";
 
 
 class Entrypoint {
-    prefix: string;
-    ownerNumber: string;
-    botNumber: string;
-    commandsFilename: string;
-    botName: string;
+    prefix?: string;
+    ownerNumber?: string;
+    botNumber?: string;
+    commandsFilename?: string;
+    botName?: string;
     language?: string;
 
     constructor(){}

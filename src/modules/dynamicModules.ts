@@ -1,5 +1,5 @@
 interface Module {
-    Entrypoint
+    Entrypoint: any
 }
 
 /**

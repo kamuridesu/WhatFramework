@@ -1,5 +1,5 @@
 import Pino from 'pino';
-import { default as makeWASocket, proto, DisconnectReason, makeInMemoryStore, useMultiFileAuthState, WAMessage, WAMessageCursor } from '@adiwajshing/baileys'
+import makeWASocket, { DisconnectReason, makeInMemoryStore, useMultiFileAuthState, WAMessage } from '@adiwajshing/baileys'
 import { Boom } from '@hapi/boom'
 import { MessageData } from '../types/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';

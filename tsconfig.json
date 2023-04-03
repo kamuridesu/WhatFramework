@@ -3,16 +3,17 @@
         "baseUrl": ".",
         "module": "es2022",
         "target": "es2017",
-        "experimentalDecorators": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "resolveJsonModule": true,
-        "sourceMap": true,
+        "declaration": true,
+        "outDir": "dist",
+        "strict": true,
     },
     "include": ["src/**/*", "libs/**/*", "cli.ts"],
     "exclude": [
         "node_modules",
-        "tools"
+        "tools",
+        "dist"
     ],
     "outFile": "./dist/compiled.ts",
     "resolve": {
