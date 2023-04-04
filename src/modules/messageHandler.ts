@@ -24,11 +24,7 @@ class MessageHandler {
     }
   }
 
-  /**
-   * Handles incoming messages in a chat.
-   * @param message The received message.
-   * @param ctx A Bot instance to send messages.
-   */
+
   async handle(message: WAMessage, ctx: Bot): Promise<void> {
     if (
       !message.message ||

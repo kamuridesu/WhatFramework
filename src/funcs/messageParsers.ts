@@ -14,11 +14,6 @@ const messageTypes: string[] = [
   "reactionMessage"
 ];
 
-/**
- * Checks the message data and populate a data object
- * @param {Message} message message instance to check data
- * @returns {MessageData} message_data with all retrieved information
- */
 function checkMessageData(message: WAMessage): MessageData | undefined {
   const key = message.message;
   if (!key) {

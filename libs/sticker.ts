@@ -10,13 +10,6 @@ import Language from "./lang/language.js";
 
 const ffmpeg = pkgff;
 
-/**
- * Creates a sticker from an image or video message.
- * @param message - The command message sent by the user.
- * @param context - The message context object.
- * @param bot - The WhatsApp bot instance.
- * @returns A Promise that resolves with the sticker URL, or rejects with an error.
- */
 async function createSticker(context: MessageData, bot: Bot, author: string, packname: string): Promise<void> {
     const language = new Language(bot);
     const isStickerMedia = (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
@@ -29,14 +22,7 @@ async function createSticker(context: MessageData, bot: Bot, author: string, pac
     return bot.replyText(context, language.TRANSLATIONS.missingStickerMedia);
 }
 
-/**
- * 
- * @param {string} media media filename
- * @param {Bot} ctx bot instance
- * @param {MessageData} messageData 
- * @param {string | undefined} packName 
- * @param {string | undefined} author 
- */
+
 async function createStickerFromMedia(media: string, ctx: Bot, messageData: MessageData, packName?: string, author?: string): Promise<void> {
     const randomFilename = `temp/sticker${Math.random() * 1000}.png`;
 

@@ -32,9 +32,7 @@ const {
     saveCreds,
 } = await useMultiFileAuthState('./states');
 
-/**
- * Bot class to create a Bot object to handle all the WhatsApp IO.
- */
+
 class WABot implements Bot {
     public connection?: ReturnType<typeof makeWASocket>;
     reconnectOnClose: boolean;

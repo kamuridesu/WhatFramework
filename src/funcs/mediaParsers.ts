@@ -1,13 +1,5 @@
 import {AnyMediaMessageContent} from '@adiwajshing/baileys'
 
-/**
- * 
- * @param {*} media 
- * @param {string} mediaType 
- * @param {string} mimeType 
- * @param {string} caption 
- * @returns {Object} with the content type and media
- */
 function parseMedia(media: any, mediaType: string | undefined, mimeType: string | undefined, caption: string | undefined): AnyMediaMessageContent {
     let info: AnyMediaMessageContent;
     switch (mediaType) {

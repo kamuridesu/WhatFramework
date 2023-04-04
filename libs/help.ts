@@ -8,10 +8,6 @@ class Help {
     botName: string;
     lang: Language;
 
-    /**
-     * 
-     * @param {Bot} bot 
-     */
     constructor(bot: Bot) {
         this.commandsFilename = bot.commandsFilename;
         this.botName = bot.botName;
