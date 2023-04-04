@@ -44,7 +44,7 @@ class Help {
         for (let i = 0; i < command_lines.length; i++) {
             const category = command_lines[i].replace(/[^a-zA-Z0-9]/g, '').trim();
             if (command_lines[i].trim().includes("$%")) {
-                if (category.includes(last_category)) {
+                if (last_category != "" && category.includes(last_category)) {
                     category_ends.push(i);
                 } else {
                     category_indexes.push({
