@@ -1,6 +1,6 @@
 {
   "name": "@kamuridesu/whatframework",
-  "version": "0.1.3b",
+  "version": "0.1.4b",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
   "main": "dist/cli.js",
   "scripts": {
@@ -38,6 +38,7 @@
     "kamtube": "^0.1.13",
     "nodemon": "^2.0.20",
     "tslib": "^2.5.0",
+    "typedoc": "^0.23.28",
     "typescript": "^5.0.3"
   }
 }

@@ -4,17 +4,10 @@ import { Boom } from '@hapi/boom'
 import { MessageData } from '../types/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
-import { Bot } from "../types/bot.js";
+import { Bot, GroupsData, Media } from "../types/bot.js";
 import Language from "../../libs/lang/language.js";
 import { checkMessageData } from '../funcs/messageParsers.js';
 
-
-interface Media {
-    media: Buffer | string;
-    messageType: string;
-    mimeType: string;
-    error: Error;
-}
 
 const logger = Pino().child({
     level: 'error',
@@ -44,6 +37,7 @@ class WABot implements Bot {
     public readonly commandsFilename: string;
     public readonly language: string;
     public readonly lang: Language;
+    public groupsData: GroupsData
 
     constructor(
         botName = 'bot',
@@ -62,6 +56,7 @@ class WABot implements Bot {
         this.language = language;
         this.reconnectOnClose = true;
         this.lang = new Language(this);
+        this.groupsData = {}
     }
 
     /**

@@ -1,9 +1,23 @@
 import makeWASocket from "@adiwajshing/baileys";
 import { WAMessage } from "@adiwajshing/baileys";
-import { Media } from "../modules/bot.js";
 import { MessageData } from "./messageData.js";
 import Language from "../../libs/lang/language.js";
+import { GroupData } from './groupData.js';
 
+
+interface GroupsData {
+    [groupId: string]: {
+        lastFetchDate: number;
+        groupData: GroupData
+    }
+}
+
+interface Media {
+    media: Buffer | string;
+    messageType: string;
+    mimeType: string;
+    error: Error;
+}
 
 interface Bot {
     connection?: ReturnType<typeof makeWASocket>;
@@ -16,6 +30,7 @@ interface Bot {
     readonly language: string;
     readonly lang: Language;
     reconnectOnClose: boolean;
+    groupsData: GroupsData
 
     init(messageHandler: { handle: (message: WAMessage, bot: Bot) => void }): Promise<void>;
 
@@ -36,5 +51,5 @@ interface Bot {
 
 export {
     Bot,
-    Media
+    Media, GroupsData
 }

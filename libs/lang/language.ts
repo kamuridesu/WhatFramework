@@ -5,13 +5,13 @@ import { TRANSLATIONS as enus } from "./en-us.js";
 
 interface LanguageMap {
     [key: string]: Translations;
-  }
-  
-  const languages: LanguageMap = {
+}
+
+const languages: LanguageMap = {
     ptbr: ptbr,
     enus: enus,
-  };
-  
+};
+
 
 class Language {
     readonly language: string;
