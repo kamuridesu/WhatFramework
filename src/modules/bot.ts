@@ -133,6 +133,9 @@ class WABot implements Bot {
         }
         try {
             const textData = checkJidInTextAndConvert(text);
+            if(options && options.mentions) {
+                textData.mentions = textData.mentions.concat(options.mentions);
+            }
             await this.connection?.presenceSubscribe(recipient);
             await this.connection?.sendPresenceUpdate("composing", recipient);
             await this.connection?.sendMessage(recipient, {
