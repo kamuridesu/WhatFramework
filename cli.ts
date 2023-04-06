@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { Bot } from './src/modules/bot.js';
 import { load } from './src/modules/dynamicModules.js';
+import { wasCalledAsScript } from './src/funcs/util.js';
 import { MessageHandler } from './src/modules/messageHandler.js';
 
 const SUPPORTED_LANGUAGES = ["en-us", "pt-br"];
@@ -29,7 +30,8 @@ async function initializeFramework(): Promise<void> {
     const bot = new Bot(entryPointClass.botName, entryPointClass.prefix, entryPointClass.botNumber, entryPointClass.ownerNumber, commandsFilename, entryPointClass.language ? entryPointClass.language : "en-us");
     await bot.init(messageHandler);
 }
-
-initializeFramework();
+if (wasCalledAsScript()) {
+    initializeFramework();
+}
 
 export default initializeFramework;
