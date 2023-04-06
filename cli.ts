@@ -29,7 +29,7 @@ async function initializeFramework(): Promise<void> {
     const bot = botFactory(entryPointClass, commandsFilename);
     await bot.init(messageHandler);
 }
-if (wasCalledAsScript()) {
+if (!wasCalledAsScript()) {
     initializeFramework();
 }
 
