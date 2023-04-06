@@ -1,4 +1,5 @@
 import { realpathSync } from "fs";
+import { Bot } from "../modules/bot.js";
 import { pathToFileURL } from "url";
 
 function wasCalledAsScript(): boolean {
@@ -7,5 +8,10 @@ function wasCalledAsScript(): boolean {
     return import.meta.url === realPathAsUrl;
 }
 
+function botFactory(entryPointClass: any, commandsFilename: string): Bot {
+    return new Bot(entryPointClass.botName, entryPointClass.prefix, entryPointClass.botNumber, entryPointClass.ownerNumber, commandsFilename, entryPointClass.language ? entryPointClass.language : "en-us");
+}
 
-export { wasCalledAsScript };
+
+export { wasCalledAsScript,
+    botFactory };

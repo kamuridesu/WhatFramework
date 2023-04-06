@@ -2,9 +2,8 @@
 
 import fs from 'fs';
 import path from 'path';
-import { Bot } from './src/modules/bot.js';
 import { load } from './src/modules/dynamicModules.js';
-import { wasCalledAsScript } from './src/funcs/util.js';
+import { wasCalledAsScript, botFactory } from './src/funcs/util.js';
 import { MessageHandler } from './src/modules/messageHandler.js';
 
 const SUPPORTED_LANGUAGES = ["en-us", "pt-br"];
@@ -27,7 +26,7 @@ async function initializeFramework(): Promise<void> {
         }
     }
     const commandsFilename = path.join(modulesPath, entryPointClass.commandsFilename);
-    const bot = new Bot(entryPointClass.botName, entryPointClass.prefix, entryPointClass.botNumber, entryPointClass.ownerNumber, commandsFilename, entryPointClass.language ? entryPointClass.language : "en-us");
+    const bot = botFactory(entryPointClass, commandsFilename);
     await bot.init(messageHandler);
 }
 if (wasCalledAsScript()) {

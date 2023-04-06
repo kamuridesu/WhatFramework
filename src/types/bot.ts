@@ -19,6 +19,10 @@ interface Media {
     error: Error;
 }
 
+interface Module {
+    Entrypoint: any
+}
+
 interface Bot {
     connection?: ReturnType<typeof makeWASocket>;
 
@@ -51,5 +55,7 @@ interface Bot {
 
 export {
     Bot,
-    Media, GroupsData
+    Media,
+    GroupsData,
+    Module
 }
