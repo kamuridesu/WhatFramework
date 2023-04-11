@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import { load } from './src/modules/dynamicModules.js';
-import { wasCalledAsScript, botFactory } from './src/funcs/util.js';
+import { botFactory } from './libs/util.js';
 import { MessageHandler } from './src/modules/messageHandler.js';
 
 const SUPPORTED_LANGUAGES = ["en-us", "pt-br"];
@@ -29,8 +29,7 @@ async function initializeFramework(): Promise<void> {
     const bot = botFactory(entryPointClass, commandsFilename);
     await bot.init(messageHandler);
 }
-if (!wasCalledAsScript()) {
-    initializeFramework();
-}
+
+initializeFramework();
 
 export default initializeFramework;
