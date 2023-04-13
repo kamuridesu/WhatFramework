@@ -1,4 +1,4 @@
-FROM node:16.19-alpine
+FROM node:16.20-alpine
 WORKDIR /app
 RUN apk update
 RUN apk add ffmpeg
