@@ -5,7 +5,7 @@ import path from "path";
 import { Bot } from "../src/modules/bot.js";
 import { MessageData } from "../src/types/messageData.js";
 import { saveTempFile } from "../src/funcs/networking.js";
-import { downloadMediaMessage } from "@adiwajshing/baileys";
+import { downloadMediaMessage } from "@whiskeysockets/baileys";
 import Language from "./lang/language.js";
 
 const ffmpeg = pkgff;

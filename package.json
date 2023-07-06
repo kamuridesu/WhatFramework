@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/cli.js",
-    "build": "tsc --outDir dist && sed -i 's/this.connection = makeWASocket/this.connection = makeWASocket.default/' dist/src/modules/bot.js",
+    "build": "tsc --outDir dist",
     "prepack": "npm run build"
   },
   "files": [
@@ -23,12 +23,10 @@
   "type": "module",
   "bin": "dist/cli.js",
   "dependencies": {
-    "@adiwajshing/baileys": "^5.0.0",
-    "@adiwajshing/keyed-db": "^0.2.4",
     "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "^6.3.0",
     "axios": "^1.2.2",
     "fluent-ffmpeg": "^2.1.2",
-    "jimp": "^0.22.7",
     "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {

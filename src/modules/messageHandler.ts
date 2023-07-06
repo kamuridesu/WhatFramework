@@ -4,7 +4,7 @@ import { ChatMetadata } from "../types/chatMetadata.js"
 import { GroupData } from '../types/groupData.js';
 import { MessageData } from '../types/messageData.js';
 
-import { WAMessage } from '@adiwajshing/baileys';
+import { WAMessage } from '@whiskeysockets/baileys';
 
 interface EntryPoints {
     commandHandlers: Function;

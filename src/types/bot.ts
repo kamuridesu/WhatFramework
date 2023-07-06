@@ -1,5 +1,5 @@
-import makeWASocket from "@adiwajshing/baileys";
-import { WAMessage } from "@adiwajshing/baileys";
+import makeWASocket from "@whiskeysockets/baileys";
+import { WAMessage } from "@whiskeysockets/baileys";
 import { MessageData } from "./messageData.js";
 import Language from "../../libs/lang/language.js";
 import { GroupData } from './groupData.js';

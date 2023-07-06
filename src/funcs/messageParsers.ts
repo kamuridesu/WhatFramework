@@ -1,4 +1,4 @@
-import { WAMessage } from "@adiwajshing/baileys";
+import { WAMessage } from "@whiskeysockets/baileys";
 import { MessageData } from "../types/messageData.js";
 import { GroupData } from "../types/groupData.js";
 import { ChatMetadata } from "../types/chatMetadata.js";
