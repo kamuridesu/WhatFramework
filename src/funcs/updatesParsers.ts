@@ -7,7 +7,7 @@ import { MessageData } from "../types/messageData.js";
 
 
 
-async function pollParser(key: WAMessageKey,  pollUpdates: Pick<WAMessage, 'pollUpdates' | 'message'>, bot: Bot): Promise<PollVoteAggragation|undefined> {
+async function pollParser(key: WAMessageKey, pollUpdates: Pick<WAMessage, 'pollUpdates' | 'message'>, bot: Bot): Promise<PollVoteAggragation | undefined> {
     if (!key) {
         return;
     }

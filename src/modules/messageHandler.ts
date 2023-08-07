@@ -4,29 +4,23 @@ import { ChatMetadata } from "../types/chatMetadata.js"
 import { GroupData } from '../types/groupData.js';
 import { MessageData } from '../types/messageData.js';
 import { pollParser } from '../funcs/updatesParsers.js';
-import { MessageHandler } from '../types/bot.js';
+import { MessageHandler, EntryPoint } from '../types/bot.js';
 import { colors } from '../../libs/std.js';
 
 import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
-
-interface EntryPoints {
-    commandHandlers: Function;
-    chatHandlers: Function;
-}
 
 class WAMessageHandler implements MessageHandler {
     private isModule: boolean;
     private commandHandlers?: Function;
     private chatHandlers?: Function;
 
-    constructor(entrypoint?: EntryPoints) {
+    constructor(entrypoint?: EntryPoint) {
         this.isModule = !!entrypoint;
         if (this.isModule) {
             this.commandHandlers = entrypoint?.commandHandlers;
             this.chatHandlers = entrypoint?.chatHandlers;
         }
     }
-
 
     async handle(message: WAMessage, ctx: Bot): Promise<void> {
         if (
@@ -66,7 +60,7 @@ class WAMessageHandler implements MessageHandler {
 
     async handleUpdate(key: WAMessageKey, updates: Partial<WAMessage>, ctx: Bot) {
         if (key) {
-            if (updates.pollUpdates){
+            if (updates.pollUpdates) {
                 const pollData = await pollParser(key, updates, ctx);
             }
         }

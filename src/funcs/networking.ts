@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import fs from "fs/promises";
 
 interface RequestOptions {

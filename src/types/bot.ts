@@ -19,11 +19,21 @@ interface Media {
     error: Error;
 }
 
-interface Module {
-    Entrypoint: any
+interface EntryPoint {
+    botName: string,
+    prefix: string,
+    botNumber: string,
+    ownerNumber: string,
+    language: string | undefined
+    commandHandlers: Function;
+    chatHandlers: Function;
 }
 
-interface MessageHandler { 
+interface Module {
+    Entrypoint: EntryPoint
+}
+
+interface MessageHandler {
     handle: (message: WAMessage, bot: Bot) => void
     handleUpdate: (key: WAMessageKey, updates: Partial<WAMessage>, ctx: Bot) => void
 }
@@ -64,5 +74,6 @@ export {
     Media,
     GroupsData,
     Module,
-    MessageHandler
+    MessageHandler,
+    EntryPoint
 }

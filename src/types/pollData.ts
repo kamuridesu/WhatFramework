@@ -5,7 +5,7 @@ interface VoteAggregation {
 
 interface PollVoteAggragation {
     pollName: string | null | undefined
-    votes:    VoteAggregation[]
+    votes: VoteAggregation[]
 }
 
 

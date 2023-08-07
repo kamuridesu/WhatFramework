@@ -1,11 +1,23 @@
 import Pino from 'pino';
-import { makeWASocket, DisconnectReason, makeInMemoryStore, useMultiFileAuthState, WAMessage, makeCacheableSignalKeyStore, WAMessageContent, WAMessageKey } from '@whiskeysockets/baileys'
 import { Boom } from '@hapi/boom'
+
+import { makeWASocket,
+    DisconnectReason,
+    makeInMemoryStore,
+    useMultiFileAuthState,
+    WAMessage,
+    makeCacheableSignalKeyStore,
+    WAMessageContent,
+    WAMessageKey } from '@whiskeysockets/baileys'
+import { Bot,
+    GroupsData,
+    Media,
+    MessageHandler } from "../types/bot.js";
+
+import Language from "../../libs/lang/language.js";
 import { MessageData } from '../types/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
-import { Bot, GroupsData, Media, MessageHandler } from "../types/bot.js";
-import Language from "../../libs/lang/language.js";
 import { checkMessageData } from '../funcs/messageParsers.js';
 
 
@@ -27,7 +39,8 @@ const {
 
 async function getMessage(key: WAMessageKey): Promise<WAMessageContent | undefined> {
     if (storage) {
-        const msg = await storage.loadMessage(key.remoteJid!, key.id!)
+        const msg = await storage.loadMessage(key.remoteJid!,
+            key.id!)
         return msg?.message || undefined
     }
 
@@ -146,7 +159,7 @@ class WABot implements Bot {
         }
         try {
             const textData = checkJidInTextAndConvert(text);
-            if(options && options.mentions) {
+            if (options && options.mentions) {
                 textData.mentions = textData.mentions.concat(options.mentions);
             }
             await this.connection?.presenceSubscribe(recipient);
@@ -185,7 +198,7 @@ class WABot implements Bot {
     async loadMessage(ctx: MessageData | WAMessageKey): Promise<MessageData | WAMessage | undefined> {
         let originJid: string;
         let stanzaId: string;
-        if (ctx instanceof MessageData){
+        if (ctx instanceof MessageData) {
             if (!ctx.hasQuotedMessage || ctx.quotedMessageType != "conversation") {
                 return undefined;
             }
