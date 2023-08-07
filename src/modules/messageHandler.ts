@@ -3,15 +3,18 @@ import { checkChatMetaData, checkGroupData, checkMessageData } from '../funcs/me
 import { ChatMetadata } from "../types/chatMetadata.js"
 import { GroupData } from '../types/groupData.js';
 import { MessageData } from '../types/messageData.js';
+import { pollParser } from '../funcs/updatesParsers.js';
+import { MessageHandler } from '../types/bot.js';
+import { colors } from '../../libs/std.js';
 
-import { WAMessage } from '@whiskeysockets/baileys';
+import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
 
 interface EntryPoints {
     commandHandlers: Function;
     chatHandlers: Function;
 }
 
-class MessageHandler {
+class WAMessageHandler implements MessageHandler {
     private isModule: boolean;
     private commandHandlers?: Function;
     private chatHandlers?: Function;
@@ -37,7 +40,7 @@ class MessageHandler {
             Object.keys(message.message)[0] === 'ephemeralMessage'
                 ? message.message.ephemeralMessage?.message
                 : message.message;
-        const messageData: MessageData | undefined = checkMessageData(message);
+        const messageData: MessageData | undefined = checkMessageData(message, ctx);
         if (!messageData) {
             return;
         }
@@ -50,6 +53,7 @@ class MessageHandler {
         if (this.isModule && messageData.body) {
             const messageBody = messageData.body;
             if (messageBody.startsWith(ctx.prefix)) {
+                colors.paint(`Message from ${chatMetadata.messageSender.split('@')[0]}: ${messageBody}`, colors.FgCyan, undefined, colors.Bright);
                 const command = messageBody.split('/')[1].split(' ')[0].toLowerCase();
                 if (command.length === 0) return;
                 const args = messageBody.split(' ').slice(1);
@@ -59,6 +63,14 @@ class MessageHandler {
             }
         }
     }
+
+    async handleUpdate(key: WAMessageKey, updates: Partial<WAMessage>, ctx: Bot) {
+        if (key) {
+            if (updates.pollUpdates){
+                const pollData = await pollParser(key, updates, ctx);
+            }
+        }
+    }
 }
 
-export { MessageHandler };
+export { WAMessageHandler as MessageHandler };

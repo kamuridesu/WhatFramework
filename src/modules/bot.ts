@@ -1,10 +1,10 @@
 import Pino from 'pino';
-import { makeWASocket, DisconnectReason, makeInMemoryStore, useMultiFileAuthState, WAMessage } from '@whiskeysockets/baileys'
+import { makeWASocket, DisconnectReason, makeInMemoryStore, useMultiFileAuthState, WAMessage, makeCacheableSignalKeyStore, WAMessageContent, WAMessageKey } from '@whiskeysockets/baileys'
 import { Boom } from '@hapi/boom'
 import { MessageData } from '../types/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
-import { Bot, GroupsData, Media } from "../types/bot.js";
+import { Bot, GroupsData, Media, MessageHandler } from "../types/bot.js";
 import Language from "../../libs/lang/language.js";
 import { checkMessageData } from '../funcs/messageParsers.js';
 
@@ -25,6 +25,15 @@ const {
     saveCreds,
 } = await useMultiFileAuthState('./states');
 
+async function getMessage(key: WAMessageKey): Promise<WAMessageContent | undefined> {
+    if (storage) {
+        const msg = await storage.loadMessage(key.remoteJid!, key.id!)
+        return msg?.message || undefined
+    }
+
+    // only if store is present
+    return undefined;
+}
 
 class WABot implements Bot {
     public connection?: ReturnType<typeof makeWASocket>;
@@ -63,10 +72,14 @@ class WABot implements Bot {
      * Initiates the bot and starts to handle connections
      * @param {CallableFunction} messageHandler function to handle incoming messages
      */
-    async init(messageHandler: { handle: (message: WAMessage, bot: Bot) => void }): Promise<void> {
+    async init(messageHandler: MessageHandler): Promise<void> {
         this.connection = makeWASocket({
             printQRInTerminal: true,
-            auth: state,
+            auth: {
+                creds: state.creds,
+                keys: makeCacheableSignalKeyStore(state.keys, logger)
+            },
+            getMessage
         });
 
         this.connection.ev.on('creds.update', saveCreds);
@@ -149,16 +162,48 @@ class WABot implements Bot {
         }
     }
 
-    async loadMessage(ctx: MessageData): Promise<MessageData|undefined> {
-        if (!ctx.hasQuotedMessage || ctx.quotedMessageType != "conversation") {
-            return undefined;
+    async createPoll(ctx: MessageData, pollName: string, options: Array<string>): Promise<boolean> {
+        console.log(pollName)
+        console.log(options)
+        try {
+            console.log("creting poll");
+            console.log(await this.connection?.sendMessage(ctx.origin, {
+                poll: {
+                    name: pollName,
+                    values: options,
+                    selectableCount: options.length
+                },
+            }));
+            console.log("done")
+            return true;
+        } catch (e) {
+            console.error(e);
+            return false;
         }
-        const messageInformation = await storage.loadMessage(ctx.origin, ctx.quotedMessage.stanzaId);
-        if(messageInformation){
-            return checkMessageData(messageInformation);
+    }
+
+    async loadMessage(ctx: MessageData | WAMessageKey): Promise<MessageData | WAMessage | undefined> {
+        let originJid: string;
+        let stanzaId: string;
+        if (ctx instanceof MessageData){
+            if (!ctx.hasQuotedMessage || ctx.quotedMessageType != "conversation") {
+                return undefined;
+            }
+            originJid = ctx.origin;
+            stanzaId = ctx.quotedMessage.stanzaId;
+        } else {
+            if (!ctx.remoteJid || !ctx.id) {
+                return undefined;
+            }
+            originJid = ctx.remoteJid;
+            stanzaId = ctx.id;
+        }
+        const messageInformation = await storage.loadMessage(originJid, stanzaId);
+        if (messageInformation) {
+            return (ctx instanceof MessageData ? checkMessageData(messageInformation, this) : messageInformation);
         }
         return undefined;
     }
 }
 
-export { WABot as Bot, Media };
+export { WABot as Bot, Media, getMessage };

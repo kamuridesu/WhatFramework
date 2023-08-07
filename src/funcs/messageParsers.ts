@@ -14,7 +14,7 @@ const messageTypes: string[] = [
     "reactionMessage"
 ];
 
-function checkMessageData(message: WAMessage): MessageData | undefined {
+function checkMessageData(message: WAMessage, bot: Bot): MessageData | undefined {
     const key = message.message;
     if (!key) {
         return undefined;
@@ -44,7 +44,7 @@ function checkMessageData(message: WAMessage): MessageData | undefined {
             body = message.message?.extendedTextMessage?.text;
             hasQuotedMessage = true;
             quotedMessageType = messageTypes.find(type => JSON.stringify(message.message).includes(type));
-            if (quotedMessageType === "conversation") {
+            if (quotedMessageType != undefined && ["conversation", "extendedTextMessage"].includes(quotedMessageType)) {
                 mentionedUsers = message.message?.extendedTextMessage?.contextInfo?.mentionedJid;
                 quotedMessage = JSON.parse(JSON.stringify(message).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo;
             }
@@ -58,7 +58,7 @@ function checkMessageData(message: WAMessage): MessageData | undefined {
     mentionedUsers = mentionedUsers ? mentionedUsers : [];
     const origin = message.key.remoteJid ? message.key.remoteJid : "";
     quotedMessageType = quotedMessageType ? quotedMessageType : "";
-    return new MessageData(message, type as string, body, mentionedUsers, origin, isMedia, hasQuotedMessage, quotedMessageType, quotedMessage, isReactionMessage, reactionMessage);
+    return new MessageData(bot, message, type as string, body, mentionedUsers, origin, isMedia, hasQuotedMessage, quotedMessageType, quotedMessage, isReactionMessage, reactionMessage);
 }
 
 
@@ -66,7 +66,6 @@ async function checkGroupData(messageData: MessageData, chatMetadata: ChatMetada
     let groupCacheId = messageData.origin.split("@g.us")[1];
     const cachedGroupData = ctx.groupsData[groupCacheId];
     if (cachedGroupData && ((Date.now() - cachedGroupData.lastFetchDate) / 1000) <= 10) {
-        console.log("retuning cache");
         return cachedGroupData.groupData;
     }
     const groupMetadata = await ctx.connection?.groupMetadata(messageData.origin);
