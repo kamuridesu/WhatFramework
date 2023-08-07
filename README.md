@@ -9,7 +9,7 @@ An extensible Framework for WhatsApp!
 ## Install the framework:
 
 ```sh
-npm install --save whatframework
+npm install --save @kamuridesu/whatframework
 ```
 
 ## Create your entrypoint:
