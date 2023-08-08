@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[src/types/bot.ts:44](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L44)
+[src/types/bot.ts:44](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L44)

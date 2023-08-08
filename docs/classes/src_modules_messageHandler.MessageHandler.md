@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[src/modules/messageHandler.ts:26](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/messageHandler.ts#L26)
+[src/modules/messageHandler.ts:26](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L26)
 
 ## Properties
 
@@ -67,7 +67,7 @@
 
 #### Defined in
 
-[src/modules/messageHandler.ts:20](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/messageHandler.ts#L20)
+[src/modules/messageHandler.ts:20](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L20)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[src/modules/messageHandler.ts:14](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/messageHandler.ts#L14)
+[src/modules/messageHandler.ts:14](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L14)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[src/modules/messageHandler.ts:13](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/messageHandler.ts#L13)
+[src/modules/messageHandler.ts:13](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L13)
 
 ## Methods
 
@@ -131,7 +131,7 @@ ___
 
 #### Defined in
 
-[src/modules/messageHandler.ts:34](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/messageHandler.ts#L34)
+[src/modules/messageHandler.ts:34](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L34)
 
 ___
 
@@ -157,4 +157,4 @@ ___
 
 #### Defined in
 
-[src/modules/messageHandler.ts:70](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/messageHandler.ts#L70)
+[src/modules/messageHandler.ts:70](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L70)

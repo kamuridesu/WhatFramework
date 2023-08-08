@@ -28,4 +28,4 @@
 
 #### Defined in
 
-[src/funcs/updatesParsers.ts:10](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/funcs/updatesParsers.ts#L10)
+[src/funcs/updatesParsers.ts:10](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/updatesParsers.ts#L10)

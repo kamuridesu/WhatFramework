@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[libs/lang/language.ts:20](https://github.com/kamuridesu/WhatFramework/blob/01ee173/libs/lang/language.ts#L20)
+[libs/lang/language.ts:20](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/language.ts#L20)
 
 ## Properties
 
@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[libs/lang/language.ts:18](https://github.com/kamuridesu/WhatFramework/blob/01ee173/libs/lang/language.ts#L18)
+[libs/lang/language.ts:18](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/language.ts#L18)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[libs/lang/language.ts:17](https://github.com/kamuridesu/WhatFramework/blob/01ee173/libs/lang/language.ts#L17)
+[libs/lang/language.ts:17](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/language.ts#L17)
 
 ## Methods
 
@@ -67,4 +67,4 @@ ___
 
 #### Defined in
 
-[libs/lang/language.ts:25](https://github.com/kamuridesu/WhatFramework/blob/01ee173/libs/lang/language.ts#L25)
+[libs/lang/language.ts:25](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/language.ts#L25)

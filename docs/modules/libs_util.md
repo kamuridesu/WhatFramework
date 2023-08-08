@@ -27,4 +27,4 @@
 
 #### Defined in
 
-[libs/util.ts:5](https://github.com/kamuridesu/WhatFramework/blob/01ee173/libs/util.ts#L5)
+[libs/util.ts:5](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/util.ts#L5)

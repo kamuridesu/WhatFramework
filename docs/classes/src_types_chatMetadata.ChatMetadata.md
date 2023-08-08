@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/types/chatMetadata.ts:2](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/chatMetadata.ts#L2)
+[src/types/chatMetadata.ts:2](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/chatMetadata.ts#L2)
 
 ## Properties
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/types/chatMetadata.ts:7](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/chatMetadata.ts#L7)
+[src/types/chatMetadata.ts:7](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/chatMetadata.ts#L7)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[src/types/chatMetadata.ts:5](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/chatMetadata.ts#L5)
+[src/types/chatMetadata.ts:5](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/chatMetadata.ts#L5)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[src/types/chatMetadata.ts:3](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/chatMetadata.ts#L3)
+[src/types/chatMetadata.ts:3](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/chatMetadata.ts#L3)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[src/types/chatMetadata.ts:6](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/chatMetadata.ts#L6)
+[src/types/chatMetadata.ts:6](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/chatMetadata.ts#L6)
 
 ___
 
@@ -86,4 +86,4 @@ ___
 
 #### Defined in
 
-[src/types/chatMetadata.ts:4](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/chatMetadata.ts#L4)
+[src/types/chatMetadata.ts:4](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/chatMetadata.ts#L4)

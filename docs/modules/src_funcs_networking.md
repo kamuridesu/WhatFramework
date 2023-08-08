@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/funcs/networking.ts:28](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/funcs/networking.ts#L28)
+[src/funcs/networking.ts:28](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/networking.ts#L28)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[src/funcs/networking.ts:14](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/funcs/networking.ts#L14)
+[src/funcs/networking.ts:14](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/networking.ts#L14)

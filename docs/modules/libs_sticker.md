@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[libs/sticker.ts:13](https://github.com/kamuridesu/WhatFramework/blob/01ee173/libs/sticker.ts#L13)
+[libs/sticker.ts:13](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/sticker.ts#L13)
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 #### Defined in
 
-[libs/sticker.ts:26](https://github.com/kamuridesu/WhatFramework/blob/01ee173/libs/sticker.ts#L26)
+[libs/sticker.ts:26](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/sticker.ts#L26)

@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/types/bot.ts:55](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L55)
+[src/types/bot.ts:55](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L55)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:57](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L57)
+[src/types/bot.ts:57](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L57)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:59](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L59)
+[src/types/bot.ts:59](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L59)
 
 ___
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:53](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L53)
+[src/types/bot.ts:53](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L53)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:63](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L63)
+[src/types/bot.ts:63](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L63)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:61](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L61)
+[src/types/bot.ts:61](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L61)
 
 ___
 
@@ -194,7 +194,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:60](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L60)
+[src/types/bot.ts:60](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L60)
 
 ___
 
@@ -204,7 +204,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:58](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L58)
+[src/types/bot.ts:58](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L58)
 
 ___
 
@@ -214,7 +214,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:56](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L56)
+[src/types/bot.ts:56](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L56)
 
 ___
 
@@ -224,7 +224,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:62](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L62)
+[src/types/bot.ts:62](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L62)
 
 ## Methods
 
@@ -246,7 +246,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:80](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L80)
+[src/types/bot.ts:80](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L80)
 
 ___
 
@@ -266,7 +266,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:65](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L65)
+[src/types/bot.ts:65](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L65)
 
 ___
 
@@ -286,7 +286,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:79](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L79)
+[src/types/bot.ts:79](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L79)
 
 ___
 
@@ -311,7 +311,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:68](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L68)
+[src/types/bot.ts:68](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L68)
 
 ___
 
@@ -333,7 +333,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:67](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L67)
+[src/types/bot.ts:67](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L67)
 
 ___
 
@@ -355,4 +355,4 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:77](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L77)
+[src/types/bot.ts:77](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L77)

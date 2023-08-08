@@ -55,7 +55,7 @@
 
 #### Defined in
 
-[src/types/messageData.ts:5](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L5)
+[src/types/messageData.ts:5](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L5)
 
 ## Properties
 
@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[src/types/messageData.ts:9](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L9)
+[src/types/messageData.ts:9](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L9)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:6](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L6)
+[src/types/messageData.ts:6](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L6)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:13](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L13)
+[src/types/messageData.ts:13](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L13)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:12](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L12)
+[src/types/messageData.ts:12](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L12)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:16](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L16)
+[src/types/messageData.ts:16](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L16)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:10](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L10)
+[src/types/messageData.ts:10](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L10)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:11](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L11)
+[src/types/messageData.ts:11](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L11)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:7](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L7)
+[src/types/messageData.ts:7](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L7)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:15](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L15)
+[src/types/messageData.ts:15](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L15)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:14](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L14)
+[src/types/messageData.ts:14](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L14)
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:17](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L17)
+[src/types/messageData.ts:17](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L17)
 
 ___
 
@@ -175,7 +175,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:8](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L8)
+[src/types/messageData.ts:8](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L8)
 
 ## Methods
 
@@ -199,7 +199,7 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:37](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L37)
+[src/types/messageData.ts:37](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L37)
 
 ___
 
@@ -220,4 +220,4 @@ ___
 
 #### Defined in
 
-[src/types/messageData.ts:33](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/messageData.ts#L33)
+[src/types/messageData.ts:33](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/messageData.ts#L33)

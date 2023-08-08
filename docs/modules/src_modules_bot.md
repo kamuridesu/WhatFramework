@@ -40,4 +40,4 @@ Re-exports [Media](../interfaces/src_types_bot.Media.md)
 
 #### Defined in
 
-[src/modules/bot.ts:40](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L40)
+[src/modules/bot.ts:40](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L40)

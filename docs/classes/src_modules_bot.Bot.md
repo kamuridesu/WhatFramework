@@ -55,7 +55,7 @@
 
 #### Defined in
 
-[src/modules/bot.ts:64](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L64)
+[src/modules/bot.ts:64](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L64)
 
 ## Properties
 
@@ -69,7 +69,7 @@
 
 #### Defined in
 
-[src/modules/bot.ts:55](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L55)
+[src/modules/bot.ts:55](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L55)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:57](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L57)
+[src/modules/bot.ts:57](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L57)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:59](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L59)
+[src/modules/bot.ts:59](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L59)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:52](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L52)
+[src/modules/bot.ts:52](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L52)
 
 ___
 
@@ -219,7 +219,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:62](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L62)
+[src/modules/bot.ts:62](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L62)
 
 ___
 
@@ -233,7 +233,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:61](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L61)
+[src/modules/bot.ts:61](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L61)
 
 ___
 
@@ -247,7 +247,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:60](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L60)
+[src/modules/bot.ts:60](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L60)
 
 ___
 
@@ -261,7 +261,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:58](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L58)
+[src/modules/bot.ts:58](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L58)
 
 ___
 
@@ -275,7 +275,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:56](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L56)
+[src/modules/bot.ts:56](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L56)
 
 ___
 
@@ -289,7 +289,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:53](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L53)
+[src/modules/bot.ts:53](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L53)
 
 ## Methods
 
@@ -315,7 +315,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:178](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L178)
+[src/modules/bot.ts:178](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L178)
 
 ___
 
@@ -341,7 +341,7 @@ Initiates the bot and starts to handle connections
 
 #### Defined in
 
-[src/modules/bot.ts:88](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L88)
+[src/modules/bot.ts:88](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L88)
 
 ___
 
@@ -365,7 +365,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:198](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L198)
+[src/modules/bot.ts:198](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L198)
 
 ___
 
@@ -394,7 +394,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:129](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L129)
+[src/modules/bot.ts:129](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L129)
 
 ___
 
@@ -420,7 +420,7 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:124](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L124)
+[src/modules/bot.ts:124](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L124)
 
 ___
 
@@ -446,4 +446,4 @@ ___
 
 #### Defined in
 
-[src/modules/bot.ts:153](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/bot.ts#L153)
+[src/modules/bot.ts:153](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L153)

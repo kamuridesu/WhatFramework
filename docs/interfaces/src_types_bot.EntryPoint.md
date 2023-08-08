@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[src/types/bot.ts:24](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L24)
+[src/types/bot.ts:24](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L24)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:26](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L26)
+[src/types/bot.ts:26](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L26)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:36](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L36)
+[src/types/bot.ts:36](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L36)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:30](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L30)
+[src/types/bot.ts:30](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L30)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:29](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L29)
+[src/types/bot.ts:29](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L29)
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:28](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L28)
+[src/types/bot.ts:28](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L28)
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:27](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L27)
+[src/types/bot.ts:27](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L27)
 
 ___
 
@@ -132,4 +132,4 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:25](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L25)
+[src/types/bot.ts:25](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L25)

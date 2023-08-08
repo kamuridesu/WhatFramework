@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/types/groupData.ts:2](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L2)
+[src/types/groupData.ts:2](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L2)
 
 ## Properties
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[src/types/groupData.ts:7](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L7)
+[src/types/groupData.ts:7](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L7)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:10](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L10)
+[src/types/groupData.ts:10](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L10)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:4](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L4)
+[src/types/groupData.ts:4](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L4)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:5](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L5)
+[src/types/groupData.ts:5](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L5)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:8](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L8)
+[src/types/groupData.ts:8](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L8)
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:12](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L12)
+[src/types/groupData.ts:12](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L12)
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:6](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L6)
+[src/types/groupData.ts:6](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L6)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:3](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L3)
+[src/types/groupData.ts:3](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L3)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:11](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L11)
+[src/types/groupData.ts:11](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L11)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:9](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L9)
+[src/types/groupData.ts:9](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L9)
 
 ___
 
@@ -158,4 +158,4 @@ ___
 
 #### Defined in
 
-[src/types/groupData.ts:13](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/groupData.ts#L13)
+[src/types/groupData.ts:13](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/groupData.ts#L13)

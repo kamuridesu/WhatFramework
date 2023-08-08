@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[src/types/pollData.ts:2](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/pollData.ts#L2)
+[src/types/pollData.ts:2](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/pollData.ts#L2)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[src/types/pollData.ts:3](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/pollData.ts#L3)
+[src/types/pollData.ts:3](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/pollData.ts#L3)

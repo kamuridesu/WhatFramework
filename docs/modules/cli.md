@@ -20,4 +20,4 @@
 
 #### Defined in
 
-[cli.ts:12](https://github.com/kamuridesu/WhatFramework/blob/01ee173/cli.ts#L12)
+[cli.ts:12](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/cli.ts#L12)

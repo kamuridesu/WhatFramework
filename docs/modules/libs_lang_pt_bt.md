@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[libs/lang/pt-bt.ts:4](https://github.com/kamuridesu/WhatFramework/blob/01ee173/libs/lang/pt-bt.ts#L4)
+[libs/lang/pt-bt.ts:4](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/pt-bt.ts#L4)

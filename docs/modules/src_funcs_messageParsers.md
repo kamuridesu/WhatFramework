@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/funcs/messageParsers.ts:93](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/funcs/messageParsers.ts#L93)
+[src/funcs/messageParsers.ts:93](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/messageParsers.ts#L93)
 
 ___
 
@@ -54,7 +54,7 @@ This function has a caching mechanism that saves the group metadata into the bot
 
 #### Defined in
 
-[src/funcs/messageParsers.ts:67](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/funcs/messageParsers.ts#L67)
+[src/funcs/messageParsers.ts:67](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/messageParsers.ts#L67)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[src/funcs/messageParsers.ts:17](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/funcs/messageParsers.ts#L17)
+[src/funcs/messageParsers.ts:17](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/messageParsers.ts#L17)
 
 ___
 
@@ -95,4 +95,4 @@ ___
 
 #### Defined in
 
-[src/funcs/messageParsers.ts:106](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/funcs/messageParsers.ts#L106)
+[src/funcs/messageParsers.ts:106](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/messageParsers.ts#L106)

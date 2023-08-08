@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/types/bot.ts:48](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L48)
+[src/types/bot.ts:48](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L48)
 
 ___
 
@@ -64,4 +64,4 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:49](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/types/bot.ts#L49)
+[src/types/bot.ts:49](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L49)

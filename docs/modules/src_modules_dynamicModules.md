@@ -26,4 +26,4 @@
 
 #### Defined in
 
-[src/modules/dynamicModules.ts:3](https://github.com/kamuridesu/WhatFramework/blob/01ee173/src/modules/dynamicModules.ts#L3)
+[src/modules/dynamicModules.ts:3](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/dynamicModules.ts#L3)
