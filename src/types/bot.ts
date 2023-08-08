@@ -3,6 +3,7 @@ import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
 import { MessageData } from "./messageData.js";
 import Language from "../../libs/lang/language.js";
 import { GroupData } from './groupData.js';
+import { ChatMetadata } from "./chatMetadata.js";
 
 
 interface GroupsData {
@@ -20,13 +21,23 @@ interface Media {
 }
 
 interface EntryPoint {
-    botName: string,
-    prefix: string,
-    botNumber: string,
-    ownerNumber: string,
-    language: string | undefined
-    commandHandlers: Function;
-    chatHandlers: Function;
+    botName: string;
+    prefix: string;
+    botNumber: string;
+    ownerNumber: string;
+    language: string | undefined;
+    commandsFilename: string | undefined;
+    commandHandlers: (ctx: Bot,
+        command: string,
+        args: string[],
+        messageData: MessageData,
+        groupData: GroupData | undefined,
+        chatMetadata: ChatMetadata) => void;
+    chatHandlers: (ctx: Bot,
+        messageBody: string,
+        messageData: MessageData,
+        groupData: GroupData | undefined,
+        chatMetadata: ChatMetadata) => void;
 }
 
 interface Module {

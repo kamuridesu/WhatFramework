@@ -11,14 +11,23 @@ import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
 
 class WAMessageHandler implements MessageHandler {
     private isModule: boolean;
-    private commandHandlers?: Function;
-    private chatHandlers?: Function;
+    private commandHandlers?: (ctx: Bot,
+        command: string,
+        args: string[],
+        messageData: MessageData,
+        groupData: GroupData | undefined,
+        chatMetadata: ChatMetadata) => void;
+    private chatHandlers?: (ctx: Bot,
+        messageBody: string,
+        messageData: MessageData,
+        groupData: GroupData | undefined,
+        chatMetadata: ChatMetadata) => void;
 
     constructor(entrypoint?: EntryPoint) {
         this.isModule = !!entrypoint;
         if (this.isModule) {
-            this.commandHandlers = entrypoint?.commandHandlers;
-            this.chatHandlers = entrypoint?.chatHandlers;
+            this.commandHandlers = entrypoint!.commandHandlers;
+            this.chatHandlers = entrypoint!.chatHandlers;
         }
     }
 
