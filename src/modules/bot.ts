@@ -146,7 +146,7 @@ class WABot implements Bot {
             await this.connection?.sendPresenceUpdate("paused", ctx.origin);
         } catch (e) {
             console.error(e);
-            await this.replyText(ctx, this.lang.TRANSLATIONS.sendingMediaError);
+            await this.replyText(ctx, this.lang.get().sendingMediaError);
         }
     }
 

@@ -14,12 +14,16 @@ const languages: LanguageMap = {
 
 
 class Language {
-    readonly language: string;
-    readonly TRANSLATIONS: Translations;
+    public readonly language: string;
+    private readonly TRANSLATIONS: Translations;
 
     constructor(bot: Bot) {
         this.language = bot.language;
         this.TRANSLATIONS = languages[this.language.replace("-", "")];
+    }
+
+    public get(): Translations {
+        return this.TRANSLATIONS;
     }
 }
 

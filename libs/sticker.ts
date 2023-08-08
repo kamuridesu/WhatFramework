@@ -19,7 +19,7 @@ async function createSticker(context: MessageData, bot: Bot, author: string, pac
         const tempFile = await saveTempFile(mediaBuffer);
         return createStickerFromMedia(tempFile, bot, context, packname, author);
     }
-    return bot.replyText(context, language.TRANSLATIONS.missingStickerMedia);
+    return bot.replyText(context, language.get().missingStickerMedia);
 }
 
 

@@ -1,4 +1,4 @@
-interface _colors {
+interface IColors {
     Reset: string
     Bright: string
     Dim: string
@@ -31,7 +31,7 @@ interface _colors {
 }
 
 
-class Colors implements _colors {
+class Colors implements IColors {
     public readonly Reset = "\x1b[0m"
     public readonly Bright = "\x1b[1m"
     public readonly Dim = "\x1b[2m"
@@ -61,7 +61,7 @@ class Colors implements _colors {
     public readonly BgGray = "\x1b[100m"
 
     paint(text: string, textColor?: string, bgColor?: string, special?: string): void {
-        console.log(special ? special : "", textColor ? textColor: "", bgColor? bgColor : "", text, this.Reset);
+        console.log(special ? special : "", textColor ? textColor : "", bgColor ? bgColor : "", text, this.Reset);
     }
 }
 
