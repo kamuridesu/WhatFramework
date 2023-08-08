@@ -1,7 +1,7 @@
 import makeWASocket from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
 import { MessageData } from "./messageData.js";
-import Language from "../../libs/lang/language.js";
+import { Language } from "../../libs/lang/language.js";
 import { GroupData } from './groupData.js';
 import { ChatMetadata } from "./chatMetadata.js";
 
@@ -60,7 +60,7 @@ interface Bot {
     readonly language: string;
     readonly lang: Language;
     reconnectOnClose: boolean;
-    groupsData: GroupsData
+    groupsData: GroupsData // This is for caching purpose
 
     init(messageHandler: MessageHandler): Promise<void>;
 

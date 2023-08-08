@@ -14,7 +14,7 @@ import { Bot,
     Media,
     MessageHandler } from "../types/bot.js";
 
-import Language from "../../libs/lang/language.js";
+import { Language } from "../../libs/lang/language.js";
 import { MessageData } from '../types/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
@@ -59,7 +59,7 @@ class WABot implements Bot {
     public readonly commandsFilename: string;
     public readonly language: string;
     public readonly lang: Language;
-    public groupsData: GroupsData
+    public groupsData: GroupsData;
 
     constructor(
         botName = 'bot',
@@ -78,7 +78,7 @@ class WABot implements Bot {
         this.language = language;
         this.reconnectOnClose = true;
         this.lang = new Language(this);
-        this.groupsData = {}
+        this.groupsData = {} // This is for caching purpose, details @ src/funcs/messageParsers.ts#65
     }
 
     /**

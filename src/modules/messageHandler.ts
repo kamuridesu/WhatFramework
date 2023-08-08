@@ -60,9 +60,9 @@ class WAMessageHandler implements MessageHandler {
                 const command = messageBody.split('/')[1].split(' ')[0].toLowerCase();
                 if (command.length === 0) return;
                 const args = messageBody.split(' ').slice(1);
-                await this.commandHandlers!(ctx, command, args, messageData, groupData, chatMetadata);
+                this.commandHandlers!(ctx, command, args, messageData, groupData, chatMetadata);
             } else {
-                await this.chatHandlers!(ctx, messageBody, messageData, groupData, chatMetadata);
+                this.chatHandlers!(ctx, messageBody, messageData, groupData, chatMetadata);
             }
         }
     }

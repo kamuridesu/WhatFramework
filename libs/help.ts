@@ -1,7 +1,7 @@
 import fs from "fs";
 import { parseTextWithQuotation } from "./text.js";
 import { Bot } from "../src/modules/bot.js";
-import Language from "./lang/language.js";
+import { Language } from "./lang/language.js";
 
 class Help {
     commandsFilename: string;
@@ -10,6 +10,9 @@ class Help {
 
     constructor(bot: Bot) {
         this.commandsFilename = bot.commandsFilename;
+        if (this.commandsFilename == "") {
+            throw Error("commandsFilename is not set!");
+        }
         this.botName = bot.botName;
         this.lang = new Language(bot);
     }

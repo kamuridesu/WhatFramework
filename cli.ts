@@ -20,20 +20,25 @@ async function initializeFramework(): Promise<void> {
     const entryPoint = path.join(modulesPath, 'entrypoint.js');
     const entryPointModule = await load(entryPoint);
     const entryPointClass: EntryPoint = new (entryPointModule.Entrypoint as any)();
-    const messageHandler = new MessageHandler(entryPointClass);
+
     if (entryPointClass.language) {
         if (!SUPPORTED_LANGUAGES.includes(entryPointClass.language)) {
             throw new Error("Language is not supported!");
         }
+    } else {
+        entryPointClass.language = "en-us";
     }
+
+    const messageHandler = new MessageHandler(entryPointClass);
     const commandsFilename = path.join(modulesPath, 
         entryPointClass.commandsFilename
         ? entryPointClass.commandsFilename 
         : "");
     const bot = botFactory(entryPointClass, commandsFilename);
+
     await bot.init(messageHandler);
 }
 
 initializeFramework();
 
-export default initializeFramework;
+export { initializeFramework };

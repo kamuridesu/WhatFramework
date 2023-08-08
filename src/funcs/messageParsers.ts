@@ -61,7 +61,9 @@ function checkMessageData(message: WAMessage, bot: Bot): MessageData | undefined
     return new MessageData(bot, message, type as string, body, mentionedUsers, origin, isMedia, hasQuotedMessage, quotedMessageType, quotedMessage, isReactionMessage, reactionMessage);
 }
 
-
+/**
+* This function has a caching mechanism that saves the group metadata into the bot instance and invalidates it after 10s
+*/
 async function checkGroupData(messageData: MessageData, chatMetadata: ChatMetadata, ctx: Bot): Promise<GroupData | undefined> {
     let groupCacheId = messageData.origin.split("@g.us")[1];
     const cachedGroupData = ctx.groupsData[groupCacheId];
