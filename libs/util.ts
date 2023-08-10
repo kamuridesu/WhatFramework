@@ -1,9 +1,16 @@
 
 import { Bot } from "../src/modules/bot.js";
+import { IBot } from "../src/interfaces/types.js";
+import { EntryPoint } from "../src/interfaces/types.js";
 
-function botFactory(entryPointClass: any, commandsFilename: string): Bot {
-    return new Bot(entryPointClass.botName, entryPointClass.prefix, entryPointClass.botNumber, entryPointClass.ownerNumber, commandsFilename, entryPointClass.language ? entryPointClass.language : "en-us");
+function botFactory(entryPointClass: EntryPoint, commandsFilename: string): IBot {
+    return new Bot(entryPointClass.botName,
+        entryPointClass.prefix,
+        entryPointClass.botNumber,
+        entryPointClass.ownerNumber,
+        commandsFilename,
+        entryPointClass.language ? entryPointClass.language : "en-us"
+    );
 }
-
 
 export { botFactory };

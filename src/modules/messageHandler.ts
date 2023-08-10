@@ -1,29 +1,32 @@
 import { Bot } from './bot.js';
 import { checkChatMetaData, checkGroupData, checkMessageData } from '../funcs/messageParsers.js';
-import { ChatMetadata } from "../types/chatMetadata.js"
-import { GroupData } from '../types/groupData.js';
-import { MessageData } from '../types/messageData.js';
+import { pollParser } from '../funcs/updatesParsers.js';
+import { MessageHandler, EntryPoint, IMessageData, IGroupData, IChatMetadata } from '../interfaces/types.js';
+import { colors } from '../../libs/std.js';
 
-import { WAMessage } from '@whiskeysockets/baileys';
+import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
 
-interface EntryPoints {
-    commandHandlers: Function;
-    chatHandlers: Function;
-}
-
-class MessageHandler {
+class WAMessageHandler implements MessageHandler {
     private isModule: boolean;
-    private commandHandlers?: Function;
-    private chatHandlers?: Function;
+    private commandHandlers?: (ctx: Bot,
+        command: string,
+        args: string[],
+        messageData: IMessageData,
+        groupData: IGroupData | undefined,
+        chatMetadata: IChatMetadata) => void;
+    private chatHandlers?: (ctx: Bot,
+        messageBody: string,
+        messageData: IMessageData,
+        groupData: IGroupData | undefined,
+        chatMetadata: IChatMetadata) => void;
 
-    constructor(entrypoint?: EntryPoints) {
+    constructor(entrypoint?: EntryPoint) {
         this.isModule = !!entrypoint;
         if (this.isModule) {
-            this.commandHandlers = entrypoint?.commandHandlers;
-            this.chatHandlers = entrypoint?.chatHandlers;
+            this.commandHandlers = entrypoint!.commandHandlers;
+            this.chatHandlers = entrypoint!.chatHandlers;
         }
     }
-
 
     async handle(message: WAMessage, ctx: Bot): Promise<void> {
         if (
@@ -37,12 +40,12 @@ class MessageHandler {
             Object.keys(message.message)[0] === 'ephemeralMessage'
                 ? message.message.ephemeralMessage?.message
                 : message.message;
-        const messageData: MessageData | undefined = checkMessageData(message);
+        const messageData: IMessageData | undefined = checkMessageData(message, ctx);
         if (!messageData) {
             return;
         }
-        const chatMetadata: ChatMetadata = checkChatMetaData(messageData, ctx);
-        let groupData: GroupData | undefined;
+        const chatMetadata: IChatMetadata = checkChatMetaData(messageData, ctx);
+        let groupData: IGroupData | undefined;
         if (chatMetadata.chatIsGroup) {
             groupData = await checkGroupData(messageData, chatMetadata, ctx);
         }
@@ -50,15 +53,24 @@ class MessageHandler {
         if (this.isModule && messageData.body) {
             const messageBody = messageData.body;
             if (messageBody.startsWith(ctx.prefix)) {
+                colors.paint(`Message from ${chatMetadata.messageSender.split('@')[0]}: ${messageBody}`, colors.FgCyan, undefined, colors.Bright);
                 const command = messageBody.split('/')[1].split(' ')[0].toLowerCase();
                 if (command.length === 0) return;
                 const args = messageBody.split(' ').slice(1);
-                await this.commandHandlers!(ctx, command, args, messageData, groupData, chatMetadata);
+                this.commandHandlers!(ctx, command, args, messageData, groupData, chatMetadata);
             } else {
-                await this.chatHandlers!(ctx, messageBody, messageData, groupData, chatMetadata);
+                this.chatHandlers!(ctx, messageBody, messageData, groupData, chatMetadata);
+            }
+        }
+    }
+
+    async handleUpdate(key: WAMessageKey, updates: Partial<WAMessage>, ctx: Bot) {
+        if (key) {
+            if (updates.pollUpdates) {
+                const pollData = await pollParser(key, updates, ctx);
             }
         }
     }
 }
 
-export { MessageHandler };
+export { WAMessageHandler as MessageHandler };

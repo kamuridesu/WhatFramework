@@ -1,0 +1,3 @@
+{
+    "requiredToBeDocumented": ["Enum", "Class", "Interface"],
+}

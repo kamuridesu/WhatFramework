@@ -1,8 +1,8 @@
 import { WAMessage } from "@whiskeysockets/baileys";
-import { MessageData } from "../types/messageData.js";
-import { GroupData } from "../types/groupData.js";
-import { ChatMetadata } from "../types/chatMetadata.js";
-import { Bot } from "../modules/bot.js";
+import { MessageData } from "../data/messageData.js";
+import { GroupData } from "../data/groupData.js";
+import { ChatMetadata } from "../data/chatMetadata.js";
+import { IBot, IMessageData, IGroupData, IChatMetadata } from "../interfaces/types.js";
 
 const messageTypes: string[] = [
     "audioMessage",
@@ -14,7 +14,7 @@ const messageTypes: string[] = [
     "reactionMessage"
 ];
 
-function checkMessageData(message: WAMessage): MessageData | undefined {
+function checkMessageData(message: WAMessage, bot: IBot): IMessageData | undefined {
     const key = message.message;
     if (!key) {
         return undefined;
@@ -44,7 +44,7 @@ function checkMessageData(message: WAMessage): MessageData | undefined {
             body = message.message?.extendedTextMessage?.text;
             hasQuotedMessage = true;
             quotedMessageType = messageTypes.find(type => JSON.stringify(message.message).includes(type));
-            if (quotedMessageType === "conversation") {
+            if (quotedMessageType != undefined && ["conversation", "extendedTextMessage"].includes(quotedMessageType)) {
                 mentionedUsers = message.message?.extendedTextMessage?.contextInfo?.mentionedJid;
                 quotedMessage = JSON.parse(JSON.stringify(message).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo;
             }
@@ -58,15 +58,16 @@ function checkMessageData(message: WAMessage): MessageData | undefined {
     mentionedUsers = mentionedUsers ? mentionedUsers : [];
     const origin = message.key.remoteJid ? message.key.remoteJid : "";
     quotedMessageType = quotedMessageType ? quotedMessageType : "";
-    return new MessageData(message, type as string, body, mentionedUsers, origin, isMedia, hasQuotedMessage, quotedMessageType, quotedMessage, isReactionMessage, reactionMessage);
+    return new MessageData(bot, message, type as string, body, mentionedUsers, origin, isMedia, hasQuotedMessage, quotedMessageType, quotedMessage, isReactionMessage, reactionMessage);
 }
 
-
-async function checkGroupData(messageData: MessageData, chatMetadata: ChatMetadata, ctx: Bot): Promise<GroupData | undefined> {
+/**
+* This function has a caching mechanism that saves the group metadata into the bot instance and invalidates it after 10s
+*/
+async function checkGroupData(messageData: IMessageData, chatMetadata: IChatMetadata, ctx: IBot): Promise<IGroupData | undefined> {
     let groupCacheId = messageData.origin.split("@g.us")[1];
     const cachedGroupData = ctx.groupsData[groupCacheId];
     if (cachedGroupData && ((Date.now() - cachedGroupData.lastFetchDate) / 1000) <= 10) {
-        console.log("retuning cache");
         return cachedGroupData.groupData;
     }
     const groupMetadata = await ctx.connection?.groupMetadata(messageData.origin);
@@ -89,7 +90,7 @@ async function checkGroupData(messageData: MessageData, chatMetadata: ChatMetada
 }
 
 
-function checkChatMetaData(messageData: MessageData, ctx: Bot): ChatMetadata {
+function checkChatMetaData(messageData: IMessageData, ctx: IBot): IChatMetadata {
     const messageIsFrom = messageData.origin;
     const senderName = messageData.originalMessage.pushName ? messageData.originalMessage.pushName : "";
     const isGroup = messageIsFrom.includes('@g.us');

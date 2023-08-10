@@ -1,7 +1,7 @@
 import fs from "fs";
 import { parseTextWithQuotation } from "./text.js";
 import { Bot } from "../src/modules/bot.js";
-import Language from "./lang/language.js";
+import { Language } from "./lang/language.js";
 
 class Help {
     commandsFilename: string;
@@ -10,6 +10,9 @@ class Help {
 
     constructor(bot: Bot) {
         this.commandsFilename = bot.commandsFilename;
+        if (this.commandsFilename == "") {
+            throw Error("commandsFilename is not set!");
+        }
         this.botName = bot.botName;
         this.lang = new Language(bot);
     }
@@ -21,7 +24,7 @@ class Help {
             return cmd.split(":")[0].replace(/"/g, '').replace(/'/g, '');
         });
 
-        const document_string = `${this.botName}\n${this.lang.TRANSLATIONS.commands}: \n-|${cases.join("\n-|")}`
+        const document_string = `${this.botName}\n${this.lang.get().commands}: \n-|${cases.join("\n-|")}`
         return document_string;
     }
 
@@ -65,10 +68,10 @@ class Help {
         category_indexes = categories[0];
         category_ends = categories[1];
         if (category_ends.length != category_indexes.length) {
-            return this.lang.TRANSLATIONS.closingTagMissing;
+            return this.lang.get().closingTagMissing;
         }
 
-        let text = `--==${this.botName}==--\n\n${this.lang.TRANSLATIONS.commands}:`;
+        let text = `--==${this.botName}==--\n\n${this.lang.get().commands}:`;
         for (let i = 0; i < category_indexes.length; i++) {
             let command_text = command_lines
                 .slice(category_indexes[i].start, category_ends[i])

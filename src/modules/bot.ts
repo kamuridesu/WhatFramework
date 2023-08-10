@@ -1,12 +1,25 @@
 import Pino from 'pino';
-import { makeWASocket, DisconnectReason, makeInMemoryStore, useMultiFileAuthState, WAMessage } from '@whiskeysockets/baileys'
 import { Boom } from '@hapi/boom'
-import { MessageData } from '../types/messageData.js';
+
+import { makeWASocket,
+    DisconnectReason,
+    makeInMemoryStore,
+    useMultiFileAuthState,
+    WAMessage,
+    makeCacheableSignalKeyStore,
+    WAMessageContent,
+    WAMessageKey } from '@whiskeysockets/baileys'
+import { IBot,
+    GroupsData,
+    Media,
+    MessageHandler } from "../interfaces/types.js";
+
+import { Language } from "../../libs/lang/language.js";
+import { IMessageData } from '../interfaces/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
-import { Bot, GroupsData, Media } from "../types/bot.js";
-import Language from "../../libs/lang/language.js";
 import { checkMessageData } from '../funcs/messageParsers.js';
+import { MessageData } from '../data/messageData.js';
 
 
 const logger = Pino().child({
@@ -25,8 +38,18 @@ const {
     saveCreds,
 } = await useMultiFileAuthState('./states');
 
+async function getMessage(key: WAMessageKey): Promise<WAMessageContent | undefined> {
+    if (storage) {
+        const msg = await storage.loadMessage(key.remoteJid!,
+            key.id!)
+        return msg?.message || undefined
+    }
 
-class WABot implements Bot {
+    // only if store is present
+    return undefined;
+}
+
+class WABot implements IBot {
     public connection?: ReturnType<typeof makeWASocket>;
     reconnectOnClose: boolean;
 
@@ -37,7 +60,7 @@ class WABot implements Bot {
     public readonly commandsFilename: string;
     public readonly language: string;
     public readonly lang: Language;
-    public groupsData: GroupsData
+    public groupsData: GroupsData;
 
     constructor(
         botName = 'bot',
@@ -56,17 +79,21 @@ class WABot implements Bot {
         this.language = language;
         this.reconnectOnClose = true;
         this.lang = new Language(this);
-        this.groupsData = {}
+        this.groupsData = {} // This is for caching purpose, details @ src/funcs/messageParsers.ts#65
     }
 
     /**
      * Initiates the bot and starts to handle connections
      * @param {CallableFunction} messageHandler function to handle incoming messages
      */
-    async init(messageHandler: { handle: (message: WAMessage, bot: Bot) => void }): Promise<void> {
+    async init(messageHandler: MessageHandler): Promise<void> {
         this.connection = makeWASocket({
             printQRInTerminal: true,
-            auth: state,
+            auth: {
+                creds: state.creds,
+                keys: makeCacheableSignalKeyStore(state.keys, logger)
+            },
+            getMessage
         });
 
         this.connection.ev.on('creds.update', saveCreds);
@@ -88,20 +115,21 @@ class WABot implements Bot {
         storage.bind(this.connection.ev);
 
         this.connection.ev.on('messages.upsert', async (handle) => {
-            const message = handle.messages[0];
-            if (!message.key.fromMe && handle.type === "notify") {
-                messageHandler.handle(message, this);
+            for (let message of handle.messages) {
+                if (!message.key.fromMe && handle.type === "notify") {
+                    messageHandler.handle(message, this);
+                }
             }
         });
     }
 
-    async replyText(ctx: MessageData, text: string, options: any = {}): Promise<void> {
+    async replyText(ctx: IMessageData, text: string, options: any = {}): Promise<void> {
         options.quoted = ctx.originalMessage;
         await this.sendTextMessage(ctx, text, options);
     }
 
     async replyMedia(
-        ctx: MessageData,
+        ctx: IMessageData,
         media: string | Media | Buffer,
         messageType: string,
         mimeType?: string,
@@ -120,11 +148,11 @@ class WABot implements Bot {
             await this.connection?.sendPresenceUpdate("paused", ctx.origin);
         } catch (e) {
             console.error(e);
-            await this.replyText(ctx, this.lang.TRANSLATIONS.sendingMediaError);
+            await this.replyText(ctx, this.lang.get().sendingMediaError);
         }
     }
 
-    async sendTextMessage(ctx: MessageData | string, text: string, options: any): Promise<void> {
+    async sendTextMessage(ctx: IMessageData | string, text: string, options: any): Promise<void> {
         let recipient: string;
         if (typeof ctx != "string" && ctx.originalMessage) {
             recipient = ctx.origin;
@@ -133,7 +161,7 @@ class WABot implements Bot {
         }
         try {
             const textData = checkJidInTextAndConvert(text);
-            if(options && options.mentions) {
+            if (options && options.mentions) {
                 textData.mentions = textData.mentions.concat(options.mentions);
             }
             await this.connection?.presenceSubscribe(recipient);
@@ -149,16 +177,48 @@ class WABot implements Bot {
         }
     }
 
-    async loadMessage(ctx: MessageData): Promise<MessageData|undefined> {
-        if (!ctx.hasQuotedMessage || ctx.quotedMessageType != "conversation") {
-            return undefined;
+    async createPoll(ctx: IMessageData, pollName: string, options: Array<string>): Promise<boolean> {
+        console.log(pollName)
+        console.log(options)
+        try {
+            console.log("creting poll");
+            console.log(await this.connection?.sendMessage(ctx.origin, {
+                poll: {
+                    name: pollName,
+                    values: options,
+                    selectableCount: options.length
+                },
+            }));
+            console.log("done")
+            return true;
+        } catch (e) {
+            console.error(e);
+            return false;
         }
-        const messageInformation = await storage.loadMessage(ctx.origin, ctx.quotedMessage.stanzaId);
-        if(messageInformation){
-            return checkMessageData(messageInformation);
+    }
+
+    async loadMessage(ctx: MessageData | WAMessageKey): Promise<IMessageData | WAMessage | undefined> {
+        let originJid: string;
+        let stanzaId: string;
+        if (ctx instanceof MessageData) {
+            if (!ctx.hasQuotedMessage || ctx.quotedMessageType != "conversation") {
+                return undefined;
+            }
+            originJid = ctx.origin;
+            stanzaId = ctx.quotedMessage.stanzaId;
+        } else {
+            if (!ctx.remoteJid || !ctx.id) {
+                return undefined;
+            }
+            originJid = ctx.remoteJid;
+            stanzaId = ctx.id;
+        }
+        const messageInformation = await storage.loadMessage(originJid, stanzaId);
+        if (messageInformation) {
+            return (ctx instanceof MessageData ? checkMessageData(messageInformation, this) : messageInformation);
         }
         return undefined;
     }
 }
 
-export { WABot as Bot, Media };
+export { WABot as Bot, Media, getMessage };

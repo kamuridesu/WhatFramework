@@ -1,4 +1,6 @@
-class GroupData {
+import { IGroupData } from "src/interfaces/types.js";
+
+class GroupData implements IGroupData {
     constructor(
         public name: string,
         public description: string,

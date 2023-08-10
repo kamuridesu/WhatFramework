@@ -1,4 +1,4 @@
-import {AnyMediaMessageContent} from '@whiskeysockets/baileys'
+import { AnyMediaMessageContent } from '@whiskeysockets/baileys'
 
 function parseMedia(media: any, mediaType: string | undefined, mimeType: string | undefined, caption: string | undefined): AnyMediaMessageContent {
     let info: AnyMediaMessageContent;
