@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[libs/color.ts:68](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/color.ts#L68)
+[libs/color.ts:68](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/color.ts#L68)

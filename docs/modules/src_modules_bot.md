@@ -20,7 +20,7 @@
 
 ### Media
 
-Re-exports [Media](../interfaces/src_types_bot.Media.md)
+Re-exports [Media](../interfaces/src_interfaces_bot.Media.md)
 
 ## Functions
 
@@ -40,4 +40,4 @@ Re-exports [Media](../interfaces/src_types_bot.Media.md)
 
 #### Defined in
 
-[src/modules/bot.ts:40](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L40)
+[src/modules/bot.ts:41](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L41)

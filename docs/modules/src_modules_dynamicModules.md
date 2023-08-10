@@ -12,7 +12,7 @@
 
 ### load
 
-▸ **load**(`entrypoint_path`): `Promise`<[`Module`](../interfaces/src_types_bot.Module.md)\>
+▸ **load**(`entrypoint_path`): `Promise`<[`Module`](../interfaces/src_interfaces_bot.Module.md)\>
 
 #### Parameters
 
@@ -22,8 +22,8 @@
 
 #### Returns
 
-`Promise`<[`Module`](../interfaces/src_types_bot.Module.md)\>
+`Promise`<[`Module`](../interfaces/src_interfaces_bot.Module.md)\>
 
 #### Defined in
 
-[src/modules/dynamicModules.ts:3](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/dynamicModules.ts#L3)
+[src/modules/dynamicModules.ts:3](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/dynamicModules.ts#L3)

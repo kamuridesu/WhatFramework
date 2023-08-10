@@ -6,7 +6,7 @@
 
 ## Implements
 
-- [`Bot`](../interfaces/src_types_bot.Bot.md)
+- [`IBot`](../interfaces/src_interfaces_bot.IBot.md)
 
 ## Table of contents
 
@@ -55,7 +55,7 @@
 
 #### Defined in
 
-[src/modules/bot.ts:64](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L64)
+[src/modules/bot.ts:65](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L65)
 
 ## Properties
 
@@ -65,11 +65,11 @@
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[botName](../interfaces/src_types_bot.Bot.md#botname)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[botName](../interfaces/src_interfaces_bot.IBot.md#botname)
 
 #### Defined in
 
-[src/modules/bot.ts:55](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L55)
+[src/modules/bot.ts:56](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L56)
 
 ___
 
@@ -79,11 +79,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[botNumber](../interfaces/src_types_bot.Bot.md#botnumber)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[botNumber](../interfaces/src_interfaces_bot.IBot.md#botnumber)
 
 #### Defined in
 
-[src/modules/bot.ts:57](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L57)
+[src/modules/bot.ts:58](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L58)
 
 ___
 
@@ -93,11 +93,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[commandsFilename](../interfaces/src_types_bot.Bot.md#commandsfilename)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[commandsFilename](../interfaces/src_interfaces_bot.IBot.md#commandsfilename)
 
 #### Defined in
 
-[src/modules/bot.ts:59](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L59)
+[src/modules/bot.ts:60](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L60)
 
 ___
 
@@ -201,25 +201,25 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[connection](../interfaces/src_types_bot.Bot.md#connection)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[connection](../interfaces/src_interfaces_bot.IBot.md#connection)
 
 #### Defined in
 
-[src/modules/bot.ts:52](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L52)
+[src/modules/bot.ts:53](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L53)
 
 ___
 
 ### groupsData
 
-• **groupsData**: [`GroupsData`](../interfaces/src_types_bot.GroupsData.md)
+• **groupsData**: [`GroupsData`](../interfaces/src_interfaces_bot.GroupsData.md)
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[groupsData](../interfaces/src_types_bot.Bot.md#groupsdata)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[groupsData](../interfaces/src_interfaces_bot.IBot.md#groupsdata)
 
 #### Defined in
 
-[src/modules/bot.ts:62](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L62)
+[src/modules/bot.ts:63](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L63)
 
 ___
 
@@ -229,11 +229,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[lang](../interfaces/src_types_bot.Bot.md#lang)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[lang](../interfaces/src_interfaces_bot.IBot.md#lang)
 
 #### Defined in
 
-[src/modules/bot.ts:61](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L61)
+[src/modules/bot.ts:62](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L62)
 
 ___
 
@@ -243,11 +243,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[language](../interfaces/src_types_bot.Bot.md#language)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[language](../interfaces/src_interfaces_bot.IBot.md#language)
 
 #### Defined in
 
-[src/modules/bot.ts:60](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L60)
+[src/modules/bot.ts:61](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L61)
 
 ___
 
@@ -257,11 +257,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[ownerNumber](../interfaces/src_types_bot.Bot.md#ownernumber)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[ownerNumber](../interfaces/src_interfaces_bot.IBot.md#ownernumber)
 
 #### Defined in
 
-[src/modules/bot.ts:58](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L58)
+[src/modules/bot.ts:59](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L59)
 
 ___
 
@@ -271,11 +271,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[prefix](../interfaces/src_types_bot.Bot.md#prefix)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[prefix](../interfaces/src_interfaces_bot.IBot.md#prefix)
 
 #### Defined in
 
-[src/modules/bot.ts:56](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L56)
+[src/modules/bot.ts:57](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L57)
 
 ___
 
@@ -285,11 +285,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[reconnectOnClose](../interfaces/src_types_bot.Bot.md#reconnectonclose)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[reconnectOnClose](../interfaces/src_interfaces_bot.IBot.md#reconnectonclose)
 
 #### Defined in
 
-[src/modules/bot.ts:53](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L53)
+[src/modules/bot.ts:54](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L54)
 
 ## Methods
 
@@ -301,7 +301,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | [`MessageData`](src_types_messageData.MessageData.md) |
+| `ctx` | [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
 | `pollName` | `string` |
 | `options` | `string`[] |
 
@@ -311,11 +311,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[createPoll](../interfaces/src_types_bot.Bot.md#createpoll)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[createPoll](../interfaces/src_interfaces_bot.IBot.md#createpoll)
 
 #### Defined in
 
-[src/modules/bot.ts:178](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L178)
+[src/modules/bot.ts:180](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L180)
 
 ___
 
@@ -329,7 +329,7 @@ Initiates the bot and starts to handle connections
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `messageHandler` | [`MessageHandler`](../interfaces/src_types_bot.MessageHandler.md) | function to handle incoming messages |
+| `messageHandler` | [`MessageHandler`](../interfaces/src_interfaces_bot.MessageHandler.md) | function to handle incoming messages |
 
 #### Returns
 
@@ -337,35 +337,35 @@ Initiates the bot and starts to handle connections
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[init](../interfaces/src_types_bot.Bot.md#init)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[init](../interfaces/src_interfaces_bot.IBot.md#init)
 
 #### Defined in
 
-[src/modules/bot.ts:88](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L88)
+[src/modules/bot.ts:89](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L89)
 
 ___
 
 ### loadMessage
 
-▸ **loadMessage**(`ctx`): `Promise`<`undefined` \| `IWebMessageInfo` \| [`MessageData`](src_types_messageData.MessageData.md)\>
+▸ **loadMessage**(`ctx`): `Promise`<`undefined` \| `IWebMessageInfo` \| [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | `IMessageKey` \| [`MessageData`](src_types_messageData.MessageData.md) |
+| `ctx` | `IMessageKey` \| [`MessageData`](src_data_messageData.MessageData.md) |
 
 #### Returns
 
-`Promise`<`undefined` \| `IWebMessageInfo` \| [`MessageData`](src_types_messageData.MessageData.md)\>
+`Promise`<`undefined` \| `IWebMessageInfo` \| [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md)\>
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[loadMessage](../interfaces/src_types_bot.Bot.md#loadmessage)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[loadMessage](../interfaces/src_interfaces_bot.IBot.md#loadmessage)
 
 #### Defined in
 
-[src/modules/bot.ts:198](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L198)
+[src/modules/bot.ts:200](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L200)
 
 ___
 
@@ -377,8 +377,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | [`MessageData`](src_types_messageData.MessageData.md) |
-| `media` | `string` \| `Buffer` \| [`Media`](../interfaces/src_types_bot.Media.md) |
+| `ctx` | [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
+| `media` | `string` \| `Buffer` \| [`Media`](../interfaces/src_interfaces_bot.Media.md) |
 | `messageType` | `string` |
 | `mimeType?` | `string` |
 | `mediaCaption?` | `string` |
@@ -390,11 +390,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[replyMedia](../interfaces/src_types_bot.Bot.md#replymedia)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[replyMedia](../interfaces/src_interfaces_bot.IBot.md#replymedia)
 
 #### Defined in
 
-[src/modules/bot.ts:129](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L129)
+[src/modules/bot.ts:131](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L131)
 
 ___
 
@@ -406,7 +406,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | [`MessageData`](src_types_messageData.MessageData.md) |
+| `ctx` | [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
 | `text` | `string` |
 | `options` | `any` |
 
@@ -416,11 +416,11 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[replyText](../interfaces/src_types_bot.Bot.md#replytext)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[replyText](../interfaces/src_interfaces_bot.IBot.md#replytext)
 
 #### Defined in
 
-[src/modules/bot.ts:124](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L124)
+[src/modules/bot.ts:126](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L126)
 
 ___
 
@@ -432,7 +432,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | `string` \| [`MessageData`](src_types_messageData.MessageData.md) |
+| `ctx` | `string` \| [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
 | `text` | `string` |
 | `options` | `any` |
 
@@ -442,8 +442,8 @@ ___
 
 #### Implementation of
 
-[Bot](../interfaces/src_types_bot.Bot.md).[sendTextMessage](../interfaces/src_types_bot.Bot.md#sendtextmessage)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[sendTextMessage](../interfaces/src_interfaces_bot.IBot.md#sendtextmessage)
 
 #### Defined in
 
-[src/modules/bot.ts:153](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/bot.ts#L153)
+[src/modules/bot.ts:155](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/bot.ts#L155)

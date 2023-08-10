@@ -1,8 +1,8 @@
-[@kamuridesu/whatframework](../README.md) / [Modules](../modules.md) / [src/types/bot](../modules/src_types_bot.md) / Bot
+[@kamuridesu/whatframework](../README.md) / [Modules](../modules.md) / [src/interfaces/bot](../modules/src_interfaces_bot.md) / IBot
 
-# Interface: Bot
+# Interface: IBot
 
-[src/types/bot](../modules/src_types_bot.md).Bot
+[src/interfaces/bot](../modules/src_interfaces_bot.md).IBot
 
 ## Implemented by
 
@@ -12,25 +12,25 @@
 
 ### Properties
 
-- [botName](src_types_bot.Bot.md#botname)
-- [botNumber](src_types_bot.Bot.md#botnumber)
-- [commandsFilename](src_types_bot.Bot.md#commandsfilename)
-- [connection](src_types_bot.Bot.md#connection)
-- [groupsData](src_types_bot.Bot.md#groupsdata)
-- [lang](src_types_bot.Bot.md#lang)
-- [language](src_types_bot.Bot.md#language)
-- [ownerNumber](src_types_bot.Bot.md#ownernumber)
-- [prefix](src_types_bot.Bot.md#prefix)
-- [reconnectOnClose](src_types_bot.Bot.md#reconnectonclose)
+- [botName](src_interfaces_bot.IBot.md#botname)
+- [botNumber](src_interfaces_bot.IBot.md#botnumber)
+- [commandsFilename](src_interfaces_bot.IBot.md#commandsfilename)
+- [connection](src_interfaces_bot.IBot.md#connection)
+- [groupsData](src_interfaces_bot.IBot.md#groupsdata)
+- [lang](src_interfaces_bot.IBot.md#lang)
+- [language](src_interfaces_bot.IBot.md#language)
+- [ownerNumber](src_interfaces_bot.IBot.md#ownernumber)
+- [prefix](src_interfaces_bot.IBot.md#prefix)
+- [reconnectOnClose](src_interfaces_bot.IBot.md#reconnectonclose)
 
 ### Methods
 
-- [createPoll](src_types_bot.Bot.md#createpoll)
-- [init](src_types_bot.Bot.md#init)
-- [loadMessage](src_types_bot.Bot.md#loadmessage)
-- [replyMedia](src_types_bot.Bot.md#replymedia)
-- [replyText](src_types_bot.Bot.md#replytext)
-- [sendTextMessage](src_types_bot.Bot.md#sendtextmessage)
+- [createPoll](src_interfaces_bot.IBot.md#createpoll)
+- [init](src_interfaces_bot.IBot.md#init)
+- [loadMessage](src_interfaces_bot.IBot.md#loadmessage)
+- [replyMedia](src_interfaces_bot.IBot.md#replymedia)
+- [replyText](src_interfaces_bot.IBot.md#replytext)
+- [sendTextMessage](src_interfaces_bot.IBot.md#sendtextmessage)
 
 ## Properties
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/types/bot.ts:55](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L55)
+[src/interfaces/bot.ts:55](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L55)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:57](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L57)
+[src/interfaces/bot.ts:57](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L57)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:59](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L59)
+[src/interfaces/bot.ts:59](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L59)
 
 ___
 
@@ -164,17 +164,17 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:53](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L53)
+[src/interfaces/bot.ts:53](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L53)
 
 ___
 
 ### groupsData
 
-• **groupsData**: [`GroupsData`](src_types_bot.GroupsData.md)
+• **groupsData**: [`GroupsData`](src_interfaces_bot.GroupsData.md)
 
 #### Defined in
 
-[src/types/bot.ts:63](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L63)
+[src/interfaces/bot.ts:63](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L63)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:61](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L61)
+[src/interfaces/bot.ts:61](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L61)
 
 ___
 
@@ -194,7 +194,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:60](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L60)
+[src/interfaces/bot.ts:60](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L60)
 
 ___
 
@@ -204,7 +204,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:58](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L58)
+[src/interfaces/bot.ts:58](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L58)
 
 ___
 
@@ -214,7 +214,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:56](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L56)
+[src/interfaces/bot.ts:56](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L56)
 
 ___
 
@@ -224,7 +224,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:62](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L62)
+[src/interfaces/bot.ts:62](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L62)
 
 ## Methods
 
@@ -236,7 +236,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | [`MessageData`](../classes/src_types_messageData.MessageData.md) |
+| `ctx` | [`IMessageData`](src_interfaces_messageData.IMessageData.md) |
 | `poolName` | `string` |
 | `options` | `string`[] |
 
@@ -246,7 +246,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:80](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L80)
+[src/interfaces/bot.ts:80](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L80)
 
 ___
 
@@ -258,7 +258,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `messageHandler` | [`MessageHandler`](src_types_bot.MessageHandler.md) |
+| `messageHandler` | [`MessageHandler`](src_interfaces_bot.MessageHandler.md) |
 
 #### Returns
 
@@ -266,27 +266,27 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:65](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L65)
+[src/interfaces/bot.ts:65](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L65)
 
 ___
 
 ### loadMessage
 
-▸ **loadMessage**(`ctx`): `Promise`<`undefined` \| `IWebMessageInfo` \| [`MessageData`](../classes/src_types_messageData.MessageData.md)\>
+▸ **loadMessage**(`ctx`): `Promise`<`undefined` \| `IWebMessageInfo` \| [`IMessageData`](src_interfaces_messageData.IMessageData.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | `IMessageKey` \| [`MessageData`](../classes/src_types_messageData.MessageData.md) |
+| `ctx` | `IMessageKey` \| [`IMessageData`](src_interfaces_messageData.IMessageData.md) |
 
 #### Returns
 
-`Promise`<`undefined` \| `IWebMessageInfo` \| [`MessageData`](../classes/src_types_messageData.MessageData.md)\>
+`Promise`<`undefined` \| `IWebMessageInfo` \| [`IMessageData`](src_interfaces_messageData.IMessageData.md)\>
 
 #### Defined in
 
-[src/types/bot.ts:79](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L79)
+[src/interfaces/bot.ts:79](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L79)
 
 ___
 
@@ -298,8 +298,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | [`MessageData`](../classes/src_types_messageData.MessageData.md) |
-| `media` | `string` \| [`Media`](src_types_bot.Media.md) |
+| `ctx` | [`IMessageData`](src_interfaces_messageData.IMessageData.md) |
+| `media` | `string` \| [`Media`](src_interfaces_bot.Media.md) |
 | `messageType` | `string` |
 | `mimeType?` | `string` |
 | `mediaCaption?` | `string` |
@@ -311,7 +311,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:68](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L68)
+[src/interfaces/bot.ts:68](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L68)
 
 ___
 
@@ -323,7 +323,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | [`MessageData`](../classes/src_types_messageData.MessageData.md) |
+| `ctx` | [`IMessageData`](src_interfaces_messageData.IMessageData.md) |
 | `text` | `string` |
 | `options` | `any` |
 
@@ -333,7 +333,7 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:67](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L67)
+[src/interfaces/bot.ts:67](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L67)
 
 ___
 
@@ -345,7 +345,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | `string` \| [`MessageData`](../classes/src_types_messageData.MessageData.md) |
+| `ctx` | `string` \| [`IMessageData`](src_interfaces_messageData.IMessageData.md) |
 | `text` | `string` |
 | `options` | `any` |
 
@@ -355,4 +355,4 @@ ___
 
 #### Defined in
 
-[src/types/bot.ts:77](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/types/bot.ts#L77)
+[src/interfaces/bot.ts:77](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/interfaces/bot.ts#L77)

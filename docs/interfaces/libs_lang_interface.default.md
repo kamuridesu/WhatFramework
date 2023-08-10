@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[libs/lang/interface.ts:3](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/interface.ts#L3)
+[libs/lang/interface.ts:3](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/lang/interface.ts#L3)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-[libs/lang/interface.ts:2](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/interface.ts#L2)
+[libs/lang/interface.ts:2](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/lang/interface.ts#L2)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-[libs/lang/interface.ts:4](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/interface.ts#L4)
+[libs/lang/interface.ts:4](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/lang/interface.ts#L4)
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 #### Defined in
 
-[libs/lang/interface.ts:5](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/interface.ts#L5)
+[libs/lang/interface.ts:5](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/lang/interface.ts#L5)

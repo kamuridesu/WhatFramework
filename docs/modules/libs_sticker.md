@@ -19,7 +19,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `context` | [`MessageData`](../classes/src_types_messageData.MessageData.md) |
+| `context` | [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
 | `bot` | [`Bot`](../classes/src_modules_bot.Bot.md) |
 | `author` | `string` |
 | `packname` | `string` |
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[libs/sticker.ts:13](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/sticker.ts#L13)
+[libs/sticker.ts:13](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/sticker.ts#L13)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 | :------ | :------ |
 | `media` | `string` |
 | `ctx` | [`Bot`](../classes/src_modules_bot.Bot.md) |
-| `messageData` | [`MessageData`](../classes/src_types_messageData.MessageData.md) |
+| `messageData` | [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
 | `packName?` | `string` |
 | `author?` | `string` |
 
@@ -54,4 +54,4 @@ ___
 
 #### Defined in
 
-[libs/sticker.ts:26](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/sticker.ts#L26)
+[libs/sticker.ts:26](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/sticker.ts#L26)
