@@ -1,9 +1,9 @@
 import { WAMessage } from "@whiskeysockets/baileys";
-import { Bot, Media, IMessageData } from "../interfaces/types.js";
+import { IBot, Media, IMessageData } from "../interfaces/types.js";
 
 class MessageData implements IMessageData {
     constructor(
-        public bot: Bot,
+        public bot: IBot,
         public originalMessage: WAMessage,
         public type: string,
         public body: string,

@@ -1,13 +1,13 @@
 
 import { WAMessage, WAMessageKey, getAggregateVotesInPollMessage } from "@whiskeysockets/baileys";
 import { PollVoteAggragation } from "../interfaces/pollData.js";
-import { Bot } from "../interfaces/types.js";
+import { IBot } from "../interfaces/types.js";
 import { getMessage } from "../modules/bot.js";
 import { MessageData } from "../data/messageData.js";
 
 
 
-async function pollParser(key: WAMessageKey, pollUpdates: Pick<WAMessage, 'pollUpdates' | 'message'>, bot: Bot): Promise<PollVoteAggragation | undefined> {
+async function pollParser(key: WAMessageKey, pollUpdates: Pick<WAMessage, 'pollUpdates' | 'message'>, bot: IBot): Promise<PollVoteAggragation | undefined> {
     if (!key) {
         return;
     }

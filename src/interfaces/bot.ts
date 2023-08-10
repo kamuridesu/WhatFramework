@@ -27,13 +27,13 @@ interface EntryPoint {
     ownerNumber: string;
     language: string | undefined;
     commandsFilename: string | undefined;
-    commandHandlers: (ctx: Bot,
+    commandHandlers: (ctx: IBot,
         command: string,
         args: string[],
         messageData: IMessageData,
         groupData: GroupData | undefined,
         chatMetadata: ChatMetadata) => void;
-    chatHandlers: (ctx: Bot,
+    chatHandlers: (ctx: IBot,
         messageBody: string,
         messageData: IMessageData,
         groupData: GroupData | undefined,
@@ -45,11 +45,11 @@ interface Module {
 }
 
 interface MessageHandler {
-    handle: (message: WAMessage, bot: Bot) => void
-    handleUpdate: (key: WAMessageKey, updates: Partial<WAMessage>, ctx: Bot) => void
+    handle: (message: WAMessage, bot: IBot) => void
+    handleUpdate: (key: WAMessageKey, updates: Partial<WAMessage>, ctx: IBot) => void
 }
 
-interface Bot {
+interface IBot {
     connection?: ReturnType<typeof makeWASocket>;
 
     readonly botName: string;
@@ -81,7 +81,7 @@ interface Bot {
 }
 
 export {
-    Bot,
+    IBot,
     Media,
     GroupsData,
     Module,

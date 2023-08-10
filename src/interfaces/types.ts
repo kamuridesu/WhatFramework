@@ -3,7 +3,7 @@ import {
     PollVoteAggragation
 } from "./pollData.js";
 import {
-    Bot,
+    IBot,
     Media,
     GroupsData,
     Module,
@@ -16,7 +16,7 @@ import { IGroupData } from "./groupData.js";
 
 
 export {
-    Bot,
+    IBot,
     Media,
     GroupsData,
     Module,

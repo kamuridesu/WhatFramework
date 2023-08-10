@@ -9,7 +9,7 @@ import { makeWASocket,
     makeCacheableSignalKeyStore,
     WAMessageContent,
     WAMessageKey } from '@whiskeysockets/baileys'
-import { Bot,
+import { IBot,
     GroupsData,
     Media,
     MessageHandler } from "../interfaces/types.js";
@@ -49,7 +49,7 @@ async function getMessage(key: WAMessageKey): Promise<WAMessageContent | undefin
     return undefined;
 }
 
-class WABot implements Bot {
+class WABot implements IBot {
     public connection?: ReturnType<typeof makeWASocket>;
     reconnectOnClose: boolean;
 

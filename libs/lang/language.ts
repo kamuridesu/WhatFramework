@@ -1,4 +1,4 @@
-import { Bot } from "src/interfaces/types.js";
+import { IBot } from "src/interfaces/types.js";
 import Translations from "./interface.js";
 import { TRANSLATIONS as ptbr } from "./pt-bt.js";
 import { TRANSLATIONS as enus } from "./en-us.js";
@@ -17,7 +17,7 @@ class Language {
     public readonly language: string;
     private readonly TRANSLATIONS: Translations;
 
-    constructor(bot: Bot) {
+    constructor(bot: IBot) {
         this.language = bot.language;
         this.TRANSLATIONS = languages[this.language.replace("-", "")];
     }
