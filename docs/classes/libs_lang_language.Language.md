@@ -29,11 +29,11 @@
 
 | Name | Type |
 | :------ | :------ |
-| `bot` | [`Bot`](../interfaces/src_types_bot.Bot.md) |
+| `bot` | [`IBot`](../interfaces/src_interfaces_bot.IBot.md) |
 
 #### Defined in
 
-[libs/lang/language.ts:20](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/language.ts#L20)
+[libs/lang/language.ts:20](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/lang/language.ts#L20)
 
 ## Properties
 
@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[libs/lang/language.ts:18](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/language.ts#L18)
+[libs/lang/language.ts:18](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/lang/language.ts#L18)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[libs/lang/language.ts:17](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/language.ts#L17)
+[libs/lang/language.ts:17](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/lang/language.ts#L17)
 
 ## Methods
 
@@ -67,4 +67,4 @@ ___
 
 #### Defined in
 
-[libs/lang/language.ts:25](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/lang/language.ts#L25)
+[libs/lang/language.ts:25](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/lang/language.ts#L25)

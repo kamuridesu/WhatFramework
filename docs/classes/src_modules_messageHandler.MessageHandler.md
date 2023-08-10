@@ -6,7 +6,7 @@
 
 ## Implements
 
-- [`MessageHandler`](../interfaces/src_types_bot.MessageHandler.md)
+- [`MessageHandler`](../interfaces/src_interfaces_bot.MessageHandler.md)
 
 ## Table of contents
 
@@ -35,17 +35,17 @@
 
 | Name | Type |
 | :------ | :------ |
-| `entrypoint?` | [`EntryPoint`](../interfaces/src_types_bot.EntryPoint.md) |
+| `entrypoint?` | [`EntryPoint`](../interfaces/src_interfaces_bot.EntryPoint.md) |
 
 #### Defined in
 
-[src/modules/messageHandler.ts:26](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L26)
+[src/modules/messageHandler.ts:23](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/messageHandler.ts#L23)
 
 ## Properties
 
 ### chatHandlers
 
-• `Private` `Optional` **chatHandlers**: (`ctx`: [`Bot`](src_modules_bot.Bot.md), `messageBody`: `string`, `messageData`: [`MessageData`](src_types_messageData.MessageData.md), `groupData`: `undefined` \| [`GroupData`](src_types_groupData.GroupData.md), `chatMetadata`: [`ChatMetadata`](src_types_chatMetadata.ChatMetadata.md)) => `void`
+• `Private` `Optional` **chatHandlers**: (`ctx`: [`Bot`](src_modules_bot.Bot.md), `messageBody`: `string`, `messageData`: [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md), `groupData`: `undefined` \| [`IGroupData`](../interfaces/src_interfaces_groupData.IGroupData.md), `chatMetadata`: [`IChatMetadata`](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md)) => `void`
 
 #### Type declaration
 
@@ -57,9 +57,9 @@
 | :------ | :------ |
 | `ctx` | [`Bot`](src_modules_bot.Bot.md) |
 | `messageBody` | `string` |
-| `messageData` | [`MessageData`](src_types_messageData.MessageData.md) |
-| `groupData` | `undefined` \| [`GroupData`](src_types_groupData.GroupData.md) |
-| `chatMetadata` | [`ChatMetadata`](src_types_chatMetadata.ChatMetadata.md) |
+| `messageData` | [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
+| `groupData` | `undefined` \| [`IGroupData`](../interfaces/src_interfaces_groupData.IGroupData.md) |
+| `chatMetadata` | [`IChatMetadata`](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md) |
 
 ##### Returns
 
@@ -67,13 +67,13 @@
 
 #### Defined in
 
-[src/modules/messageHandler.ts:20](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L20)
+[src/modules/messageHandler.ts:17](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/messageHandler.ts#L17)
 
 ___
 
 ### commandHandlers
 
-• `Private` `Optional` **commandHandlers**: (`ctx`: [`Bot`](src_modules_bot.Bot.md), `command`: `string`, `args`: `string`[], `messageData`: [`MessageData`](src_types_messageData.MessageData.md), `groupData`: `undefined` \| [`GroupData`](src_types_groupData.GroupData.md), `chatMetadata`: [`ChatMetadata`](src_types_chatMetadata.ChatMetadata.md)) => `void`
+• `Private` `Optional` **commandHandlers**: (`ctx`: [`Bot`](src_modules_bot.Bot.md), `command`: `string`, `args`: `string`[], `messageData`: [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md), `groupData`: `undefined` \| [`IGroupData`](../interfaces/src_interfaces_groupData.IGroupData.md), `chatMetadata`: [`IChatMetadata`](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md)) => `void`
 
 #### Type declaration
 
@@ -86,9 +86,9 @@ ___
 | `ctx` | [`Bot`](src_modules_bot.Bot.md) |
 | `command` | `string` |
 | `args` | `string`[] |
-| `messageData` | [`MessageData`](src_types_messageData.MessageData.md) |
-| `groupData` | `undefined` \| [`GroupData`](src_types_groupData.GroupData.md) |
-| `chatMetadata` | [`ChatMetadata`](src_types_chatMetadata.ChatMetadata.md) |
+| `messageData` | [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
+| `groupData` | `undefined` \| [`IGroupData`](../interfaces/src_interfaces_groupData.IGroupData.md) |
+| `chatMetadata` | [`IChatMetadata`](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md) |
 
 ##### Returns
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[src/modules/messageHandler.ts:14](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L14)
+[src/modules/messageHandler.ts:11](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/messageHandler.ts#L11)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[src/modules/messageHandler.ts:13](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L13)
+[src/modules/messageHandler.ts:10](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/messageHandler.ts#L10)
 
 ## Methods
 
@@ -127,11 +127,11 @@ ___
 
 #### Implementation of
 
-[MessageHandler](../interfaces/src_types_bot.MessageHandler.md).[handle](../interfaces/src_types_bot.MessageHandler.md#handle)
+[MessageHandler](../interfaces/src_interfaces_bot.MessageHandler.md).[handle](../interfaces/src_interfaces_bot.MessageHandler.md#handle)
 
 #### Defined in
 
-[src/modules/messageHandler.ts:34](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L34)
+[src/modules/messageHandler.ts:31](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/messageHandler.ts#L31)
 
 ___
 
@@ -153,8 +153,8 @@ ___
 
 #### Implementation of
 
-[MessageHandler](../interfaces/src_types_bot.MessageHandler.md).[handleUpdate](../interfaces/src_types_bot.MessageHandler.md#handleupdate)
+[MessageHandler](../interfaces/src_interfaces_bot.MessageHandler.md).[handleUpdate](../interfaces/src_interfaces_bot.MessageHandler.md#handleupdate)
 
 #### Defined in
 
-[src/modules/messageHandler.ts:70](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/modules/messageHandler.ts#L70)
+[src/modules/messageHandler.ts:67](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/modules/messageHandler.ts#L67)

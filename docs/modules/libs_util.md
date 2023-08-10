@@ -12,19 +12,19 @@
 
 ### botFactory
 
-▸ **botFactory**(`entryPointClass`, `commandsFilename`): [`Bot`](../classes/src_modules_bot.Bot.md)
+▸ **botFactory**(`entryPointClass`, `commandsFilename`): [`IBot`](../interfaces/src_interfaces_bot.IBot.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `entryPointClass` | [`EntryPoint`](../interfaces/src_types_bot.EntryPoint.md) |
+| `entryPointClass` | [`EntryPoint`](../interfaces/src_interfaces_bot.EntryPoint.md) |
 | `commandsFilename` | `string` |
 
 #### Returns
 
-[`Bot`](../classes/src_modules_bot.Bot.md)
+[`IBot`](../interfaces/src_interfaces_bot.IBot.md)
 
 #### Defined in
 
-[libs/util.ts:5](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/util.ts#L5)
+[libs/util.ts:6](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/util.ts#L6)

@@ -15,28 +15,28 @@
 
 ### checkChatMetaData
 
-▸ **checkChatMetaData**(`messageData`, `ctx`): [`ChatMetadata`](../classes/src_types_chatMetadata.ChatMetadata.md)
+▸ **checkChatMetaData**(`messageData`, `ctx`): [`IChatMetadata`](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `messageData` | [`MessageData`](../classes/src_types_messageData.MessageData.md) |
-| `ctx` | [`Bot`](../classes/src_modules_bot.Bot.md) |
+| `messageData` | [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
+| `ctx` | [`IBot`](../interfaces/src_interfaces_bot.IBot.md) |
 
 #### Returns
 
-[`ChatMetadata`](../classes/src_types_chatMetadata.ChatMetadata.md)
+[`IChatMetadata`](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md)
 
 #### Defined in
 
-[src/funcs/messageParsers.ts:93](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/messageParsers.ts#L93)
+[src/funcs/messageParsers.ts:93](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/funcs/messageParsers.ts#L93)
 
 ___
 
 ### checkGroupData
 
-▸ **checkGroupData**(`messageData`, `chatMetadata`, `ctx`): `Promise`<[`GroupData`](../classes/src_types_groupData.GroupData.md) \| `undefined`\>
+▸ **checkGroupData**(`messageData`, `chatMetadata`, `ctx`): `Promise`<[`IGroupData`](../interfaces/src_interfaces_groupData.IGroupData.md) \| `undefined`\>
 
 This function has a caching mechanism that saves the group metadata into the bot instance and invalidates it after 10s
 
@@ -44,38 +44,38 @@ This function has a caching mechanism that saves the group metadata into the bot
 
 | Name | Type |
 | :------ | :------ |
-| `messageData` | [`MessageData`](../classes/src_types_messageData.MessageData.md) |
-| `chatMetadata` | [`ChatMetadata`](../classes/src_types_chatMetadata.ChatMetadata.md) |
-| `ctx` | [`Bot`](../classes/src_modules_bot.Bot.md) |
+| `messageData` | [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) |
+| `chatMetadata` | [`IChatMetadata`](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md) |
+| `ctx` | [`IBot`](../interfaces/src_interfaces_bot.IBot.md) |
 
 #### Returns
 
-`Promise`<[`GroupData`](../classes/src_types_groupData.GroupData.md) \| `undefined`\>
+`Promise`<[`IGroupData`](../interfaces/src_interfaces_groupData.IGroupData.md) \| `undefined`\>
 
 #### Defined in
 
-[src/funcs/messageParsers.ts:67](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/messageParsers.ts#L67)
+[src/funcs/messageParsers.ts:67](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/funcs/messageParsers.ts#L67)
 
 ___
 
 ### checkMessageData
 
-▸ **checkMessageData**(`message`, `bot`): [`MessageData`](../classes/src_types_messageData.MessageData.md) \| `undefined`
+▸ **checkMessageData**(`message`, `bot`): [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) \| `undefined`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `message` | `IWebMessageInfo` |
-| `bot` | [`Bot`](../classes/src_modules_bot.Bot.md) |
+| `bot` | [`IBot`](../interfaces/src_interfaces_bot.IBot.md) |
 
 #### Returns
 
-[`MessageData`](../classes/src_types_messageData.MessageData.md) \| `undefined`
+[`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md) \| `undefined`
 
 #### Defined in
 
-[src/funcs/messageParsers.ts:17](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/messageParsers.ts#L17)
+[src/funcs/messageParsers.ts:17](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/funcs/messageParsers.ts#L17)
 
 ___
 
@@ -95,4 +95,4 @@ ___
 
 #### Defined in
 
-[src/funcs/messageParsers.ts:106](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/src/funcs/messageParsers.ts#L106)
+[src/funcs/messageParsers.ts:106](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/funcs/messageParsers.ts#L106)

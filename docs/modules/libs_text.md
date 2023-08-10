@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[libs/text.ts:32](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/text.ts#L32)
+[libs/text.ts:32](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/text.ts#L32)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[libs/text.ts:23](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/text.ts#L23)
+[libs/text.ts:23](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/text.ts#L23)
 
 ___
 
@@ -73,4 +73,4 @@ ___
 
 #### Defined in
 
-[libs/text.ts:1](https://github.com/kamuridesu/WhatFramework/blob/9d3db65/libs/text.ts#L1)
+[libs/text.ts:1](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/text.ts#L1)
