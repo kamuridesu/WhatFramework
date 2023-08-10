@@ -1,8 +1,8 @@
 import { WAMessage } from "@whiskeysockets/baileys";
-import { MessageData } from "../types/messageData.js";
-import { GroupData } from "../types/groupData.js";
-import { ChatMetadata } from "../types/chatMetadata.js";
-import { Bot } from "../modules/bot.js";
+import { MessageData } from "../data/messageData.js";
+import { GroupData } from "../data/groupData.js";
+import { ChatMetadata } from "../data/chatMetadata.js";
+import { Bot, IMessageData, IGroupData, IChatMetadata } from "../interfaces/types.js";
 
 const messageTypes: string[] = [
     "audioMessage",
@@ -14,7 +14,7 @@ const messageTypes: string[] = [
     "reactionMessage"
 ];
 
-function checkMessageData(message: WAMessage, bot: Bot): MessageData | undefined {
+function checkMessageData(message: WAMessage, bot: Bot): IMessageData | undefined {
     const key = message.message;
     if (!key) {
         return undefined;
@@ -64,7 +64,7 @@ function checkMessageData(message: WAMessage, bot: Bot): MessageData | undefined
 /**
 * This function has a caching mechanism that saves the group metadata into the bot instance and invalidates it after 10s
 */
-async function checkGroupData(messageData: MessageData, chatMetadata: ChatMetadata, ctx: Bot): Promise<GroupData | undefined> {
+async function checkGroupData(messageData: IMessageData, chatMetadata: IChatMetadata, ctx: Bot): Promise<IGroupData | undefined> {
     let groupCacheId = messageData.origin.split("@g.us")[1];
     const cachedGroupData = ctx.groupsData[groupCacheId];
     if (cachedGroupData && ((Date.now() - cachedGroupData.lastFetchDate) / 1000) <= 10) {
@@ -90,7 +90,7 @@ async function checkGroupData(messageData: MessageData, chatMetadata: ChatMetada
 }
 
 
-function checkChatMetaData(messageData: MessageData, ctx: Bot): ChatMetadata {
+function checkChatMetaData(messageData: IMessageData, ctx: Bot): IChatMetadata {
     const messageIsFrom = messageData.origin;
     const senderName = messageData.originalMessage.pushName ? messageData.originalMessage.pushName : "";
     const isGroup = messageIsFrom.includes('@g.us');

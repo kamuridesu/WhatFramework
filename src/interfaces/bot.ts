@@ -1,9 +1,9 @@
-import makeWASocket from "@whiskeysockets/baileys";
+import { makeWASocket } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
-import { MessageData } from "./messageData.js";
+import { IMessageData } from "./messageData.js";
 import { Language } from "../../libs/lang/language.js";
-import { GroupData } from './groupData.js';
-import { ChatMetadata } from "./chatMetadata.js";
+import { GroupData } from '../data/groupData.js';
+import { ChatMetadata } from "../data/chatMetadata.js";
 
 
 interface GroupsData {
@@ -30,12 +30,12 @@ interface EntryPoint {
     commandHandlers: (ctx: Bot,
         command: string,
         args: string[],
-        messageData: MessageData,
+        messageData: IMessageData,
         groupData: GroupData | undefined,
         chatMetadata: ChatMetadata) => void;
     chatHandlers: (ctx: Bot,
         messageBody: string,
-        messageData: MessageData,
+        messageData: IMessageData,
         groupData: GroupData | undefined,
         chatMetadata: ChatMetadata) => void;
 }
@@ -64,9 +64,9 @@ interface Bot {
 
     init(messageHandler: MessageHandler): Promise<void>;
 
-    replyText(ctx: MessageData, text: string, options: any): Promise<void>;
+    replyText(ctx: IMessageData, text: string, options: any): Promise<void>;
     replyMedia(
-        ctx: MessageData,
+        ctx: IMessageData,
         media: string | Media,
         messageType: string,
         mimeType?: string,
@@ -74,10 +74,10 @@ interface Bot {
         options?: any
     ): Promise<void>;
 
-    sendTextMessage(ctx: MessageData | string, text: string, options: any): Promise<void>;
+    sendTextMessage(ctx: IMessageData | string, text: string, options: any): Promise<void>;
 
-    loadMessage(ctx: MessageData | WAMessageKey): Promise<MessageData | WAMessage | undefined>;
-    createPoll(ctx: MessageData, poolName: string, options: Array<string>): Promise<boolean>;
+    loadMessage(ctx: IMessageData | WAMessageKey): Promise<IMessageData | WAMessage | undefined>;
+    createPoll(ctx: IMessageData, poolName: string, options: Array<string>): Promise<boolean>;
 }
 
 export {

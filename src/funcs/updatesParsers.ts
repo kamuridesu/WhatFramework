@@ -1,9 +1,9 @@
 
 import { WAMessage, WAMessageKey, getAggregateVotesInPollMessage } from "@whiskeysockets/baileys";
-import { PollVoteAggragation } from "../types/pollData.js";
-import { Bot } from "../types/bot.js";
+import { PollVoteAggragation } from "../interfaces/pollData.js";
+import { Bot } from "../interfaces/types.js";
 import { getMessage } from "../modules/bot.js";
-import { MessageData } from "../types/messageData.js";
+import { MessageData } from "../data/messageData.js";
 
 
 
@@ -15,7 +15,7 @@ async function pollParser(key: WAMessageKey, pollUpdates: Pick<WAMessage, 'pollU
     if (originalMessage instanceof MessageData || typeof originalMessage == "undefined") {
         return undefined;
     }
-    console.log(originalMessage?.pollUpdates);
+    // console.log(originalMessage?.pollUpdates);
     const message = await getMessage(key);
     // const votes = getAggregateVotesInPollMessage({
     //     message: message,

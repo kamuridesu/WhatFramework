@@ -1,4 +1,4 @@
-import { Bot } from "src/types/bot.js";
+import { Bot } from "src/interfaces/types.js";
 import Translations from "./interface.js";
 import { TRANSLATIONS as ptbr } from "./pt-bt.js";
 import { TRANSLATIONS as enus } from "./en-us.js";

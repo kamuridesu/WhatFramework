@@ -12,13 +12,14 @@ import { makeWASocket,
 import { Bot,
     GroupsData,
     Media,
-    MessageHandler } from "../types/bot.js";
+    MessageHandler } from "../interfaces/types.js";
 
 import { Language } from "../../libs/lang/language.js";
-import { MessageData } from '../types/messageData.js';
+import { IMessageData } from '../interfaces/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
 import { checkMessageData } from '../funcs/messageParsers.js';
+import { MessageData } from '../data/messageData.js';
 
 
 const logger = Pino().child({
@@ -114,20 +115,21 @@ class WABot implements Bot {
         storage.bind(this.connection.ev);
 
         this.connection.ev.on('messages.upsert', async (handle) => {
-            const message = handle.messages[0];
-            if (!message.key.fromMe && handle.type === "notify") {
-                messageHandler.handle(message, this);
+            for (let message of handle.messages) {
+                if (!message.key.fromMe && handle.type === "notify") {
+                    messageHandler.handle(message, this);
+                }
             }
         });
     }
 
-    async replyText(ctx: MessageData, text: string, options: any = {}): Promise<void> {
+    async replyText(ctx: IMessageData, text: string, options: any = {}): Promise<void> {
         options.quoted = ctx.originalMessage;
         await this.sendTextMessage(ctx, text, options);
     }
 
     async replyMedia(
-        ctx: MessageData,
+        ctx: IMessageData,
         media: string | Media | Buffer,
         messageType: string,
         mimeType?: string,
@@ -150,7 +152,7 @@ class WABot implements Bot {
         }
     }
 
-    async sendTextMessage(ctx: MessageData | string, text: string, options: any): Promise<void> {
+    async sendTextMessage(ctx: IMessageData | string, text: string, options: any): Promise<void> {
         let recipient: string;
         if (typeof ctx != "string" && ctx.originalMessage) {
             recipient = ctx.origin;
@@ -175,7 +177,7 @@ class WABot implements Bot {
         }
     }
 
-    async createPoll(ctx: MessageData, pollName: string, options: Array<string>): Promise<boolean> {
+    async createPoll(ctx: IMessageData, pollName: string, options: Array<string>): Promise<boolean> {
         console.log(pollName)
         console.log(options)
         try {
@@ -195,7 +197,7 @@ class WABot implements Bot {
         }
     }
 
-    async loadMessage(ctx: MessageData | WAMessageKey): Promise<MessageData | WAMessage | undefined> {
+    async loadMessage(ctx: MessageData | WAMessageKey): Promise<IMessageData | WAMessage | undefined> {
         let originJid: string;
         let stanzaId: string;
         if (ctx instanceof MessageData) {

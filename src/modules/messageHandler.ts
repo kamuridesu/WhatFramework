@@ -1,10 +1,7 @@
 import { Bot } from './bot.js';
 import { checkChatMetaData, checkGroupData, checkMessageData } from '../funcs/messageParsers.js';
-import { ChatMetadata } from "../types/chatMetadata.js"
-import { GroupData } from '../types/groupData.js';
-import { MessageData } from '../types/messageData.js';
 import { pollParser } from '../funcs/updatesParsers.js';
-import { MessageHandler, EntryPoint } from '../types/bot.js';
+import { MessageHandler, EntryPoint, IMessageData, IGroupData, IChatMetadata } from '../interfaces/types.js';
 import { colors } from '../../libs/std.js';
 
 import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
@@ -14,14 +11,14 @@ class WAMessageHandler implements MessageHandler {
     private commandHandlers?: (ctx: Bot,
         command: string,
         args: string[],
-        messageData: MessageData,
-        groupData: GroupData | undefined,
-        chatMetadata: ChatMetadata) => void;
+        messageData: IMessageData,
+        groupData: IGroupData | undefined,
+        chatMetadata: IChatMetadata) => void;
     private chatHandlers?: (ctx: Bot,
         messageBody: string,
-        messageData: MessageData,
-        groupData: GroupData | undefined,
-        chatMetadata: ChatMetadata) => void;
+        messageData: IMessageData,
+        groupData: IGroupData | undefined,
+        chatMetadata: IChatMetadata) => void;
 
     constructor(entrypoint?: EntryPoint) {
         this.isModule = !!entrypoint;
@@ -43,12 +40,12 @@ class WAMessageHandler implements MessageHandler {
             Object.keys(message.message)[0] === 'ephemeralMessage'
                 ? message.message.ephemeralMessage?.message
                 : message.message;
-        const messageData: MessageData | undefined = checkMessageData(message, ctx);
+        const messageData: IMessageData | undefined = checkMessageData(message, ctx);
         if (!messageData) {
             return;
         }
-        const chatMetadata: ChatMetadata = checkChatMetaData(messageData, ctx);
-        let groupData: GroupData | undefined;
+        const chatMetadata: IChatMetadata = checkChatMetaData(messageData, ctx);
+        let groupData: IGroupData | undefined;
         if (chatMetadata.chatIsGroup) {
             groupData = await checkGroupData(messageData, chatMetadata, ctx);
         }

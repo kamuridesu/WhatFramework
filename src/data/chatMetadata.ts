@@ -1,4 +1,6 @@
-class ChatMetadata {
+import { IChatMetadata } from "src/interfaces/types.js";
+
+class ChatMetadata implements IChatMetadata {
     constructor(
         public messageSender: string,
         public senderName: string,
