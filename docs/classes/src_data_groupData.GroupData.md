@@ -6,7 +6,7 @@
 
 ## Implements
 
-- [`IGroupData`](../interfaces/src_interfaces_groupData.IGroupData.md)
+- [`IGroupData`](../interfaces/src__types_groupData.IGroupData.md)
 
 ## Table of contents
 
@@ -52,7 +52,7 @@
 
 #### Defined in
 
-[src/data/groupData.ts:4](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L4)
+[src/data/groupData.ts:4](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L4)
 
 ## Properties
 
@@ -62,11 +62,11 @@
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[admins](../interfaces/src_interfaces_groupData.IGroupData.md#admins)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[admins](../interfaces/src__types_groupData.IGroupData.md#admins)
 
 #### Defined in
 
-[src/data/groupData.ts:9](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L9)
+[src/data/groupData.ts:9](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L9)
 
 ___
 
@@ -76,11 +76,11 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[botIsAdmin](../interfaces/src_interfaces_groupData.IGroupData.md#botisadmin)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[botIsAdmin](../interfaces/src__types_groupData.IGroupData.md#botisadmin)
 
 #### Defined in
 
-[src/data/groupData.ts:12](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L12)
+[src/data/groupData.ts:12](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L12)
 
 ___
 
@@ -90,11 +90,11 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[description](../interfaces/src_interfaces_groupData.IGroupData.md#description)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[description](../interfaces/src__types_groupData.IGroupData.md#description)
 
 #### Defined in
 
-[src/data/groupData.ts:6](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L6)
+[src/data/groupData.ts:6](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L6)
 
 ___
 
@@ -104,11 +104,11 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[groupId](../interfaces/src_interfaces_groupData.IGroupData.md#groupid)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[groupId](../interfaces/src__types_groupData.IGroupData.md#groupid)
 
 #### Defined in
 
-[src/data/groupData.ts:7](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L7)
+[src/data/groupData.ts:7](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L7)
 
 ___
 
@@ -118,11 +118,11 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[groupOwner](../interfaces/src_interfaces_groupData.IGroupData.md#groupowner)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[groupOwner](../interfaces/src__types_groupData.IGroupData.md#groupowner)
 
 #### Defined in
 
-[src/data/groupData.ts:10](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L10)
+[src/data/groupData.ts:10](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L10)
 
 ___
 
@@ -132,11 +132,11 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[locked](../interfaces/src_interfaces_groupData.IGroupData.md#locked)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[locked](../interfaces/src__types_groupData.IGroupData.md#locked)
 
 #### Defined in
 
-[src/data/groupData.ts:14](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L14)
+[src/data/groupData.ts:14](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L14)
 
 ___
 
@@ -146,11 +146,11 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[members](../interfaces/src_interfaces_groupData.IGroupData.md#members)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[members](../interfaces/src__types_groupData.IGroupData.md#members)
 
 #### Defined in
 
-[src/data/groupData.ts:8](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L8)
+[src/data/groupData.ts:8](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L8)
 
 ___
 
@@ -160,11 +160,11 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[name](../interfaces/src_interfaces_groupData.IGroupData.md#name)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[name](../interfaces/src__types_groupData.IGroupData.md#name)
 
 #### Defined in
 
-[src/data/groupData.ts:5](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L5)
+[src/data/groupData.ts:5](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L5)
 
 ___
 
@@ -174,11 +174,11 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[senderIsAdmin](../interfaces/src_interfaces_groupData.IGroupData.md#senderisadmin)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[senderIsAdmin](../interfaces/src__types_groupData.IGroupData.md#senderisadmin)
 
 #### Defined in
 
-[src/data/groupData.ts:13](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L13)
+[src/data/groupData.ts:13](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L13)
 
 ___
 
@@ -188,11 +188,11 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[senderIsOwner](../interfaces/src_interfaces_groupData.IGroupData.md#senderisowner)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[senderIsOwner](../interfaces/src__types_groupData.IGroupData.md#senderisowner)
 
 #### Defined in
 
-[src/data/groupData.ts:11](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L11)
+[src/data/groupData.ts:11](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L11)
 
 ___
 
@@ -202,8 +202,8 @@ ___
 
 #### Implementation of
 
-[IGroupData](../interfaces/src_interfaces_groupData.IGroupData.md).[welcomeOn](../interfaces/src_interfaces_groupData.IGroupData.md#welcomeon)
+[IGroupData](../interfaces/src__types_groupData.IGroupData.md).[welcomeOn](../interfaces/src__types_groupData.IGroupData.md#welcomeon)
 
 #### Defined in
 
-[src/data/groupData.ts:15](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/groupData.ts#L15)
+[src/data/groupData.ts:15](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/groupData.ts#L15)

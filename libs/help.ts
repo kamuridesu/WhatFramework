@@ -5,7 +5,7 @@ import { Language } from "./lang/language.js";
 
 class Help {
     commandsFilename: string;
-    botName: string;
+    name: string;
     lang: Language;
 
     constructor(bot: Bot) {
@@ -13,7 +13,7 @@ class Help {
         if (this.commandsFilename == "") {
             throw Error("commandsFilename is not set!");
         }
-        this.botName = bot.botName;
+        this.name = bot.name;
         this.lang = new Language(bot);
     }
 
@@ -24,7 +24,7 @@ class Help {
             return cmd.split(":")[0].replace(/"/g, '').replace(/'/g, '');
         });
 
-        const document_string = `${this.botName}\n${this.lang.get().commands}: \n-|${cases.join("\n-|")}`
+        const document_string = `${this.name}\n${this.lang.get().commands}: \n-|${cases.join("\n-|")}`
         return document_string;
     }
 
@@ -64,14 +64,13 @@ class Help {
         let category_indexes: { name: string; start: number; end?: number | undefined; }[] = [];
         let category_ends: number[] = [];
         let categories = await this.processCategories();
-        console.log(categories);
         category_indexes = categories[0];
         category_ends = categories[1];
         if (category_ends.length != category_indexes.length) {
             return this.lang.get().closingTagMissing;
         }
 
-        let text = `--==${this.botName}==--\n\n${this.lang.get().commands}:`;
+        let text = `--==${this.name}==--\n\n${this.lang.get().commands}:`;
         for (let i = 0; i < category_indexes.length; i++) {
             let command_text = command_lines
                 .slice(category_indexes[i].start, category_ends[i])

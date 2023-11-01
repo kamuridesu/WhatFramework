@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[libs/lang/en-us.ts:3](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/lang/en-us.ts#L3)
+[libs/lang/en-us.ts:3](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/lang/en-us.ts#L3)

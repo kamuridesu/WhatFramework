@@ -1,5 +1,5 @@
 import { WAMessage } from "@whiskeysockets/baileys";
-import { IBot, Media } from "../interfaces/bot";
+import { IBot, Media } from "./bot";
 
 interface IMessageData {
     bot: IBot,

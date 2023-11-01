@@ -22,7 +22,7 @@ WhatFramework needs modules to work. A module is made of a file called entrypoin
 The following parameters are needed to start the framework:
 
 1. `prefix`: the commands prefix for your bot;
-2. `botName`: the name of the bot;
+2. `name`: the name of the bot;
 3. `botNumber`: the number of the bot;
 4. `ownerNumber`: Number of the bot owner;
 

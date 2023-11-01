@@ -1,7 +1,7 @@
 
 import { Bot } from "../src/modules/bot.js";
-import { IBot } from "../src/interfaces/types.js";
-import { EntryPoint } from "../src/interfaces/types.js";
+import { IBot } from "../src/@types/types.js";
+import { EntryPoint } from "../src/@types/types.js";
 
 function botFactory(entryPointClass: EntryPoint, commandsFilename: string): IBot {
     return new Bot(entryPointClass.botName,

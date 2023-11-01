@@ -1,4 +1,4 @@
-import { makeWASocket } from "@whiskeysockets/baileys";
+import { makeWASocket, proto } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
 import { IMessageData } from "./messageData.js";
 import { Language } from "../../libs/lang/language.js";
@@ -44,7 +44,7 @@ interface Module {
     Entrypoint: EntryPoint
 }
 
-interface MessageHandler {
+interface IMessageHandler {
     handle: (message: WAMessage, bot: IBot) => void
     handleUpdate: (key: WAMessageKey, updates: Partial<WAMessage>, ctx: IBot) => void
 }
@@ -52,7 +52,7 @@ interface MessageHandler {
 interface IBot {
     connection?: ReturnType<typeof makeWASocket>;
 
-    readonly botName: string;
+    readonly name: string;
     readonly prefix: string;
     readonly botNumber: string;
     readonly ownerNumber: string;
@@ -62,7 +62,9 @@ interface IBot {
     reconnectOnClose: boolean;
     groupsData: GroupsData // This is for caching purpose
 
-    init(messageHandler: MessageHandler): Promise<void>;
+    init(messageHandler: IMessageHandler): Promise<void>;
+
+    getMessage(key: proto.IMessageKey): Promise<proto.IMessage | undefined>
 
     replyText(ctx: IMessageData, text: string, options: any): Promise<void>;
     replyMedia(
@@ -85,6 +87,6 @@ export {
     Media,
     GroupsData,
     Module,
-    MessageHandler,
+    IMessageHandler,
     EntryPoint
 }

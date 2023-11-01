@@ -1,4 +1,5 @@
 import { AnyMediaMessageContent } from '@whiskeysockets/baileys'
+import { Readable } from 'stream';
 
 function parseMedia(media: any, mediaType: string | undefined, mimeType: string | undefined, caption: string | undefined): AnyMediaMessageContent {
     let info: AnyMediaMessageContent;
@@ -24,7 +25,7 @@ function parseMedia(media: any, mediaType: string | undefined, mimeType: string 
             break;
         case "video":
             info = {
-                video: media,
+                video: {stream: Readable.from(media)},
                 mimetype: mimeType,
                 caption: caption
             };

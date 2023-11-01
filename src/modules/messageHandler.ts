@@ -1,20 +1,20 @@
 import { Bot } from './bot.js';
 import { checkChatMetaData, checkGroupData, checkMessageData } from '../funcs/messageParsers.js';
 import { pollParser } from '../funcs/updatesParsers.js';
-import { MessageHandler, EntryPoint, IMessageData, IGroupData, IChatMetadata } from '../interfaces/types.js';
+import { IMessageHandler, EntryPoint, IMessageData, IGroupData, IChatMetadata, IBot } from '../@types/types.js';
 import { colors } from '../../libs/std.js';
 
 import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
 
-class WAMessageHandler implements MessageHandler {
+class WAMessageHandler implements IMessageHandler {
     private isModule: boolean;
-    private commandHandlers?: (ctx: Bot,
+    private commandHandlers?: (ctx: IBot,
         command: string,
         args: string[],
         messageData: IMessageData,
         groupData: IGroupData | undefined,
         chatMetadata: IChatMetadata) => void;
-    private chatHandlers?: (ctx: Bot,
+    private chatHandlers?: (ctx: IBot,
         messageBody: string,
         messageData: IMessageData,
         groupData: IGroupData | undefined,
@@ -28,7 +28,7 @@ class WAMessageHandler implements MessageHandler {
         }
     }
 
-    async handle(message: WAMessage, ctx: Bot): Promise<void> {
+    async handle(message: WAMessage, bot: IBot): Promise<void> {
         if (
             !message.message ||
             (message.key && message.key.remoteJid === 'status@broadcast') ||
@@ -40,34 +40,34 @@ class WAMessageHandler implements MessageHandler {
             Object.keys(message.message)[0] === 'ephemeralMessage'
                 ? message.message.ephemeralMessage?.message
                 : message.message;
-        const messageData: IMessageData | undefined = checkMessageData(message, ctx);
+        const messageData: IMessageData | undefined = checkMessageData(message, bot);
         if (!messageData) {
             return;
         }
-        const chatMetadata: IChatMetadata = checkChatMetaData(messageData, ctx);
+        const chatMetadata: IChatMetadata = checkChatMetaData(messageData, bot);
         let groupData: IGroupData | undefined;
         if (chatMetadata.chatIsGroup) {
-            groupData = await checkGroupData(messageData, chatMetadata, ctx);
+            groupData = await checkGroupData(messageData, chatMetadata, bot);
         }
 
         if (this.isModule && messageData.body) {
             const messageBody = messageData.body;
-            if (messageBody.startsWith(ctx.prefix)) {
+            if (messageBody.startsWith(bot.prefix)) {
                 colors.paint(`Message from ${chatMetadata.messageSender.split('@')[0]}: ${messageBody}`, colors.FgCyan, undefined, colors.Bright);
-                const command = messageBody.split('/')[1].split(' ')[0].toLowerCase();
+                const command = messageBody.split(bot.prefix)[1].split(' ')[0].toLowerCase();
                 if (command.length === 0) return;
                 const args = messageBody.split(' ').slice(1);
-                this.commandHandlers!(ctx, command, args, messageData, groupData, chatMetadata);
+                this.commandHandlers!(bot, command, args, messageData, groupData, chatMetadata);
             } else {
-                this.chatHandlers!(ctx, messageBody, messageData, groupData, chatMetadata);
+                this.chatHandlers!(bot, messageBody, messageData, groupData, chatMetadata);
             }
         }
     }
 
-    async handleUpdate(key: WAMessageKey, updates: Partial<WAMessage>, ctx: Bot) {
+    async handleUpdate(key: WAMessageKey, updates: Partial<WAMessage>, bot: IBot) {
         if (key) {
             if (updates.pollUpdates) {
-                const pollData = await pollParser(key, updates, ctx);
+                const pollData = await pollParser(key, updates, bot);
             }
         }
     }

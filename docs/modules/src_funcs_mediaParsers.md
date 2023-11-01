@@ -29,4 +29,4 @@
 
 #### Defined in
 
-[src/funcs/mediaParsers.ts:3](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/funcs/mediaParsers.ts#L3)
+[src/funcs/mediaParsers.ts:4](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/funcs/mediaParsers.ts#L4)

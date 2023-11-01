@@ -6,7 +6,7 @@
 
 ## Implements
 
-- [`IChatMetadata`](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md)
+- [`IChatMetadata`](../interfaces/src__types_chatMetadata.IChatMetadata.md)
 
 ## Table of contents
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/data/chatMetadata.ts:4](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/chatMetadata.ts#L4)
+[src/data/chatMetadata.ts:4](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/chatMetadata.ts#L4)
 
 ## Properties
 
@@ -50,11 +50,11 @@
 
 #### Implementation of
 
-[IChatMetadata](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md).[chatIsGroup](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md#chatisgroup)
+[IChatMetadata](../interfaces/src__types_chatMetadata.IChatMetadata.md).[chatIsGroup](../interfaces/src__types_chatMetadata.IChatMetadata.md#chatisgroup)
 
 #### Defined in
 
-[src/data/chatMetadata.ts:9](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/chatMetadata.ts#L9)
+[src/data/chatMetadata.ts:9](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/chatMetadata.ts#L9)
 
 ___
 
@@ -64,11 +64,11 @@ ___
 
 #### Implementation of
 
-[IChatMetadata](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md).[messageIsFrom](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md#messageisfrom)
+[IChatMetadata](../interfaces/src__types_chatMetadata.IChatMetadata.md).[messageIsFrom](../interfaces/src__types_chatMetadata.IChatMetadata.md#messageisfrom)
 
 #### Defined in
 
-[src/data/chatMetadata.ts:7](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/chatMetadata.ts#L7)
+[src/data/chatMetadata.ts:7](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/chatMetadata.ts#L7)
 
 ___
 
@@ -78,11 +78,11 @@ ___
 
 #### Implementation of
 
-[IChatMetadata](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md).[messageSender](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md#messagesender)
+[IChatMetadata](../interfaces/src__types_chatMetadata.IChatMetadata.md).[messageSender](../interfaces/src__types_chatMetadata.IChatMetadata.md#messagesender)
 
 #### Defined in
 
-[src/data/chatMetadata.ts:5](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/chatMetadata.ts#L5)
+[src/data/chatMetadata.ts:5](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/chatMetadata.ts#L5)
 
 ___
 
@@ -92,11 +92,11 @@ ___
 
 #### Implementation of
 
-[IChatMetadata](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md).[senderIsBotOwner](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md#senderisbotowner)
+[IChatMetadata](../interfaces/src__types_chatMetadata.IChatMetadata.md).[senderIsBotOwner](../interfaces/src__types_chatMetadata.IChatMetadata.md#senderisbotowner)
 
 #### Defined in
 
-[src/data/chatMetadata.ts:8](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/chatMetadata.ts#L8)
+[src/data/chatMetadata.ts:8](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/chatMetadata.ts#L8)
 
 ___
 
@@ -106,8 +106,8 @@ ___
 
 #### Implementation of
 
-[IChatMetadata](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md).[senderName](../interfaces/src_interfaces_chatMetadata.IChatMetadata.md#sendername)
+[IChatMetadata](../interfaces/src__types_chatMetadata.IChatMetadata.md).[senderName](../interfaces/src__types_chatMetadata.IChatMetadata.md#sendername)
 
 #### Defined in
 
-[src/data/chatMetadata.ts:6](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/chatMetadata.ts#L6)
+[src/data/chatMetadata.ts:6](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/chatMetadata.ts#L6)

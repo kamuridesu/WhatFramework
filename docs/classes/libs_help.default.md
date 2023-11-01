@@ -12,9 +12,9 @@
 
 ### Properties
 
-- [botName](libs_help.default.md#botname)
 - [commandsFilename](libs_help.default.md#commandsfilename)
 - [lang](libs_help.default.md#lang)
+- [name](libs_help.default.md#name)
 
 ### Methods
 
@@ -39,19 +39,9 @@
 
 #### Defined in
 
-[libs/help.ts:11](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L11)
+[libs/help.ts:11](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L11)
 
 ## Properties
-
-### botName
-
-• **botName**: `string`
-
-#### Defined in
-
-[libs/help.ts:8](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L8)
-
-___
 
 ### commandsFilename
 
@@ -59,7 +49,7 @@ ___
 
 #### Defined in
 
-[libs/help.ts:7](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L7)
+[libs/help.ts:7](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L7)
 
 ___
 
@@ -69,7 +59,17 @@ ___
 
 #### Defined in
 
-[libs/help.ts:9](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L9)
+[libs/help.ts:9](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L9)
+
+___
+
+### name
+
+• **name**: `string`
+
+#### Defined in
+
+[libs/help.ts:8](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L8)
 
 ## Methods
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[libs/help.ts:21](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L21)
+[libs/help.ts:21](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L21)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[libs/help.ts:93](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L93)
+[libs/help.ts:93](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L93)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[libs/help.ts:62](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L62)
+[libs/help.ts:62](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L62)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[libs/help.ts:32](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L32)
+[libs/help.ts:32](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L32)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[libs/help.ts:118](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L118)
+[libs/help.ts:118](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L118)
 
 ___
 
@@ -159,4 +159,4 @@ ___
 
 #### Defined in
 
-[libs/help.ts:38](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/libs/help.ts#L38)
+[libs/help.ts:38](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/libs/help.ts#L38)

@@ -5,11 +5,11 @@ import path from 'path';
 import { load } from './src/modules/dynamicModules.js';
 import { botFactory } from './libs/util.js';
 import { MessageHandler } from './src/modules/messageHandler.js';
-import { EntryPoint } from 'src/interfaces/types.js';
+import { EntryPoint } from 'src/@types/types.js';
 
 const SUPPORTED_LANGUAGES = ["en-us", "pt-br"];
 
-async function initializeFramework(): Promise<void> {
+async function initializeFramework(entrypointFile: string | undefined = undefined): Promise<void> {
     const rootPath = process.cwd();
     const modulesPath = process.env.DEBUG
         ? path.join(rootPath, 'test_modules')
@@ -17,7 +17,12 @@ async function initializeFramework(): Promise<void> {
 
     fs.mkdirSync('./temp', { recursive: true });
 
-    const entryPoint = path.join(modulesPath, 'entrypoint.js');
+    if (entrypointFile == undefined) {
+        entrypointFile = path.join(modulesPath, "entrypoint.js");
+    } else {
+        entrypointFile = path.resolve(entrypointFile);
+    }
+    const entryPoint = path.join(entrypointFile);
     const entryPointModule = await load(entryPoint);
     const entryPointClass: EntryPoint = new (entryPointModule.Entrypoint as any)();
 
@@ -39,6 +44,6 @@ async function initializeFramework(): Promise<void> {
     await bot.init(messageHandler);
 }
 
-initializeFramework();
+initializeFramework(process.argv[2]);
 
 export { initializeFramework };
