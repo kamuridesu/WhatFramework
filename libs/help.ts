@@ -64,7 +64,6 @@ class Help {
         let category_indexes: { name: string; start: number; end?: number | undefined; }[] = [];
         let category_ends: number[] = [];
         let categories = await this.processCategories();
-        console.log(categories);
         category_indexes = categories[0];
         category_ends = categories[1];
         if (category_ends.length != category_indexes.length) {

@@ -82,10 +82,6 @@ class WABot implements IBot {
         return undefined;
     }
 
-    /**
-     * Initiates the bot and starts to handle connections
-     * @param {CallableFunction} messageHandler function to handle incoming messages
-     */
     async init(messageHandler: IMessageHandler): Promise<void> {
         this.connection = makeWASocket({
             printQRInTerminal: true,
@@ -169,7 +165,6 @@ class WABot implements IBot {
             await this.connection?.sendMessage(recipient, {
                 text: textData.text,
                 mentions: textData.mentions,
-                linkPreview: { "canonical-url": "", "matched-text": "", title: "" },
             }, options);
             await this.connection?.sendPresenceUpdate("paused", recipient);
         } catch (e) {

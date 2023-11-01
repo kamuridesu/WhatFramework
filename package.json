@@ -1,6 +1,6 @@
 {
   "name": "@kamuridesu/whatframework",
-  "version": "0.1.11b",
+  "version": "0.1.12b",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
   "main": "dist/cli.js",
   "scripts": {
@@ -26,9 +26,12 @@
   "bin": "dist/cli.js",
   "dependencies": {
     "@hapi/boom": "^10.0.1",
+    "@kamuridesu/kamtube": "^0.1.15",
+    "@kamuridesu/simplelyrics": "^1.0.1",
     "@whiskeysockets/baileys": "^6.5.0",
     "axios": "^1.2.2",
     "fluent-ffmpeg": "^2.1.2",
+    "link-preview-js": "^3.0.5",
     "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {

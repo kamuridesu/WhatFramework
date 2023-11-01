@@ -21,7 +21,7 @@ interface Media {
 }
 
 interface EntryPoint {
-    name: string;
+    botName: string;
     prefix: string;
     botNumber: string;
     ownerNumber: string;
