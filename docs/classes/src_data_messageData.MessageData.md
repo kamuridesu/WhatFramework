@@ -6,7 +6,7 @@
 
 ## Implements
 
-- [`IMessageData`](../interfaces/src_interfaces_messageData.IMessageData.md)
+- [`IMessageData`](../interfaces/src__types_messageData.IMessageData.md)
 
 ## Table of contents
 
@@ -44,7 +44,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `bot` | [`IBot`](../interfaces/src_interfaces_bot.IBot.md) |
+| `bot` | [`IBot`](../interfaces/src__types_bot.IBot.md) |
 | `originalMessage` | `IWebMessageInfo` |
 | `type` | `string` |
 | `body` | `string` |
@@ -59,7 +59,7 @@
 
 #### Defined in
 
-[src/data/messageData.ts:5](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L5)
+[src/data/messageData.ts:5](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L5)
 
 ## Properties
 
@@ -69,25 +69,25 @@
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[body](../interfaces/src_interfaces_messageData.IMessageData.md#body)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[body](../interfaces/src__types_messageData.IMessageData.md#body)
 
 #### Defined in
 
-[src/data/messageData.ts:9](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L9)
+[src/data/messageData.ts:9](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L9)
 
 ___
 
 ### bot
 
-• **bot**: [`IBot`](../interfaces/src_interfaces_bot.IBot.md)
+• **bot**: [`IBot`](../interfaces/src__types_bot.IBot.md)
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[bot](../interfaces/src_interfaces_messageData.IMessageData.md#bot)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[bot](../interfaces/src__types_messageData.IMessageData.md#bot)
 
 #### Defined in
 
-[src/data/messageData.ts:6](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L6)
+[src/data/messageData.ts:6](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L6)
 
 ___
 
@@ -97,11 +97,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[hasQuotedMessage](../interfaces/src_interfaces_messageData.IMessageData.md#hasquotedmessage)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[hasQuotedMessage](../interfaces/src__types_messageData.IMessageData.md#hasquotedmessage)
 
 #### Defined in
 
-[src/data/messageData.ts:13](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L13)
+[src/data/messageData.ts:13](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L13)
 
 ___
 
@@ -111,11 +111,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[isMedia](../interfaces/src_interfaces_messageData.IMessageData.md#ismedia)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[isMedia](../interfaces/src__types_messageData.IMessageData.md#ismedia)
 
 #### Defined in
 
-[src/data/messageData.ts:12](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L12)
+[src/data/messageData.ts:12](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L12)
 
 ___
 
@@ -125,11 +125,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[isReactionMessage](../interfaces/src_interfaces_messageData.IMessageData.md#isreactionmessage)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[isReactionMessage](../interfaces/src__types_messageData.IMessageData.md#isreactionmessage)
 
 #### Defined in
 
-[src/data/messageData.ts:16](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L16)
+[src/data/messageData.ts:16](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L16)
 
 ___
 
@@ -139,11 +139,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[mentionedUsers](../interfaces/src_interfaces_messageData.IMessageData.md#mentionedusers)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[mentionedUsers](../interfaces/src__types_messageData.IMessageData.md#mentionedusers)
 
 #### Defined in
 
-[src/data/messageData.ts:10](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L10)
+[src/data/messageData.ts:10](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L10)
 
 ___
 
@@ -153,11 +153,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[origin](../interfaces/src_interfaces_messageData.IMessageData.md#origin)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[origin](../interfaces/src__types_messageData.IMessageData.md#origin)
 
 #### Defined in
 
-[src/data/messageData.ts:11](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L11)
+[src/data/messageData.ts:11](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L11)
 
 ___
 
@@ -167,11 +167,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[originalMessage](../interfaces/src_interfaces_messageData.IMessageData.md#originalmessage)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[originalMessage](../interfaces/src__types_messageData.IMessageData.md#originalmessage)
 
 #### Defined in
 
-[src/data/messageData.ts:7](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L7)
+[src/data/messageData.ts:7](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L7)
 
 ___
 
@@ -181,11 +181,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[quotedMessage](../interfaces/src_interfaces_messageData.IMessageData.md#quotedmessage)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[quotedMessage](../interfaces/src__types_messageData.IMessageData.md#quotedmessage)
 
 #### Defined in
 
-[src/data/messageData.ts:15](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L15)
+[src/data/messageData.ts:15](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L15)
 
 ___
 
@@ -195,11 +195,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[quotedMessageType](../interfaces/src_interfaces_messageData.IMessageData.md#quotedmessagetype)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[quotedMessageType](../interfaces/src__types_messageData.IMessageData.md#quotedmessagetype)
 
 #### Defined in
 
-[src/data/messageData.ts:14](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L14)
+[src/data/messageData.ts:14](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L14)
 
 ___
 
@@ -209,11 +209,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[reactionMessage](../interfaces/src_interfaces_messageData.IMessageData.md#reactionmessage)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[reactionMessage](../interfaces/src__types_messageData.IMessageData.md#reactionmessage)
 
 #### Defined in
 
-[src/data/messageData.ts:17](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L17)
+[src/data/messageData.ts:17](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L17)
 
 ___
 
@@ -223,11 +223,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[type](../interfaces/src_interfaces_messageData.IMessageData.md#type)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[type](../interfaces/src__types_messageData.IMessageData.md#type)
 
 #### Defined in
 
-[src/data/messageData.ts:8](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L8)
+[src/data/messageData.ts:8](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L8)
 
 ## Methods
 
@@ -239,7 +239,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `media` | `string` \| [`Media`](../interfaces/src_interfaces_bot.Media.md) |
+| `media` | `string` \| [`Media`](../interfaces/src__types_bot.Media.md) |
 | `messageType` | `string` |
 | `mimeType?` | `string` |
 | `mediaCaption?` | `string` |
@@ -251,11 +251,11 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[replyMedia](../interfaces/src_interfaces_messageData.IMessageData.md#replymedia)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[replyMedia](../interfaces/src__types_messageData.IMessageData.md#replymedia)
 
 #### Defined in
 
-[src/data/messageData.ts:37](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L37)
+[src/data/messageData.ts:37](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L37)
 
 ___
 
@@ -276,8 +276,8 @@ ___
 
 #### Implementation of
 
-[IMessageData](../interfaces/src_interfaces_messageData.IMessageData.md).[replyText](../interfaces/src_interfaces_messageData.IMessageData.md#replytext)
+[IMessageData](../interfaces/src__types_messageData.IMessageData.md).[replyText](../interfaces/src__types_messageData.IMessageData.md#replytext)
 
 #### Defined in
 
-[src/data/messageData.ts:33](https://github.com/kamuridesu/WhatFramework/blob/2f7579d/src/data/messageData.ts#L33)
+[src/data/messageData.ts:33](https://github.com/kamuridesu/WhatFramework/blob/9b80f30/src/data/messageData.ts#L33)
