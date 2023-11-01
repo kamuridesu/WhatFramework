@@ -16,7 +16,7 @@
 
 ### Properties
 
-- [botName](src_modules_bot.Bot.md#botname)
+- [name](src_modules_bot.Bot.md#name)
 - [botNumber](src_modules_bot.Bot.md#botnumber)
 - [commandsFilename](src_modules_bot.Bot.md#commandsfilename)
 - [connection](src_modules_bot.Bot.md#connection)
@@ -40,13 +40,13 @@
 
 ### constructor
 
-• **new Bot**(`botName?`, `prefix?`, `botNumber?`, `ownerNumber?`, `commandsFilename?`, `language?`)
+• **new Bot**(`name?`, `prefix?`, `botNumber?`, `ownerNumber?`, `commandsFilename?`, `language?`)
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `botName` | `string` | `'bot'` |
+| `name` | `string` | `'bot'` |
 | `prefix` | `string` | `'!'` |
 | `botNumber` | `string` | `''` |
 | `ownerNumber` | `string` | `''` |
@@ -59,13 +59,13 @@
 
 ## Properties
 
-### botName
+### name
 
-• `Readonly` **botName**: `string`
+• `Readonly` **name**: `string`
 
 #### Implementation of
 
-[IBot](../interfaces/src_interfaces_bot.IBot.md).[botName](../interfaces/src_interfaces_bot.IBot.md#botname)
+[IBot](../interfaces/src_interfaces_bot.IBot.md).[name](../interfaces/src_interfaces_bot.IBot.md#name)
 
 #### Defined in
 

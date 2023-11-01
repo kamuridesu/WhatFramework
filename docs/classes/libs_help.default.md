@@ -12,7 +12,7 @@
 
 ### Properties
 
-- [botName](libs_help.default.md#botname)
+- [name](libs_help.default.md#name)
 - [commandsFilename](libs_help.default.md#commandsfilename)
 - [lang](libs_help.default.md#lang)
 
@@ -43,9 +43,9 @@
 
 ## Properties
 
-### botName
+### name
 
-• **botName**: `string`
+• **name**: `string`
 
 #### Defined in
 

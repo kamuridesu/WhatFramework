@@ -7,7 +7,7 @@ import {
     Media,
     GroupsData,
     Module,
-    MessageHandler,
+    IMessageHandler,
     EntryPoint
 } from './bot.js';
 import { IMessageData } from "./messageData.js";
@@ -20,7 +20,7 @@ export {
     Media,
     GroupsData,
     Module,
-    MessageHandler,
+    IMessageHandler,
     EntryPoint,
     VoteAggregation,
     PollVoteAggragation,

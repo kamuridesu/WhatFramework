@@ -3,7 +3,7 @@ import pkgff from "fluent-ffmpeg";
 import fs from "fs";
 import path from "path";
 import { Bot } from "../src/modules/bot.js";
-import { IMessageData } from "../src/interfaces/types.js";
+import { IMessageData } from "../src/@types/types.js";
 import { saveTempFile } from "../src/funcs/networking.js";
 import { downloadMediaMessage } from "@whiskeysockets/baileys";
 import { Language } from "./lang/language.js";

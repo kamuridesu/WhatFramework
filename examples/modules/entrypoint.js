@@ -5,7 +5,7 @@ class Entrypoint {
     prefix = "!"
     botNumber = "55YYXXXXXXXX";
     ownerNumber = "55YYXXXXXXXX";
-    botName = "ExampleBot";
+    name = "ExampleBot";
     language = "en-us";
     commandsFilename = "./commands.js";
  

@@ -12,7 +12,7 @@
 
 ### Properties
 
-- [botName](src_interfaces_bot.IBot.md#botname)
+- [name](src_interfaces_bot.IBot.md#name)
 - [botNumber](src_interfaces_bot.IBot.md#botnumber)
 - [commandsFilename](src_interfaces_bot.IBot.md#commandsfilename)
 - [connection](src_interfaces_bot.IBot.md#connection)
@@ -34,9 +34,9 @@
 
 ## Properties
 
-### botName
+### name
 
-• `Readonly` **botName**: `string`
+• `Readonly` **name**: `string`
 
 #### Defined in
 

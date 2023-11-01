@@ -2,7 +2,7 @@ import Help from 'whatframework/libs/help.js'
 
 
 async function start(context, bot) {
-    return await bot.replyText(context, "Hey! I'm" + bot.botName + "!\nNice to meet you");
+    return await bot.replyText(context, "Hey! I'm" + bot.name + "!\nNice to meet you");
 }
 
 

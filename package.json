@@ -5,9 +5,10 @@
   "main": "dist/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/cli.js",
-    "build": "tsc --outDir dist",
-    "prepack": "npm run build"
+    "cli": "node dist/cli.js",
+    "build": "tsc --outDir dist --skipLibCheck",
+    "prepack": "npm run build",
+    "start": "npm run build && npm run cli"
   },
   "files": [
     "dist"
@@ -25,7 +26,7 @@
   "bin": "dist/cli.js",
   "dependencies": {
     "@hapi/boom": "^10.0.1",
-    "@whiskeysockets/baileys": "^6.3.0",
+    "@whiskeysockets/baileys": "^6.5.0",
     "axios": "^1.2.2",
     "fluent-ffmpeg": "^2.1.2",
     "qrcode-terminal": "^0.12.0"

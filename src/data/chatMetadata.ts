@@ -1,4 +1,4 @@
-import { IChatMetadata } from "src/interfaces/types.js";
+import { IChatMetadata } from "src/@types/types.js";
 
 class ChatMetadata implements IChatMetadata {
     constructor(

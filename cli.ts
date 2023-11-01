@@ -5,7 +5,7 @@ import path from 'path';
 import { load } from './src/modules/dynamicModules.js';
 import { botFactory } from './libs/util.js';
 import { MessageHandler } from './src/modules/messageHandler.js';
-import { EntryPoint } from 'src/interfaces/types.js';
+import { EntryPoint } from 'src/@types/types.js';
 
 const SUPPORTED_LANGUAGES = ["en-us", "pt-br"];
 

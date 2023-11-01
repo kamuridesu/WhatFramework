@@ -8,7 +8,7 @@
 
 ### Properties
 
-- [botName](src_interfaces_bot.EntryPoint.md#botname)
+- [name](src_interfaces_bot.EntryPoint.md#name)
 - [botNumber](src_interfaces_bot.EntryPoint.md#botnumber)
 - [chatHandlers](src_interfaces_bot.EntryPoint.md#chathandlers)
 - [commandHandlers](src_interfaces_bot.EntryPoint.md#commandhandlers)
@@ -19,9 +19,9 @@
 
 ## Properties
 
-### botName
+### name
 
-• **botName**: `string`
+• **name**: `string`
 
 #### Defined in
 

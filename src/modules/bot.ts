@@ -12,10 +12,10 @@ import { makeWASocket,
 import { IBot,
     GroupsData,
     Media,
-    MessageHandler } from "../interfaces/types.js";
+    IMessageHandler } from "../@types/types.js";
 
 import { Language } from "../../libs/lang/language.js";
-import { IMessageData } from '../interfaces/messageData.js';
+import { IMessageData } from '../@types/messageData.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
 import { checkMessageData } from '../funcs/messageParsers.js';
@@ -38,22 +38,11 @@ const {
     saveCreds,
 } = await useMultiFileAuthState('./states');
 
-async function getMessage(key: WAMessageKey): Promise<WAMessageContent | undefined> {
-    if (storage) {
-        const msg = await storage.loadMessage(key.remoteJid!,
-            key.id!)
-        return msg?.message || undefined
-    }
-
-    // only if store is present
-    return undefined;
-}
-
 class WABot implements IBot {
     public connection?: ReturnType<typeof makeWASocket>;
     reconnectOnClose: boolean;
 
-    public readonly botName: string;
+    public readonly name: string;
     public readonly prefix: string;
     public readonly botNumber: string;
     public readonly ownerNumber: string;
@@ -63,7 +52,7 @@ class WABot implements IBot {
     public groupsData: GroupsData;
 
     constructor(
-        botName = 'bot',
+        name = 'bot',
         prefix = '!',
         botNumber = '',
         ownerNumber = '',
@@ -71,7 +60,7 @@ class WABot implements IBot {
         language = '',
     ) {
         this.connection = undefined;
-        this.botName = botName;
+        this.name = name;
         this.prefix = prefix;
         this.botNumber = botNumber;
         this.ownerNumber = ownerNumber;
@@ -82,18 +71,29 @@ class WABot implements IBot {
         this.groupsData = {} // This is for caching purpose, details @ src/funcs/messageParsers.ts#65
     }
 
+    async getMessage(key: WAMessageKey): Promise<WAMessageContent | undefined> {
+        if (storage) {
+            const msg = await storage.loadMessage(key.remoteJid!,
+                key.id!)
+            return msg?.message || undefined
+        }
+    
+        // only if store is present
+        return undefined;
+    }
+
     /**
      * Initiates the bot and starts to handle connections
      * @param {CallableFunction} messageHandler function to handle incoming messages
      */
-    async init(messageHandler: MessageHandler): Promise<void> {
+    async init(messageHandler: IMessageHandler): Promise<void> {
         this.connection = makeWASocket({
             printQRInTerminal: true,
             auth: {
                 creds: state.creds,
                 keys: makeCacheableSignalKeyStore(state.keys, logger)
             },
-            getMessage
+            getMessage: this.getMessage
         });
 
         this.connection.ev.on('creds.update', saveCreds);
@@ -221,4 +221,4 @@ class WABot implements IBot {
     }
 }
 
-export { WABot as Bot, Media, getMessage };
+export { WABot as Bot, Media };
