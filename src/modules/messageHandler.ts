@@ -1,7 +1,7 @@
 import { Bot } from './bot.js';
 import { checkChatMetaData, checkGroupData, checkMessageData } from '../funcs/messageParsers.js';
 import { pollParser } from '../funcs/updatesParsers.js';
-import { IMessageHandler, EntryPoint, IMessage, IGroupData, IChatMetadata, IBot } from '../@types/types.js';
+import { IMessageHandler, EntryPoint, IMessage, IGroupData, IChatMetadata, IBot } from '../../@types/types.js';
 import { colors } from '../../libs/std.js';
 
 import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';

@@ -2,7 +2,7 @@ import { WAMessage } from "@whiskeysockets/baileys";
 import { MessageData } from "../data/messageData.js";
 import { GroupData } from "../data/groupData.js";
 import { ChatMetadata } from "../data/chatMetadata.js";
-import { IBot, IMessage, IGroupData, IChatMetadata } from "../@types/types.js";
+import { IBot, IMessage, IGroupData, IChatMetadata } from "../../@types/types.js";
 
 const messageTypes: string[] = [
     "audioMessage",

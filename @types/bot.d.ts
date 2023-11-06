@@ -1,9 +1,9 @@
 import { makeWASocket, proto } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
 import { IMessage } from "./message.js";
-import { Language } from "../../libs/lang/language.js";
-import { GroupData } from '../data/groupData.js';
-import { ChatMetadata } from "../data/chatMetadata.js";
+import { Language } from "../libs/lang/language.js";
+import { GroupData } from '../src/data/groupData.js';
+import { ChatMetadata } from "../src/data/chatMetadata.js";
 
 
 interface GroupsData {

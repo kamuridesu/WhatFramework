@@ -6,4 +6,3 @@ test_modules
 dist
 test.js
 /modules/
-*.sh

@@ -12,10 +12,10 @@ import { makeWASocket,
 import { IBot,
     GroupsData,
     Media,
-    IMessageHandler } from "../@types/types.js";
+    IMessageHandler } from "../../@types/types.js";
 
 import { Language } from "../../libs/lang/language.js";
-import { IMessage } from '../@types/message.js';
+import { IMessage } from '../../@types/message.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
 import { checkMessageData } from '../funcs/messageParsers.js';

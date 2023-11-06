@@ -1,7 +1,7 @@
 
 import { WAMessage, WAMessageKey, getAggregateVotesInPollMessage } from "@whiskeysockets/baileys";
-import { PollVoteAggragation } from "../@types/pollData.js";
-import { IBot } from "../@types/types.js";
+import { PollVoteAggragation } from "../../@types/pollData.js";
+import { IBot } from "../../@types/types.js";
 import { MessageData } from "../data/messageData.js";
 
 

@@ -1,14 +1,16 @@
 {
   "name": "@kamuridesu/whatframework",
-  "version": "0.1.12b",
+  "version": "0.1.14b2",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
   "main": "dist/cli.js",
+  "module": "dist",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cli": "node dist/cli.js",
     "build": "tsc --outDir dist --skipLibCheck",
     "prepack": "npm run build",
-    "start": "npm run build && npm run cli"
+    "start": "npm run build && npm run cli",
+    "push": "sh publish.sh"
   },
   "files": [
     "dist"

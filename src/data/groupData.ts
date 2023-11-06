@@ -1,4 +1,4 @@
-import { IGroupData } from "src/@types/types.js";
+import { IGroupData } from "../../@types/types.js";
 
 class GroupData implements IGroupData {
     constructor(

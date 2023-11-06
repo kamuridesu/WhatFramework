@@ -9,7 +9,7 @@
         "outDir": "dist",
         "strict": true,
     },
-    "include": ["src/**/*", "libs/**/*", "cli.ts"],
+    "include": ["src/**/*", "libs/**/*", "cli.ts", "@types/**/*"],
     "exclude": [
         "node_modules",
         "tools",
@@ -17,6 +17,6 @@
     ],
     "outFile": "./dist/compiled.ts",
     "resolve": {
-        "extensions": [".ts", ".js"]
+        "extensions": [".ts", ".js", ".d.ts"]
     }
 }
