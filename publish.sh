@@ -4,5 +4,6 @@ sed "s/dist\/cli.js/cli.js/;s/files/a/;s/dist//;s/--outDir/--outDir dist/;s/cd  
 cp README.md dist
 cp -r "@types" dist
 cd dist
-npm pubish
+npm pkg fix
+npm publish
 cd -
