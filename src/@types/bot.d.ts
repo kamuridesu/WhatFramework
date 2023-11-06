@@ -1,6 +1,6 @@
 import { makeWASocket, proto } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
-import { IMessageData } from "./messageData.js";
+import { IMessage } from "./message.js";
 import { Language } from "../../libs/lang/language.js";
 import { GroupData } from '../data/groupData.js';
 import { ChatMetadata } from "../data/chatMetadata.js";
@@ -30,12 +30,12 @@ interface EntryPoint {
     commandHandlers: (ctx: IBot,
         command: string,
         args: string[],
-        messageData: IMessageData,
+        messageData: IMessage,
         groupData: GroupData | undefined,
         chatMetadata: ChatMetadata) => void;
     chatHandlers: (ctx: IBot,
         messageBody: string,
-        messageData: IMessageData,
+        messageData: IMessage,
         groupData: GroupData | undefined,
         chatMetadata: ChatMetadata) => void;
 }
@@ -66,9 +66,9 @@ interface IBot {
 
     getMessage(key: proto.IMessageKey): Promise<proto.IMessage | undefined>
 
-    replyText(ctx: IMessageData, text: string, options: any): Promise<void>;
+    replyText(ctx: IMessage, text: string, options: any): Promise<void>;
     replyMedia(
-        ctx: IMessageData,
+        ctx: IMessage,
         media: string | Media,
         messageType: string,
         mimeType?: string,
@@ -76,10 +76,10 @@ interface IBot {
         options?: any
     ): Promise<void>;
 
-    sendTextMessage(ctx: IMessageData | string, text: string, options: any): Promise<void>;
+    sendTextMessage(ctx: IMessage | string, text: string, options: any): Promise<void>;
 
-    loadMessage(ctx: IMessageData | WAMessageKey): Promise<IMessageData | WAMessage | undefined>;
-    createPoll(ctx: IMessageData, poolName: string, options: Array<string>): Promise<boolean>;
+    loadMessage(ctx: IMessage | WAMessageKey): Promise<IMessage | WAMessage | undefined>;
+    createPoll(ctx: IMessage, poolName: string, options: Array<string>): Promise<boolean>;
 }
 
 export {

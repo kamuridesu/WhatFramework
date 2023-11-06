@@ -1,7 +1,7 @@
 import { Bot } from './bot.js';
 import { checkChatMetaData, checkGroupData, checkMessageData } from '../funcs/messageParsers.js';
 import { pollParser } from '../funcs/updatesParsers.js';
-import { IMessageHandler, EntryPoint, IMessageData, IGroupData, IChatMetadata, IBot } from '../@types/types.js';
+import { IMessageHandler, EntryPoint, IMessage, IGroupData, IChatMetadata, IBot } from '../@types/types.js';
 import { colors } from '../../libs/std.js';
 
 import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
@@ -11,12 +11,12 @@ class WAMessageHandler implements IMessageHandler {
     private commandHandlers?: (ctx: IBot,
         command: string,
         args: string[],
-        messageData: IMessageData,
+        messageData: IMessage,
         groupData: IGroupData | undefined,
         chatMetadata: IChatMetadata) => void;
     private chatHandlers?: (ctx: IBot,
         messageBody: string,
-        messageData: IMessageData,
+        messageData: IMessage,
         groupData: IGroupData | undefined,
         chatMetadata: IChatMetadata) => void;
 
@@ -40,7 +40,7 @@ class WAMessageHandler implements IMessageHandler {
             Object.keys(message.message)[0] === 'ephemeralMessage'
                 ? message.message.ephemeralMessage?.message
                 : message.message;
-        const messageData: IMessageData | undefined = checkMessageData(message, bot);
+        const messageData: IMessage | undefined = checkMessageData(message, bot);
         if (!messageData) {
             return;
         }

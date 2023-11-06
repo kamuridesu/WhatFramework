@@ -1,7 +1,6 @@
 states/
 target/
 node_modules/
-package-lock.json
 temp/
 test_modules
 dist

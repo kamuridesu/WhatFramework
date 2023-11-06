@@ -1,7 +1,7 @@
 import { WAMessage } from "@whiskeysockets/baileys";
 import { IBot, Media } from "./bot";
 
-interface IMessageData {
+interface IMessage {
     bot: IBot,
     originalMessage: WAMessage,
     type: string,
@@ -20,4 +20,4 @@ interface IMessageData {
     replyMedia(media: string | Media, messageType: string, mimeType?: string | undefined, mediaCaption?: string | undefined, options?: any): Promise<void>;
 }
 
-export { IMessageData };
+export { IMessage };
