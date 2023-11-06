@@ -3,14 +3,14 @@ import pkgff from "fluent-ffmpeg";
 import fs from "fs";
 import path from "path";
 import { Bot } from "../src/modules/bot.js";
-import { IMessageData } from "../src/@types/types.js";
+import { IMessage } from "../src/@types/types.js";
 import { saveTempFile } from "../src/funcs/networking.js";
 import { downloadMediaMessage } from "@whiskeysockets/baileys";
 import { Language } from "./lang/language.js";
 
 const ffmpeg = pkgff;
 
-async function createSticker(context: IMessageData, bot: Bot, author: string, packname: string): Promise<void> {
+async function createSticker(context: IMessage, bot: Bot, author: string, packname: string): Promise<void> {
     const language = new Language(bot);
     const isStickerMedia = (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
     if (isStickerMedia) {
@@ -23,7 +23,7 @@ async function createSticker(context: IMessageData, bot: Bot, author: string, pa
 }
 
 
-async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMessageData, packName?: string, author?: string): Promise<void> {
+async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMessage, packName?: string, author?: string): Promise<void> {
     const randomFilename = `temp/sticker${Math.random() * 1000}.png`;
 
     ffmpeg(`${media}`)

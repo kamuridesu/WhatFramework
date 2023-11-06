@@ -10,7 +10,7 @@ import {
     IMessageHandler,
     EntryPoint
 } from './bot.js';
-import { IMessageData } from "./messageData.js";
+import { IMessage } from "./message.js";
 import { IChatMetadata } from "./chatMetadata.js";
 import { IGroupData } from "./groupData.js";
 
@@ -24,7 +24,7 @@ export {
     EntryPoint,
     VoteAggregation,
     PollVoteAggragation,
-    IMessageData,
+    IMessage,
     IChatMetadata,
     IGroupData
 }

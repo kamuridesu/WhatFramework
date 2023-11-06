@@ -15,7 +15,7 @@ import { IBot,
     IMessageHandler } from "../@types/types.js";
 
 import { Language } from "../../libs/lang/language.js";
-import { IMessageData } from '../@types/messageData.js';
+import { IMessage } from '../@types/message.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
 import { checkMessageData } from '../funcs/messageParsers.js';
@@ -119,13 +119,13 @@ class WABot implements IBot {
         });
     }
 
-    async replyText(ctx: IMessageData, text: string, options: any = {}): Promise<void> {
+    async replyText(ctx: IMessage, text: string, options: any = {}): Promise<void> {
         options.quoted = ctx.originalMessage;
         await this.sendTextMessage(ctx, text, options);
     }
 
     async replyMedia(
-        ctx: IMessageData,
+        ctx: IMessage,
         media: string | Media | Buffer,
         messageType: string,
         mimeType?: string,
@@ -148,7 +148,7 @@ class WABot implements IBot {
         }
     }
 
-    async sendTextMessage(ctx: IMessageData | string, text: string, options: any): Promise<void> {
+    async sendTextMessage(ctx: IMessage | string, text: string, options: any): Promise<void> {
         let recipient: string;
         if (typeof ctx != "string" && ctx.originalMessage) {
             recipient = ctx.origin;
@@ -172,7 +172,7 @@ class WABot implements IBot {
         }
     }
 
-    async createPoll(ctx: IMessageData, pollName: string, options: Array<string>): Promise<boolean> {
+    async createPoll(ctx: IMessage, pollName: string, options: Array<string>): Promise<boolean> {
         console.log(pollName)
         console.log(options)
         try {
@@ -192,7 +192,7 @@ class WABot implements IBot {
         }
     }
 
-    async loadMessage(ctx: MessageData | WAMessageKey): Promise<IMessageData | WAMessage | undefined> {
+    async loadMessage(ctx: MessageData | WAMessageKey): Promise<IMessage | WAMessage | undefined> {
         let originJid: string;
         let stanzaId: string;
         if (ctx instanceof MessageData) {
