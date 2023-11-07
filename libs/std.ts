@@ -1,8 +1,8 @@
 import { colors } from "./color.js";
-import { parseTextWithQuotation, checkMentionsInText, checkJidInTextAndConvert } from "./text.js";
+import { stringFormat, parseTextWithQuotation, checkMentionsInText, checkJidInTextAndConvert } from "./text.js";
 import { createSticker, createStickerFromMedia } from "./sticker.js";
-import Help from "./help.js";
 import { botFactory } from "./util.js";
+import { CommandHandler } from "./handlers.js";
 
 export {
     botFactory,
@@ -12,5 +12,6 @@ export {
     checkMentionsInText,
     createSticker,
     createStickerFromMedia,
-    Help,
+    stringFormat,
+    CommandHandler
 }
