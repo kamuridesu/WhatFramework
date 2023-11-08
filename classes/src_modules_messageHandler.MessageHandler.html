@@ -25,7 +25,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="tsd-signature-type ">IMessageHandler</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/e4db404/src/modules/messageHandler.ts#L9">src/modules/messageHandler.ts:9</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/dfee362/src/modules/messageHandler.ts#L9">src/modules/messageHandler.ts:9</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -37,8 +37,7 @@
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Properties</h3>
-<div class="tsd-index-list"><a href="src_modules_messageHandler.MessageHandler.html#chatHandlers" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-1024"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)"></path></g></svg><span>chat<wbr/>Handlers?</span></a>
-<a href="src_modules_messageHandler.MessageHandler.html#commandHandlers" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>command<wbr/>Handlers?</span></a>
+<div class="tsd-index-list"><a href="src_modules_messageHandler.MessageHandler.html#entryPointHandler" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-1024"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)"></path></g></svg><span>entry<wbr/>Point<wbr/>Handler?</span></a>
 <a href="src_modules_messageHandler.MessageHandler.html#isModule" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>is<wbr/>Module</span></a>
 </div></section>
 <section class="tsd-index-section">
@@ -60,68 +59,19 @@
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">entrypoint</span>: <span class="tsd-signature-type ">EntryPoint</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="src_modules_messageHandler.MessageHandler.html" class="tsd-signature-type tsd-kind-class">MessageHandler</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/e4db404/src/modules/messageHandler.ts#L23">src/modules/messageHandler.ts:23</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/dfee362/src/modules/messageHandler.ts#L13">src/modules/messageHandler.ts:13</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
-<section class="tsd-panel tsd-member tsd-is-private"><a id="chatHandlers" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagOptional">Optional</code> <span>chat<wbr/>Handlers</span><a href="#chatHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">chat<wbr/>Handlers</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">ctx</span>, <span class="tsd-kind-parameter">messageBody</span>, <span class="tsd-kind-parameter">messageData</span>, <span class="tsd-kind-parameter">groupData</span>, <span class="tsd-kind-parameter">chatMetadata</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></div>
-<div class="tsd-type-declaration">
-<h4>Type declaration</h4>
-<ul class="tsd-parameters">
-<li class="tsd-parameter-signature">
-<ul class="tsd-signatures">
-<li class="tsd-signature" id="chatHandlers.__type.__type-1"><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">ctx</span>, <span class="tsd-kind-parameter">messageBody</span>, <span class="tsd-kind-parameter">messageData</span>, <span class="tsd-kind-parameter">groupData</span>, <span class="tsd-kind-parameter">chatMetadata</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-<li class="tsd-description">
-<div class="tsd-parameters">
-<h4 class="tsd-parameters-title">Parameters</h4>
-<ul class="tsd-parameter-list">
-<li>
-<h5><span class="tsd-kind-parameter">ctx</span>: <span class="tsd-signature-type ">IBot</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">messageBody</span>: <span class="tsd-signature-type">string</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">messageData</span>: <span class="tsd-signature-type ">IMessage</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">groupData</span>: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">IGroupData</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">chatMetadata</span>: <span class="tsd-signature-type ">IChatMetadata</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></div><aside class="tsd-sources">
+<section class="tsd-panel tsd-member tsd-is-private"><a id="entryPointHandler" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagOptional">Optional</code> <span>entry<wbr/>Point<wbr/>Handler</span><a href="#entryPointHandler" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">entry<wbr/>Point<wbr/>Handler</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type ">EntryPoint</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/e4db404/src/modules/messageHandler.ts#L17">src/modules/messageHandler.ts:17</a></li></ul></aside></section>
-<section class="tsd-panel tsd-member tsd-is-private"><a id="commandHandlers" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagOptional">Optional</code> <span>command<wbr/>Handlers</span><a href="#commandHandlers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">command<wbr/>Handlers</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">ctx</span>, <span class="tsd-kind-parameter">command</span>, <span class="tsd-kind-parameter">args</span>, <span class="tsd-kind-parameter">messageData</span>, <span class="tsd-kind-parameter">groupData</span>, <span class="tsd-kind-parameter">chatMetadata</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></div>
-<div class="tsd-type-declaration">
-<h4>Type declaration</h4>
-<ul class="tsd-parameters">
-<li class="tsd-parameter-signature">
-<ul class="tsd-signatures">
-<li class="tsd-signature" id="commandHandlers.__type-2.__type-3"><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">ctx</span>, <span class="tsd-kind-parameter">command</span>, <span class="tsd-kind-parameter">args</span>, <span class="tsd-kind-parameter">messageData</span>, <span class="tsd-kind-parameter">groupData</span>, <span class="tsd-kind-parameter">chatMetadata</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-<li class="tsd-description">
-<div class="tsd-parameters">
-<h4 class="tsd-parameters-title">Parameters</h4>
-<ul class="tsd-parameter-list">
-<li>
-<h5><span class="tsd-kind-parameter">ctx</span>: <span class="tsd-signature-type ">IBot</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">command</span>: <span class="tsd-signature-type">string</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">args</span>: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">messageData</span>: <span class="tsd-signature-type ">IMessage</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">groupData</span>: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">IGroupData</span></h5></li>
-<li>
-<h5><span class="tsd-kind-parameter">chatMetadata</span>: <span class="tsd-signature-type ">IChatMetadata</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></li></ul></div><aside class="tsd-sources">
-<ul>
-<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/e4db404/src/modules/messageHandler.ts#L11">src/modules/messageHandler.ts:11</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/dfee362/src/modules/messageHandler.ts#L11">src/modules/messageHandler.ts:11</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-private"><a id="isModule" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <span>is<wbr/>Module</span><a href="#isModule" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">is<wbr/>Module</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/e4db404/src/modules/messageHandler.ts#L10">src/modules/messageHandler.ts:10</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/dfee362/src/modules/messageHandler.ts#L10">src/modules/messageHandler.ts:10</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
 <section class="tsd-panel tsd-member"><a id="handle" class="tsd-anchor"></a>
@@ -139,7 +89,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Implementation of IMessageHandler.handle</p>
 <ul>
-<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/e4db404/src/modules/messageHandler.ts#L31">src/modules/messageHandler.ts:31</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/dfee362/src/modules/messageHandler.ts#L20">src/modules/messageHandler.ts:20</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member"><a id="handleUpdate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>handle<wbr/>Update</span><a href="#handleUpdate" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -157,7 +107,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Implementation of IMessageHandler.handleUpdate</p>
 <ul>
-<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/e4db404/src/modules/messageHandler.ts#L67">src/modules/messageHandler.ts:67</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/kamuridesu/WhatFramework/blob/dfee362/src/modules/messageHandler.ts#L56">src/modules/messageHandler.ts:56</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -178,8 +128,7 @@
 <div class="tsd-accordion-details">
 <ul>
 <li><a href="#constructor" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-512"></use></svg><span>constructor</span></a></li>
-<li><a href="#chatHandlers" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>chat<wbr/>Handlers</span></a></li>
-<li><a href="#commandHandlers" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>command<wbr/>Handlers</span></a></li>
+<li><a href="#entryPointHandler" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>entry<wbr/>Point<wbr/>Handler</span></a></li>
 <li><a href="#isModule" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>is<wbr/>Module</span></a></li>
 <li><a href="#handle" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>handle</span></a></li>
 <li><a href="#handleUpdate" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>handle<wbr/>Update</span></a></li></ul></div></details></div>
