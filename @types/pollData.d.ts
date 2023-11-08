@@ -8,7 +8,6 @@ interface PollVoteAggragation {
     votes: VoteAggregation[]
 }
 
-
 export {
     VoteAggregation,
     PollVoteAggragation

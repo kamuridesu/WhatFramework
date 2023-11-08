@@ -1,6 +1,6 @@
 import { IGroupData } from "../../@types/types.js";
 
-class GroupData implements IGroupData {
+export class GroupData implements IGroupData {
     constructor(
         public name: string,
         public description: string,
@@ -15,5 +15,3 @@ class GroupData implements IGroupData {
         public welcomeOn?: boolean
     ) { }
 }
-
-export { GroupData };

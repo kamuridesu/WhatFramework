@@ -14,7 +14,7 @@ const messageTypes: string[] = [
     "reactionMessage"
 ];
 
-function checkMessageData(message: WAMessage, bot: IBot): IMessage | undefined {
+export function checkMessageData(message: WAMessage, bot: IBot): IMessage | undefined {
     const key = message.message;
     if (!key) {
         return undefined;
@@ -64,7 +64,7 @@ function checkMessageData(message: WAMessage, bot: IBot): IMessage | undefined {
 /**
 * This function has a caching mechanism that saves the group metadata into the bot instance and invalidates it after 10s
 */
-async function checkGroupData(messageData: IMessage, chatMetadata: IChatMetadata, ctx: IBot): Promise<IGroupData | undefined> {
+export async function checkGroupData(messageData: IMessage, chatMetadata: IChatMetadata, ctx: IBot): Promise<IGroupData | undefined> {
     let groupCacheId = messageData.origin.split("@g.us")[1];
     const cachedGroupData = ctx.groupsData[groupCacheId];
     if (cachedGroupData && ((Date.now() - cachedGroupData.lastFetchDate) / 1000) <= 10) {
@@ -90,7 +90,7 @@ async function checkGroupData(messageData: IMessage, chatMetadata: IChatMetadata
 }
 
 
-function checkChatMetaData(messageData: IMessage, ctx: IBot): IChatMetadata {
+export function checkChatMetaData(messageData: IMessage, ctx: IBot): IChatMetadata {
     const messageIsFrom = messageData.origin;
     const senderName = messageData.originalMessage.pushName ? messageData.originalMessage.pushName : "";
     const isGroup = messageIsFrom.includes('@g.us');
@@ -103,19 +103,10 @@ function checkChatMetaData(messageData: IMessage, ctx: IBot): IChatMetadata {
     return new ChatMetadata(messageSender, senderName, messageIsFrom, senderIsOwner, isGroup);
 }
 
-function convertNumberToMention(text: string): string[] | string {
+export function convertNumberToMention(text: string): string[] | string {
     const regex = /@[0-9]{12}/g;
     if (regex.test(text)) {
         return text.match(regex)?.map(number => `${number.replace("@", "")}@s.whatsapp.net`) ?? "";
     }
     return "";
 }
-
-
-export {
-    checkMessageData,
-    checkGroupData,
-    checkChatMetaData,
-    convertNumberToMention
-};
-

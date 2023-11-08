@@ -2,7 +2,12 @@ import { AnyMediaMessageContent } from '@whiskeysockets/baileys'
 import { getTotalVideoBufferLengthInSeconds } from '../../libs/util.js';
 import { Readable } from 'stream';
 
-async function parseMedia(media: any, mediaType: string | undefined, mimeType: string | undefined, caption: string | undefined): Promise<AnyMediaMessageContent> {
+export async function parseMedia(
+    media: any,
+    mediaType: string | undefined,
+    mimeType: string | undefined,
+    caption: string | undefined
+    ): Promise<AnyMediaMessageContent> {
     let info: AnyMediaMessageContent;
     switch (mediaType) {
         case "sticker":
@@ -26,7 +31,7 @@ async function parseMedia(media: any, mediaType: string | undefined, mimeType: s
             break;
         case "video":
             info = {
-                video: {stream: Readable.from(media)},
+                video: { stream: Readable.from(media) },
                 mimetype: mimeType,
                 caption: caption,
                 seconds: await getTotalVideoBufferLengthInSeconds(media),
@@ -52,6 +57,3 @@ async function parseMedia(media: any, mediaType: string | undefined, mimeType: s
     return info;
 }
 
-export {
-    parseMedia
-};

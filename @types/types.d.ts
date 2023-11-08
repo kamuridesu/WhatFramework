@@ -13,7 +13,7 @@ import {
 import { IMessage } from "./message.js";
 import { IChatMetadata } from "./chatMetadata.js";
 import { IGroupData } from "./groupData.js";
-
+import { ICommand, ICommands } from "./commands.js";
 
 export {
     IBot,
@@ -26,5 +26,7 @@ export {
     PollVoteAggragation,
     IMessage,
     IChatMetadata,
-    IGroupData
+    IGroupData,
+    ICommand,
+    ICommands
 }

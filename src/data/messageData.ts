@@ -1,7 +1,7 @@
 import { WAMessage } from "@whiskeysockets/baileys";
 import { IBot, Media, IMessage } from "../../@types/types.js";
 
-class MessageData implements IMessage {
+export class MessageData implements IMessage {
     constructor(
         public bot: IBot,
         public originalMessage: WAMessage,
@@ -34,9 +34,13 @@ class MessageData implements IMessage {
         return this.bot.replyText(this, text, options);
     }
 
-    async replyMedia(media: string | Media, messageType: string, mimeType?: string | undefined, mediaCaption?: string | undefined, options?: {}): Promise<IMessage | undefined> {
+    async replyMedia(
+        media: string | Media,
+        messageType: string,
+        mimeType?: string | undefined,
+        mediaCaption?: string | undefined,
+        options?: {}
+    ): Promise<IMessage | undefined> {
         return this.bot.replyMedia(this, media, messageType, mimeType, mediaCaption, options);
     }
 }
-
-export { MessageData };

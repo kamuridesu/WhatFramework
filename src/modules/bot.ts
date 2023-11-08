@@ -1,18 +1,22 @@
 import Pino from 'pino';
 import { Boom } from '@hapi/boom'
 
-import { makeWASocket,
+import {
+    makeWASocket,
     DisconnectReason,
     makeInMemoryStore,
     useMultiFileAuthState,
     WAMessage,
     makeCacheableSignalKeyStore,
     WAMessageContent,
-    WAMessageKey } from '@whiskeysockets/baileys'
-import { IBot,
+    WAMessageKey
+} from '@whiskeysockets/baileys'
+import {
+    IBot,
     GroupsData,
     Media,
-    IMessageHandler } from "../../@types/types.js";
+    IMessageHandler
+} from "../../@types/types.js";
 
 import { Language } from "../../libs/lang/language.js";
 import { IMessage } from '../../@types/message.js';
@@ -78,7 +82,7 @@ class WABot implements IBot {
                 key.id!)
             return msg?.message || undefined
         }
-    
+
         // only if store is present
         return undefined;
     }
@@ -155,7 +159,7 @@ class WABot implements IBot {
         }
     }
 
-    async sendTextMessage(ctx: IMessage | string, text: string, options: any): Promise<IMessage | undefined> {
+    async sendTextMessage(ctx: IMessage | string, text: string, options?: any): Promise<IMessage | undefined> {
         let recipient: string;
         if (typeof ctx != "string" && ctx.originalMessage) {
             recipient = ctx.origin;

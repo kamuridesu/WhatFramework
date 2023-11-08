@@ -23,7 +23,7 @@ export class CommandHandler {
         for (let c of this.commands) {
             for (let com of c.commands) {
                 if (com.name === command || com.aliases.includes(command)) {
-                    return stringFormat(com.description, {prefix: bot.prefix, command: command});
+                    return stringFormat(com.description, { prefix: bot.prefix, command: command });
                 }
             }
         }
@@ -45,8 +45,8 @@ export class CommandHandler {
     }
 
     public getHelp(bot: IBot, command: string | undefined) {
-        return (command == undefined || command.trim() == "") ? 
-                this.getCommandsMenu(bot) : 
-                this.getCommandDescription(bot, command);
+        return (command == undefined || command.trim() == "") ?
+            this.getCommandsMenu(bot) :
+            this.getCommandDescription(bot, command);
     }
 }

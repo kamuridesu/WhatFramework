@@ -17,7 +17,12 @@ interface IMessage {
 
     replyText(text: string, options?: {}): Promise<IMessage | undefined>;
 
-    replyMedia(media: string | Media, messageType: string, mimeType?: string | undefined, mediaCaption?: string | undefined, options?: {}): Promise<IMessage | undefined>;
+    replyMedia(
+        media: string | Media,
+        messageType: string,
+        mimeType?: string | undefined,
+        mediaCaption?: string | undefined,
+        options?: {}): Promise<IMessage | undefined>;
 }
 
 export { IMessage };

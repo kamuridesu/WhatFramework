@@ -1,7 +1,6 @@
 import { makeWASocket, proto } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
 import { IMessage } from "./message.js";
-import { Language } from "../libs/lang/language.js";
 import { GroupData } from '../src/data/groupData.js';
 import { ChatMetadata } from "../src/data/chatMetadata.js";
 import Translations from "../libs/lang/interface.js";
@@ -77,7 +76,7 @@ interface IBot {
         options?: any
     ): Promise<IMessage | undefined>;
 
-    sendTextMessage(ctx: IMessage | string, text: string, options: any): Promise<IMessage | undefined>;
+    sendTextMessage(ctx: IMessage | string, text: string, options?: {}): Promise<IMessage | undefined>;
 
     loadMessage(ctx: IMessage | WAMessageKey): Promise<IMessage | WAMessage | undefined>;
     createPoll(ctx: IMessage, poolName: string, options: Array<string>): Promise<boolean>;

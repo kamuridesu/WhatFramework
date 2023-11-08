@@ -1,6 +1,6 @@
 import { IChatMetadata } from "../../@types/types.js";
 
-class ChatMetadata implements IChatMetadata {
+export class ChatMetadata implements IChatMetadata {
     constructor(
         public messageSender: string,
         public senderName: string,
@@ -9,5 +9,3 @@ class ChatMetadata implements IChatMetadata {
         public chatIsGroup: boolean
     ) { }
 }
-
-export { ChatMetadata };

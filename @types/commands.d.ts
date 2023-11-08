@@ -5,7 +5,7 @@ import {
     IChatMetadata
 } from "./types.js";
 
-interface ICommand {
+export interface ICommand {
     name: string;
     aliases: string[];
     func: (
@@ -17,8 +17,7 @@ interface ICommand {
     description: string;
 }
 
-
-interface ICommands {
+export interface ICommands {
     category: string;
     commands: ICommand[]
 }
