@@ -8,23 +8,12 @@ import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
 
 class WAMessageHandler implements IMessageHandler {
     private isModule: boolean;
-    private commandHandlers?: (ctx: IBot,
-        command: string,
-        args: string[],
-        messageData: IMessage,
-        groupData: IGroupData | undefined,
-        chatMetadata: IChatMetadata) => void;
-    private chatHandlers?: (ctx: IBot,
-        messageBody: string,
-        messageData: IMessage,
-        groupData: IGroupData | undefined,
-        chatMetadata: IChatMetadata) => void;
+    private entryPointHandler?: EntryPoint;
 
     constructor(entrypoint?: EntryPoint) {
         this.isModule = !!entrypoint;
         if (this.isModule) {
-            this.commandHandlers = entrypoint!.commandHandlers;
-            this.chatHandlers = entrypoint!.chatHandlers;
+            this.entryPointHandler = entrypoint;
         }
     }
 
@@ -57,9 +46,9 @@ class WAMessageHandler implements IMessageHandler {
                 const command = messageBody.split(bot.prefix)[1].split(' ')[0].toLowerCase();
                 if (command.length === 0) return;
                 const args = messageBody.split(' ').slice(1);
-                this.commandHandlers!(bot, command, args, messageData, groupData, chatMetadata);
+                this.entryPointHandler?.commandHandlers!(bot, command, args, messageData, groupData, chatMetadata);
             } else {
-                this.chatHandlers!(bot, messageBody, messageData, groupData, chatMetadata);
+                this.entryPointHandler?.chatHandlers!(bot, messageBody, messageData, groupData, chatMetadata);
             }
         }
     }

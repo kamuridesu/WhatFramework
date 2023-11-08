@@ -13,5 +13,5 @@ export {
     createSticker,
     createStickerFromMedia,
     stringFormat,
-    CommandHandler
+    CommandHandler,
 }

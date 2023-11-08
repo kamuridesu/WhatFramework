@@ -1,6 +1,5 @@
 import { IMessage, IBot, IChatMetadata, IGroupData } from "../@types/types.js";
 import { ICommands } from "../@types/commands.js";
-import Translations from "./lang/interface.js";
 import { Language } from "./lang/language.js";
 import { stringFormat } from "./text.js";
 
@@ -8,13 +7,6 @@ import { stringFormat } from "./text.js";
 export class CommandHandler {
 
     private commands: ICommands[] = [];
-    private bot: IBot;
-    private lang: Translations;
-
-    public constructor(bot: IBot) {
-        this.bot = bot;
-        this.lang = new Language(bot).get();
-    }
 
     public register(...commands: ICommands[]) {
         this.commands = this.commands.concat(commands);
@@ -23,26 +15,24 @@ export class CommandHandler {
     public handle(command: string, bot: IBot, message: IMessage, args: string[], group: IGroupData, chat: IChatMetadata) {
         for (let c of this.commands) {
             const func = c.commands.filter(com => (com.name == command || com.aliases.includes(command)))[0];
-            if (func != undefined) {
-                func.func(bot, message, args, group, chat);
-                return true;
-            }  
+            if (func) return func.func(bot, message, args, group, chat);
         }
     }
 
-    public getCommandDescription(command: string) {
+    public getCommandDescription(bot: IBot, command: string) {
         for (let c of this.commands) {
             for (let com of c.commands) {
                 if (com.name === command || com.aliases.includes(command)) {
-                    return stringFormat(com.description, {prefix: this.bot.prefix, command: command});
+                    return stringFormat(com.description, {prefix: bot.prefix, command: command});
                 }
             }
         }
         return "";
     }
 
-    public getCommandsMenu() {
-        let text = `--==${this.bot.name}==--\n\n${this.lang.commands}:\n\n`;
+    public getCommandsMenu(bot: IBot) {
+        const lang = new Language(bot).get();
+        let text = `--==${bot.name}==--\n\n${lang.commands}:\n\n`;
         for (let c of this.commands) {
             text += `${c.category}:\n`;
             for (let com of c.commands) {
@@ -54,8 +44,9 @@ export class CommandHandler {
         return text.trim();
     }
 
-    public getHelp(command: string | undefined) {
-        return (command == undefined || command.trim() == "") ? this.getCommandsMenu() : this.getCommandDescription(command);
+    public getHelp(bot: IBot, command: string | undefined) {
+        return (command == undefined || command.trim() == "") ? 
+                this.getCommandsMenu(bot) : 
+                this.getCommandDescription(bot, command);
     }
-
 }
