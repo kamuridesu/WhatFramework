@@ -20,6 +20,7 @@ import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
 import { checkMessageData } from '../funcs/messageParsers.js';
 import { MessageData } from '../data/messageData.js';
+import Translations from '../../libs/lang/interface.js';
 
 
 const logger = Pino().child({
@@ -48,7 +49,7 @@ class WABot implements IBot {
     public readonly ownerNumber: string;
     public readonly commandsFilename: string;
     public readonly language: string;
-    public readonly lang: Language;
+    public readonly lang: Translations;
     public groupsData: GroupsData;
 
     constructor(
@@ -67,7 +68,7 @@ class WABot implements IBot {
         this.commandsFilename = commandsFilename;
         this.language = language;
         this.reconnectOnClose = true;
-        this.lang = new Language(this);
+        this.lang = new Language(this).get();
         this.groupsData = {} // This is for caching purpose, details @ src/funcs/messageParsers.ts#65
     }
 
@@ -113,15 +114,16 @@ class WABot implements IBot {
         this.connection.ev.on('messages.upsert', async (handle) => {
             for (let message of handle.messages) {
                 if (!message.key.fromMe && handle.type === "notify") {
+                    this.connection?.readMessages([message.key]);
                     messageHandler.handle(message, this);
                 }
             }
         });
     }
 
-    async replyText(ctx: IMessage, text: string, options: any = {}): Promise<void> {
+    async replyText(ctx: IMessage, text: string, options: any = {}): Promise<IMessage | undefined> {
         options.quoted = ctx.originalMessage;
-        await this.sendTextMessage(ctx, text, options);
+        return await this.sendTextMessage(ctx, text, options);
     }
 
     async replyMedia(
@@ -131,30 +133,36 @@ class WABot implements IBot {
         mimeType?: string,
         mediaCaption?: string,
         options: any = {}
-    ): Promise<void> {
+    ): Promise<IMessage | undefined> {
+        let sentMessage: IMessage | undefined = undefined;
         try {
             await this.connection?.presenceSubscribe(ctx.origin);
             await this.connection?.sendPresenceUpdate('recording', ctx.origin);
 
-            const params = parseMedia(media, messageType, mimeType, mediaCaption);
-            await this.connection?.sendMessage(ctx.origin, params, {
+            const params = await parseMedia(media, messageType, mimeType, mediaCaption);
+            const response = await this.connection?.sendMessage(ctx.origin, params, {
                 quoted: ctx.originalMessage,
                 ...options,
             });
+            if (response) sentMessage = checkMessageData(response, this);
             await this.connection?.sendPresenceUpdate("paused", ctx.origin);
         } catch (e) {
             console.error(e);
-            await this.replyText(ctx, this.lang.get().sendingMediaError);
+            sentMessage = await this.replyText(ctx, this.lang.sendingMediaError);
+        }
+        finally {
+            return sentMessage;
         }
     }
 
-    async sendTextMessage(ctx: IMessage | string, text: string, options: any): Promise<void> {
+    async sendTextMessage(ctx: IMessage | string, text: string, options: any): Promise<IMessage | undefined> {
         let recipient: string;
         if (typeof ctx != "string" && ctx.originalMessage) {
             recipient = ctx.origin;
         } else {
             recipient = ctx.toString();
         }
+        let sentMessage: IMessage | undefined = undefined;
         try {
             const textData = checkJidInTextAndConvert(text);
             if (options && options.mentions) {
@@ -162,13 +170,17 @@ class WABot implements IBot {
             }
             await this.connection?.presenceSubscribe(recipient);
             await this.connection?.sendPresenceUpdate("composing", recipient);
-            await this.connection?.sendMessage(recipient, {
+            const response = await this.connection?.sendMessage(recipient, {
                 text: textData.text,
                 mentions: textData.mentions,
-            }, options);
+            }, options)
+            if (response) sentMessage = checkMessageData(response, this);
             await this.connection?.sendPresenceUpdate("paused", recipient);
         } catch (e) {
             console.error(e);
+        }
+        finally {
+            return sentMessage;
         }
     }
 

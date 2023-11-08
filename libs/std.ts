@@ -1,7 +1,7 @@
 import { colors } from "./color.js";
 import { stringFormat, parseTextWithQuotation, checkMentionsInText, checkJidInTextAndConvert } from "./text.js";
 import { createSticker, createStickerFromMedia } from "./sticker.js";
-import { botFactory } from "./util.js";
+import { botFactory, getTotalVideoBufferLengthInSeconds } from "./util.js";
 import { CommandHandler } from "./handlers.js";
 
 export {
@@ -14,4 +14,5 @@ export {
     createStickerFromMedia,
     stringFormat,
     CommandHandler,
+    getTotalVideoBufferLengthInSeconds
 }

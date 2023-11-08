@@ -15,9 +15,9 @@ interface IMessage {
     isReactionMessage: boolean,
     reactionMessage: any,
 
-    replyText(text: string, options: {}): Promise<void>;
+    replyText(text: string, options: {}): Promise<IMessage | undefined>;
 
-    replyMedia(media: string | Media, messageType: string, mimeType?: string | undefined, mediaCaption?: string | undefined, options?: any): Promise<void>;
+    replyMedia(media: string | Media, messageType: string, mimeType?: string | undefined, mediaCaption?: string | undefined, options?: any): Promise<IMessage | undefined>;
 }
 
 export { IMessage };

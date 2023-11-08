@@ -4,6 +4,7 @@ import { IMessage } from "./message.js";
 import { Language } from "../libs/lang/language.js";
 import { GroupData } from '../src/data/groupData.js';
 import { ChatMetadata } from "../src/data/chatMetadata.js";
+import Translations from "../libs/lang/interface.js";
 
 
 interface GroupsData {
@@ -58,7 +59,7 @@ interface IBot {
     readonly ownerNumber: string;
     readonly commandsFilename: string;
     readonly language: string;
-    readonly lang: Language;
+    readonly lang: Translations;
     reconnectOnClose: boolean;
     groupsData: GroupsData // This is for caching purpose
 
@@ -66,7 +67,7 @@ interface IBot {
 
     getMessage(key: proto.IMessageKey): Promise<proto.IMessage | undefined>
 
-    replyText(ctx: IMessage, text: string, options: any): Promise<void>;
+    replyText(ctx: IMessage, text: string, options: any): Promise<IMessage | undefined>;
     replyMedia(
         ctx: IMessage,
         media: string | Media,
@@ -74,9 +75,9 @@ interface IBot {
         mimeType?: string,
         mediaCaption?: string,
         options?: any
-    ): Promise<void>;
+    ): Promise<IMessage | undefined>;
 
-    sendTextMessage(ctx: IMessage | string, text: string, options: any): Promise<void>;
+    sendTextMessage(ctx: IMessage | string, text: string, options: any): Promise<IMessage | undefined>;
 
     loadMessage(ctx: IMessage | WAMessageKey): Promise<IMessage | WAMessage | undefined>;
     createPoll(ctx: IMessage, poolName: string, options: Array<string>): Promise<boolean>;

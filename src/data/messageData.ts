@@ -30,12 +30,12 @@ class MessageData implements IMessage {
         this.reactionMessage = reactionMessage
     }
 
-    async replyText(text: string, options: {}): Promise<void> {
-        this.bot.replyText(this, text, options);
+    async replyText(text: string, options: {}): Promise<IMessage | undefined> {
+        return this.bot.replyText(this, text, options);
     }
 
-    async replyMedia(media: string | Media, messageType: string, mimeType?: string | undefined, mediaCaption?: string | undefined, options?: any): Promise<void> {
-        this.bot.replyMedia(this, media, messageType, mimeType, mediaCaption, options);
+    async replyMedia(media: string | Media, messageType: string, mimeType?: string | undefined, mediaCaption?: string | undefined, options?: any): Promise<IMessage | undefined> {
+        return this.bot.replyMedia(this, media, messageType, mimeType, mediaCaption, options);
     }
 }
 

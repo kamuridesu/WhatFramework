@@ -9,10 +9,10 @@ interface ICommand {
     name: string;
     aliases: string[];
     func: (
-        bot: IBot, 
-        message: IMessage, 
-        args: string[], 
-        group: IGroupData, 
+        bot: IBot,
+        message: IMessage,
+        args: string[],
+        group: IGroupData,
         chat: IChatMetadata) => Promise<void>;
     description: string;
 }
