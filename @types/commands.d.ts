@@ -13,7 +13,7 @@ interface ICommand {
         message: IMessage,
         args: string[],
         group: IGroupData,
-        chat: IChatMetadata) => Promise<void>;
+        chat: IChatMetadata) => Promise<void> | void;
     description: string;
 }
 
