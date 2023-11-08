@@ -1,6 +1,6 @@
 {
   "name": "@kamuridesu/whatframework",
-  "version": "0.1.14-b2",
+  "version": "0.1.15b",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
   "main": "dist/cli.js",
   "module": "dist",
@@ -30,8 +30,6 @@
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",
-    "@kamuridesu/kamtube": "^0.1.15",
-    "@kamuridesu/simplelyrics": "^1.0.1",
     "@whiskeysockets/baileys": "^6.5.0",
     "axios": "^1.2.2",
     "fluent-ffmpeg": "^2.1.2",
@@ -46,6 +44,8 @@
     "tslib": "^2.5.0",
     "typedoc": "^0.24.8",
     "typedoc-plugin-markdown": "^3.15.4",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.3",
+    "@kamuridesu/kamtube": "^0.1.15",
+    "@kamuridesu/simplelyrics": "^1.0.1"
   }
 }
