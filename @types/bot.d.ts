@@ -23,7 +23,6 @@ interface Media {
 interface EntryPoint {
     botName: string;
     prefix: string;
-    botNumber: string;
     ownerNumber: string;
     language: string | undefined;
     commandsFilename: string | undefined;
@@ -54,7 +53,7 @@ interface IBot {
 
     readonly name: string;
     readonly prefix: string;
-    readonly botNumber: string;
+    botNumber?: string;
     readonly ownerNumber: string;
     readonly commandsFilename: string;
     readonly language: string;

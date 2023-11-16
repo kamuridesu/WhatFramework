@@ -49,7 +49,7 @@ class WABot implements IBot {
 
     public readonly name: string;
     public readonly prefix: string;
-    public readonly botNumber: string;
+    public botNumber?: string;
     public readonly ownerNumber: string;
     public readonly commandsFilename: string;
     public readonly language: string;
@@ -59,7 +59,6 @@ class WABot implements IBot {
     constructor(
         name = 'bot',
         prefix = '!',
-        botNumber = '',
         ownerNumber = '',
         commandsFilename = '',
         language = '',
@@ -67,7 +66,7 @@ class WABot implements IBot {
         this.connection = undefined;
         this.name = name;
         this.prefix = prefix;
-        this.botNumber = botNumber;
+        this.botNumber = state.creds.me?.id;
         this.ownerNumber = ownerNumber;
         this.commandsFilename = commandsFilename;
         this.language = language;
@@ -100,6 +99,7 @@ class WABot implements IBot {
         this.connection.ev.on('creds.update', saveCreds);
 
         this.connection.ev.on('connection.update', (update) => {
+            this.botNumber = state.creds.me?.id;
             const { connection, lastDisconnect } = update
             if (connection === 'close') {
                 const shouldReconnect = (lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut
