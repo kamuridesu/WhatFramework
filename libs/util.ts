@@ -6,7 +6,6 @@ import { EntryPoint } from "../@types/types.js";
 export function botFactory(entryPointClass: EntryPoint, commandsFilename: string): IBot {
     return new Bot(entryPointClass.botName,
         entryPointClass.prefix,
-        entryPointClass.botNumber,
         entryPointClass.ownerNumber,
         commandsFilename,
         entryPointClass.language ? entryPointClass.language : "en-us"
