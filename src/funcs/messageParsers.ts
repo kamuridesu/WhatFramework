@@ -65,7 +65,7 @@ export function checkMessageData(message: WAMessage, bot: IBot): IMessage | unde
 * This function has a caching mechanism that saves the group metadata into the bot instance and invalidates it after 10s
 */
 export async function checkGroupData(messageData: IMessage, chatMetadata: IChatMetadata, ctx: IBot): Promise<IGroupData | undefined> {
-    let groupCacheId = messageData.origin.split("@g.us")[1];
+    let groupCacheId = messageData.author.jid.split("@g.us")[1];
     const cachedGroupData = ctx.groupsData[groupCacheId];
     if (cachedGroupData && ((Date.now() - cachedGroupData.lastFetchDate) / 1000) <= 10) {
         return cachedGroupData.groupData;
