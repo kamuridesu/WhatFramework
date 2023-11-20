@@ -65,5 +65,4 @@ class Colors implements IColors {
     }
 }
 
-const colors = new Colors();
-export { colors };
+export const colors = new Colors();

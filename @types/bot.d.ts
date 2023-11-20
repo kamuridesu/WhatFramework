@@ -1,15 +1,14 @@
 import { makeWASocket, proto } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
 import { IMessage } from "./message.js";
-import { Language } from "../../libs/lang/language.js";
-import { GroupData } from '../data/groupData.js';
-import { ChatMetadata } from "../data/chatMetadata.js";
+import { IGroup } from './types.js';
+import Translations from "../libs/lang/interface.js";
 
 
 interface GroupsData {
     [groupId: string]: {
         lastFetchDate: number;
-        groupData: GroupData
+        groupData: IGroup
     }
 }
 
@@ -23,21 +22,16 @@ interface Media {
 interface EntryPoint {
     botName: string;
     prefix: string;
-    botNumber: string;
     ownerNumber: string;
     language: string | undefined;
     commandsFilename: string | undefined;
     commandHandlers: (ctx: IBot,
         command: string,
         args: string[],
-        messageData: IMessage,
-        groupData: GroupData | undefined,
-        chatMetadata: ChatMetadata) => void;
+        messageData: IMessage) => void;
     chatHandlers: (ctx: IBot,
         messageBody: string,
-        messageData: IMessage,
-        groupData: GroupData | undefined,
-        chatMetadata: ChatMetadata) => void;
+        messageData: IMessage) => void;
 }
 
 interface Module {
@@ -54,11 +48,11 @@ interface IBot {
 
     readonly name: string;
     readonly prefix: string;
-    readonly botNumber: string;
+    botNumber?: string;
     readonly ownerNumber: string;
     readonly commandsFilename: string;
     readonly language: string;
-    readonly lang: Language;
+    readonly lang: Translations;
     reconnectOnClose: boolean;
     groupsData: GroupsData // This is for caching purpose
 
@@ -66,7 +60,7 @@ interface IBot {
 
     getMessage(key: proto.IMessageKey): Promise<proto.IMessage | undefined>
 
-    replyText(ctx: IMessage, text: string, options: any): Promise<void>;
+    replyText(ctx: IMessage, text: string, options: any): Promise<IMessage | undefined>;
     replyMedia(
         ctx: IMessage,
         media: string | Media,
@@ -74,9 +68,9 @@ interface IBot {
         mimeType?: string,
         mediaCaption?: string,
         options?: any
-    ): Promise<void>;
+    ): Promise<IMessage | undefined>;
 
-    sendTextMessage(ctx: IMessage | string, text: string, options: any): Promise<void>;
+    sendTextMessage(ctx: IMessage | string, text: string, options?: {}): Promise<IMessage | undefined>;
 
     loadMessage(ctx: IMessage | WAMessageKey): Promise<IMessage | WAMessage | undefined>;
     createPoll(ctx: IMessage, poolName: string, options: Array<string>): Promise<boolean>;

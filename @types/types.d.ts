@@ -10,10 +10,8 @@ import {
     IMessageHandler,
     EntryPoint
 } from './bot.js';
-import { IMessage } from "./message.js";
-import { IChatMetadata } from "./chatMetadata.js";
-import { IGroupData } from "./groupData.js";
-
+import { IMessage, IGroup, IAuthor } from "./message.js";
+import { ICommand, ICommands } from "./commands.js";
 
 export {
     IBot,
@@ -25,6 +23,8 @@ export {
     VoteAggregation,
     PollVoteAggragation,
     IMessage,
-    IChatMetadata,
-    IGroupData
+    IGroup,
+    ICommand,
+    ICommands,
+    IAuthor
 }

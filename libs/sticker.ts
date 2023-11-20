@@ -3,15 +3,15 @@ import pkgff from "fluent-ffmpeg";
 import fs from "fs";
 import path from "path";
 import { Bot } from "../src/modules/bot.js";
-import { IMessage } from "../src/@types/types.js";
+import { IMessage } from "../@types/types.js";
 import { saveTempFile } from "../src/funcs/networking.js";
 import { downloadMediaMessage } from "@whiskeysockets/baileys";
 import { Language } from "./lang/language.js";
 
 const ffmpeg = pkgff;
 
-async function createSticker(context: IMessage, bot: Bot, author: string, packname: string): Promise<void> {
-    const language = new Language(bot);
+async function createSticker(context: IMessage, bot: Bot, author: string, packname: string): Promise<IMessage | undefined> {
+    const language = new Language(bot).get();
     const isStickerMedia = (["imageMessage", "videoMessage"].includes(context.type) || ["imageMessage", "videoMessage"].includes(context.quotedMessageType));
     if (isStickerMedia) {
         const messageMedia = context.hasQuotedMessage ? JSON.parse(JSON.stringify(context.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : context.originalMessage;
@@ -19,13 +19,12 @@ async function createSticker(context: IMessage, bot: Bot, author: string, packna
         const tempFile = await saveTempFile(mediaBuffer);
         return createStickerFromMedia(tempFile, bot, context, packname, author);
     }
-    return bot.replyText(context, language.get().missingStickerMedia);
+    return bot.replyText(context, language.missingStickerMedia);
 }
 
-
-async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMessage, packName?: string, author?: string): Promise<void> {
+async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMessage, packName?: string, author?: string): Promise<IMessage | undefined> {
     const randomFilename = `temp/sticker${Math.random() * 1000}.png`;
-
+    let sentMessage: IMessage | undefined = undefined;
     ffmpeg(`${media}`)
         .input(media)
         .on('start', (cmd: string) => {
@@ -45,7 +44,7 @@ async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMes
                         error: error
                     };
                 }
-                await ctx.replyMedia(messageData, fs.readFileSync(randomFilename), "sticker");
+                sentMessage = await ctx.replyMedia(messageData, fs.readFileSync(randomFilename), "sticker");
                 fs.unlinkSync(media);
                 fs.unlinkSync(randomFilename);
             });
@@ -57,6 +56,7 @@ async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMes
         ])
         .toFormat("webp")
         .save(randomFilename);
+    return sentMessage;
 }
 
 async function stickerMetadata(author: string, packName: string): Promise<string> {

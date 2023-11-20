@@ -40,4 +40,18 @@ function checkJidInTextAndConvert(text: string): { text: string; mentions: strin
 	};
 }
 
-export { parseTextWithQuotation, checkMentionsInText, checkJidInTextAndConvert };
+(String.prototype as any).format = function (valuesMap: { [key: string]: string }) {
+	let s = this;
+	for (let key of Object.keys(valuesMap)) {
+		const value = `\$${key}`;
+		s = s.replace(value, valuesMap[key]);
+	}
+	return s;
+};
+
+
+function stringFormat(text: string, valuesMap: { [key: string]: string }): string {
+	return (text as any).format(valuesMap);
+}
+
+export { parseTextWithQuotation, checkMentionsInText, checkJidInTextAndConvert, stringFormat };

@@ -1,30 +1,19 @@
 import { Bot } from './bot.js';
-import { checkChatMetaData, checkGroupData, checkMessageData } from '../funcs/messageParsers.js';
+import { parseMessage } from '../funcs/parser.js';
 import { pollParser } from '../funcs/updatesParsers.js';
-import { IMessageHandler, EntryPoint, IMessage, IGroupData, IChatMetadata, IBot } from '../@types/types.js';
+import { IMessageHandler, EntryPoint, IMessage, IBot } from '../../@types/types.js';
 import { colors } from '../../libs/std.js';
 
 import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
 
 class WAMessageHandler implements IMessageHandler {
     private isModule: boolean;
-    private commandHandlers?: (ctx: IBot,
-        command: string,
-        args: string[],
-        messageData: IMessage,
-        groupData: IGroupData | undefined,
-        chatMetadata: IChatMetadata) => void;
-    private chatHandlers?: (ctx: IBot,
-        messageBody: string,
-        messageData: IMessage,
-        groupData: IGroupData | undefined,
-        chatMetadata: IChatMetadata) => void;
+    private entryPointHandler?: EntryPoint;
 
     constructor(entrypoint?: EntryPoint) {
         this.isModule = !!entrypoint;
         if (this.isModule) {
-            this.commandHandlers = entrypoint!.commandHandlers;
-            this.chatHandlers = entrypoint!.chatHandlers;
+            this.entryPointHandler = entrypoint;
         }
     }
 
@@ -40,26 +29,21 @@ class WAMessageHandler implements IMessageHandler {
             Object.keys(message.message)[0] === 'ephemeralMessage'
                 ? message.message.ephemeralMessage?.message
                 : message.message;
-        const messageData: IMessage | undefined = checkMessageData(message, bot);
+        const messageData: IMessage | undefined = await parseMessage(message, bot);
         if (!messageData) {
+            console.log("not message");
             return;
         }
-        const chatMetadata: IChatMetadata = checkChatMetaData(messageData, bot);
-        let groupData: IGroupData | undefined;
-        if (chatMetadata.chatIsGroup) {
-            groupData = await checkGroupData(messageData, chatMetadata, bot);
-        }
-
         if (this.isModule && messageData.body) {
             const messageBody = messageData.body;
             if (messageBody.startsWith(bot.prefix)) {
-                colors.paint(`Message from ${chatMetadata.messageSender.split('@')[0]}: ${messageBody}`, colors.FgCyan, undefined, colors.Bright);
+                colors.paint(`Message from ${messageData.messageSender.split('@')[0]}: ${messageBody}`, colors.FgCyan, undefined, colors.Bright);
                 const command = messageBody.split(bot.prefix)[1].split(' ')[0].toLowerCase();
                 if (command.length === 0) return;
                 const args = messageBody.split(' ').slice(1);
-                this.commandHandlers!(bot, command, args, messageData, groupData, chatMetadata);
+                this.entryPointHandler?.commandHandlers!(bot, command, args, messageData);
             } else {
-                this.chatHandlers!(bot, messageBody, messageData, groupData, chatMetadata);
+                this.entryPointHandler?.chatHandlers!(bot, messageBody, messageData);
             }
         }
     }
