@@ -1,4 +1,4 @@
-import { IMessage, IBot, IChatMetadata, IGroupData } from "../@types/types.js";
+import { IMessage, IBot } from "../@types/types.js";
 import { ICommands } from "../@types/commands.js";
 import { Language } from "./lang/language.js";
 import { stringFormat } from "./text.js";
@@ -12,10 +12,10 @@ export class CommandHandler {
         this.commands = this.commands.concat(commands);
     }
 
-    public handle(command: string, bot: IBot, message: IMessage, args: string[], group: IGroupData, chat: IChatMetadata) {
+    public handle(command: string, bot: IBot, message: IMessage, args: string[]) {
         for (let c of this.commands) {
             const func = c.commands.filter(com => (com.name == command || com.aliases.includes(command)))[0];
-            if (func) return func.func(bot, message, args, group, chat);
+            if (func) return func.func(bot, message, args);
         }
     }
 

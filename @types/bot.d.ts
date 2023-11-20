@@ -1,15 +1,14 @@
 import { makeWASocket, proto } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
 import { IMessage } from "./message.js";
-import { GroupData } from '../src/data/groupData.js';
-import { ChatMetadata } from "../src/data/chatMetadata.js";
+import { IGroup } from './types.js';
 import Translations from "../libs/lang/interface.js";
 
 
 interface GroupsData {
     [groupId: string]: {
         lastFetchDate: number;
-        groupData: GroupData
+        groupData: IGroup
     }
 }
 
@@ -29,14 +28,10 @@ interface EntryPoint {
     commandHandlers: (ctx: IBot,
         command: string,
         args: string[],
-        messageData: IMessage,
-        groupData: GroupData | undefined,
-        chatMetadata: ChatMetadata) => void;
+        messageData: IMessage) => void;
     chatHandlers: (ctx: IBot,
         messageBody: string,
-        messageData: IMessage,
-        groupData: GroupData | undefined,
-        chatMetadata: ChatMetadata) => void;
+        messageData: IMessage) => void;
 }
 
 interface Module {

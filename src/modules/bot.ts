@@ -22,8 +22,8 @@ import { Language } from "../../libs/lang/language.js";
 import { IMessage } from '../../@types/message.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
-import { checkMessageData } from '../funcs/messageParsers.js';
-import { MessageData } from '../data/messageData.js';
+import { parseMessage } from '../funcs/parser.js';
+import { Message } from '../data/message.js';
 import Translations from '../../libs/lang/interface.js';
 
 
@@ -140,16 +140,16 @@ class WABot implements IBot {
     ): Promise<IMessage | undefined> {
         let sentMessage: IMessage | undefined = undefined;
         try {
-            await this.connection?.presenceSubscribe(ctx.origin);
-            await this.connection?.sendPresenceUpdate('recording', ctx.origin);
+            await this.connection?.presenceSubscribe(ctx.author.chatJid);
+            await this.connection?.sendPresenceUpdate('recording', ctx.author.chatJid);
 
             const params = await parseMedia(media, messageType, mimeType, mediaCaption);
-            const response = await this.connection?.sendMessage(ctx.origin, params, {
+            const response = await this.connection?.sendMessage(ctx.author.chatJid, params, {
                 quoted: ctx.originalMessage,
                 ...options,
             });
-            if (response) sentMessage = checkMessageData(response, this);
-            await this.connection?.sendPresenceUpdate("paused", ctx.origin);
+            if (response) sentMessage = await parseMessage(response, this);
+            await this.connection?.sendPresenceUpdate("paused", ctx.author.chatJid);
         } catch (e) {
             console.error(e);
             sentMessage = await this.replyText(ctx, this.lang.sendingMediaError);
@@ -162,7 +162,7 @@ class WABot implements IBot {
     async sendTextMessage(ctx: IMessage | string, text: string, options?: any): Promise<IMessage | undefined> {
         let recipient: string;
         if (typeof ctx != "string" && ctx.originalMessage) {
-            recipient = ctx.origin;
+            recipient = ctx.author.chatJid;
         } else {
             recipient = ctx.toString();
         }
@@ -178,7 +178,7 @@ class WABot implements IBot {
                 text: textData.text,
                 mentions: textData.mentions,
             }, options)
-            if (response) sentMessage = checkMessageData(response, this);
+            if (response) sentMessage = await parseMessage(response, this);
             await this.connection?.sendPresenceUpdate("paused", recipient);
         } catch (e) {
             console.error(e);
@@ -193,7 +193,7 @@ class WABot implements IBot {
         console.log(options)
         try {
             console.log("creting poll");
-            console.log(await this.connection?.sendMessage(ctx.origin, {
+            console.log(await this.connection?.sendMessage(ctx.author.chatJid, {
                 poll: {
                     name: pollName,
                     values: options,
@@ -208,14 +208,14 @@ class WABot implements IBot {
         }
     }
 
-    async loadMessage(ctx: MessageData | WAMessageKey): Promise<IMessage | WAMessage | undefined> {
+    async loadMessage(ctx: Message | WAMessageKey): Promise<IMessage | WAMessage | undefined> {
         let originJid: string;
         let stanzaId: string;
-        if (ctx instanceof MessageData) {
+        if (ctx instanceof Message) {
             if (!ctx.hasQuotedMessage || ctx.quotedMessageType != "conversation") {
                 return undefined;
             }
-            originJid = ctx.origin;
+            originJid = ctx.author.chatJid;
             stanzaId = ctx.quotedMessage.stanzaId;
         } else {
             if (!ctx.remoteJid || !ctx.id) {
@@ -226,7 +226,7 @@ class WABot implements IBot {
         }
         const messageInformation = await storage.loadMessage(originJid, stanzaId);
         if (messageInformation) {
-            return (ctx instanceof MessageData ? checkMessageData(messageInformation, this) : messageInformation);
+            return (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation);
         }
         return undefined;
     }

@@ -1,8 +1,6 @@
 import {
     IBot,
     IMessage,
-    IGroupData,
-    IChatMetadata
 } from "./types.js";
 
 export interface ICommand {
@@ -11,9 +9,7 @@ export interface ICommand {
     func: (
         bot: IBot,
         message: IMessage,
-        args: string[],
-        group: IGroupData,
-        chat: IChatMetadata) => Promise<void> | void;
+        args: string[]) => Promise<void> | void;
     description: string;
 }
 
