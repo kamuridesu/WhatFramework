@@ -1,26 +1,22 @@
 import { WAMessage } from "@whiskeysockets/baileys";
 import { IBot, Media } from "./bot";
 
-export interface IMetadata {
-    messageSender: string,
-    senderName: string,
-    messageIsFrom: string,
-    senderIsBotOwner: boolean,
-    chatIsGroup: boolean
-}
+import { GroupParticipant } from "@whiskeysockets/baileys";
 
 export interface IGroup {
-    name: string,
-    description: string,
-    groupId: string,
-    members: Array<any>,
-    admins: Array<any>,
-    locked: boolean,
-    welcomeOn?: boolean
+    name: string;
+    description: string;
+    groupId: string;
+    members: GroupParticipant[];
+    admins: GroupParticipant[];
+    locked: boolean;
+    welcomeOn?: boolean;
 }
 
-export interface Author {
+export interface IAuthor {
     jid: string;
+    name: string;
+    chatJid: string;
     isAdmin: boolean;
     isBotOwner: boolean;
     isGroupOwner: boolean;
@@ -33,9 +29,13 @@ export interface IMessage {
     type: string;
     body: string;
     mentionedUsers: string[];
-    author: Author;
-    group: IGroup;
-    metadata: IMetadata
+    author: IAuthor;
+    group?: IGroup;
+    messageSender: string;
+    senderName: string;
+    messageIsFrom: string;
+    senderIsBotOwner: boolean;
+    chatIsGroup: boolean;
     isMedia: boolean;
     hasQuotedMessage: boolean;
     quotedMessageType: any;

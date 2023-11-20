@@ -1,6 +1,6 @@
 {
   "name": "@kamuridesu/whatframework",
-  "version": "0.1.21b",
+  "version": "0.1.23b",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
   "main": "dist/cli.js",
   "module": "dist",
@@ -37,6 +37,8 @@
     "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {
+    "@kamuridesu/kamtube": "^0.1.17",
+    "@kamuridesu/simplelyrics": "^1.0.2",
     "@types/fluent-ffmpeg": "^2.1.21",
     "@types/node": "^18.15.11",
     "@types/ws": "^8.5.4",
@@ -44,8 +46,6 @@
     "tslib": "^2.5.0",
     "typedoc": "^0.24.8",
     "typedoc-plugin-markdown": "^3.15.4",
-    "typescript": "^5.0.3",
-    "@kamuridesu/kamtube": "^0.1.15",
-    "@kamuridesu/simplelyrics": "^1.0.1"
+    "typescript": "^5.0.3"
   }
 }

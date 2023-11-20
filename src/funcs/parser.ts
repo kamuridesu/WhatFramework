@@ -1,7 +1,6 @@
-import { IBot, IMessage, Author, IGroup, IMetadata  } from "../../@types/types.js";
+import { IBot, IMessage, IAuthor, IGroup } from "../../@types/types.js";
 import { WAMessage, proto } from "@whiskeysockets/baileys";
-import { GroupData } from "src/data/groupData.js";
-import { ChatMetadata } from "src/data/chatMetadata.js";
+import { Message, Group, Author } from "../data/message.js";
 
 const messageTypes = [
     "audioMessage",
@@ -13,15 +12,13 @@ const messageTypes = [
     "reactionMessage"
 ];
 
-export async function parseMessage(message: WAMessage, bot: IBot): IMessage | undefined {
+export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMessage | undefined> {
     const key = message.message;
     if (!key) {
         return;
     }
 
-    const type = messageTypes.find(type => {
-        Object.keys(key).includes(type);
-    });
+    const type = messageTypes.find(type => Object.keys(key).includes(type));
     const isMedia = ["imageMessage", "videoMessage"].includes(type as string);
 
     let body: string | undefined | null;
@@ -31,8 +28,6 @@ export async function parseMessage(message: WAMessage, bot: IBot): IMessage | un
     let quotedMessage: string | undefined;
     let isReactionMessage: boolean = false;
     let reactionMessage: any = undefined;
-    let groupInfo: IGroup | undefined;
-
     switch (type) {
         case "conversation":
             body = message.message?.conversation;
@@ -62,11 +57,75 @@ export async function parseMessage(message: WAMessage, bot: IBot): IMessage | un
     const originJid = message.key.remoteJid ? message.key.remoteJid : "";
     quotedMessageType = quotedMessageType ? quotedMessageType : "";
 
-    const metadata = parseMetadata({
+    const {
+        messageSender,
+        senderName,
+        messageIsFrom,
+        senderIsOwner,
+        isGroup
+    } = parseMetadata({
         originJid,
         originalMessage: message
     }, bot)
 
+    let groupInfo: IGroup | undefined;
+    let author: IAuthor = new Author(
+        messageSender,
+        senderName,
+        originJid,
+        false,
+        false,
+        false,
+        false,
+    );
+
+    if (isGroup) {
+        ({ groupInfo, author } = await parseGroup(
+            originJid,
+            bot,
+            messageSender,
+            author
+        ));
+    }
+
+    return new Message(
+        bot,
+        message,
+        type as string,
+        body,
+        mentionedUsers,
+        author as IAuthor,
+        messageSender,
+        senderName,
+        messageIsFrom,
+        senderIsOwner,
+        groupInfo != undefined,
+        isMedia,
+        hasQuotedMessage,
+        quotedMessageType,
+        quotedMessage,
+        isReactionMessage,
+        reactionMessage,
+        groupInfo
+    )
+
+}
+
+export function parseMetadata(context: { originJid: string, originalMessage: proto.IWebMessageInfo }, bot: IBot) {
+    const messageIsFrom = context.originJid;
+    const senderName = context.originalMessage.pushName ? context.originalMessage.pushName : "";
+    const isGroup = messageIsFrom.includes('@g.us');
+    let messageSender = messageIsFrom ? messageIsFrom : "";
+    if (isGroup) {
+        messageSender = context.originalMessage.key.participant ? context.originalMessage.key.participant : "";
+    }
+    const senderIsOwner = bot.ownerNumber === messageSender?.split('@')[0];
+
+    return { messageSender, senderName, messageIsFrom, senderIsOwner, isGroup };
+}
+
+async function parseGroup(originJid: string, bot: IBot, messageSender: string, author: IAuthor) {
+    let groupInfo: IGroup | undefined;
     let groupCacheId = originJid.split("@g.us")[1];
     const cachedGroupData = bot.groupsData[groupCacheId];
     if (cachedGroupData && ((Date.now() - cachedGroupData.lastFetchDate) / 1000) <= 10) {
@@ -79,35 +138,38 @@ export async function parseMessage(message: WAMessage, bot: IBot): IMessage | un
             let { subject: name, id: groupId, desc: description, participants: members, owner: groupOwner, announce } = groupMetadata;
             const admins = members.filter((element) => element.admin === "admin" || element.admin === "superadmin");
             const senderIsGroupOwner = members.some((element) => element.admin === "superadmin");
-            const senderIsAdmin = members.some((element) => element.id === metadata.messageSender && (element.admin === "admin" || element.admin === "superadmin"));
+            const senderIsAdmin = members.some((element) => element.id === messageSender && (element.admin === "admin" || element.admin === "superadmin"));
             const botIsAdmin = members.some((element) => element.id === bot.botNumber && (element.admin === "admin" || element.admin === "superadmin"));
             const isLocked = announce !== undefined ? JSON.parse(JSON.stringify(announce).replace(/"/g, "")) : false;
 
             description = description ? description : "";
             groupOwner = groupOwner ? groupOwner : "";
             groupId = groupId.split("-")[1];
-            const groupData = new GroupData(name, description, groupId, members, admins, groupOwner, senderIsGroupOwner, botIsAdmin, senderIsAdmin, isLocked);
-            bot.groupsData[groupCacheId] = { lastFetchDate: Date.now(), groupData: groupData }
+            groupInfo = new Group(
+                name,
+                description,
+                groupId,
+                members,
+                admins,
+                isLocked
+            );
+            author = new Author(
+                author.jid,
+                author.name,
+                author.chatJid,
+                senderIsAdmin,
+                undefined as any,
+                senderIsGroupOwner,
+                false
+            )
+            bot.groupsData[groupCacheId] = { lastFetchDate: Date.now(), groupData: groupInfo }
         }
     }
-
-    // return new 
-    
-}
-
-export function parseMetadata(context: {originJid: string, originalMessage: proto.IWebMessageInfo}, bot: IBot): IMetadata {
-    const messageIsFrom = context.originJid;
-    const senderName = context.originalMessage.pushName ? context.originalMessage.pushName : "";
-    const isGroup = messageIsFrom.includes('@g.us');
-    let messageSender = messageIsFrom ? messageIsFrom : "";
-    if (isGroup) {
-        messageSender = context.originalMessage.key.participant ? context.originalMessage.key.participant : "";
+    return {
+        groupInfo,
+        author
     }
-    const senderIsOwner = bot.ownerNumber === messageSender?.split('@')[0];
-
-    return new ChatMetadata(messageSender, senderName, messageIsFrom, senderIsOwner, isGroup);
 }
-
 
 export function convertNumberToMention(text: string): string[] | string {
     const regex = /@[0-9]{12}/g;
