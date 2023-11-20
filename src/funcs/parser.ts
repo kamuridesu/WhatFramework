@@ -80,12 +80,22 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
     );
 
     if (isGroup) {
-        ({ groupInfo, author } = await parseGroup(
+        ({ groupInfo } = await parseGroup(
             originJid,
             bot,
-            messageSender,
-            author
         ));
+        const senderIsGroupOwner = groupInfo?.members.some((element) => element.admin === "superadmin");
+        const senderIsAdmin = groupInfo?.members.some((element) => element.id === messageSender && (element.admin === "admin" || element.admin === "superadmin"));
+        const botIsAdmin = groupInfo?.members.some((element) => element.id === bot.botNumber && (element.admin === "admin" || element.admin === "superadmin"));
+        author = author = new Author(
+            author.jid,
+            author.name,
+            author.chatJid,
+            senderIsAdmin ? senderIsAdmin : false,
+            undefined as any,
+            senderIsGroupOwner ? senderIsGroupOwner : false,
+            false
+        )
     }
 
     return new Message(
@@ -124,7 +134,7 @@ export function parseMetadata(context: { originJid: string, originalMessage: pro
     return { messageSender, senderName, messageIsFrom, senderIsOwner, isGroup };
 }
 
-async function parseGroup(originJid: string, bot: IBot, messageSender: string, author: IAuthor) {
+async function parseGroup(originJid: string, bot: IBot) {
     let groupInfo: IGroup | undefined;
     let groupCacheId = originJid.split("@g.us")[1];
     const cachedGroupData = bot.groupsData[groupCacheId];
@@ -137,9 +147,6 @@ async function parseGroup(originJid: string, bot: IBot, messageSender: string, a
         } else {
             let { subject: name, id: groupId, desc: description, participants: members, owner: groupOwner, announce } = groupMetadata;
             const admins = members.filter((element) => element.admin === "admin" || element.admin === "superadmin");
-            const senderIsGroupOwner = members.some((element) => element.admin === "superadmin");
-            const senderIsAdmin = members.some((element) => element.id === messageSender && (element.admin === "admin" || element.admin === "superadmin"));
-            const botIsAdmin = members.some((element) => element.id === bot.botNumber && (element.admin === "admin" || element.admin === "superadmin"));
             const isLocked = announce !== undefined ? JSON.parse(JSON.stringify(announce).replace(/"/g, "")) : false;
 
             description = description ? description : "";
@@ -153,21 +160,12 @@ async function parseGroup(originJid: string, bot: IBot, messageSender: string, a
                 admins,
                 isLocked
             );
-            author = new Author(
-                author.jid,
-                author.name,
-                author.chatJid,
-                senderIsAdmin,
-                undefined as any,
-                senderIsGroupOwner,
-                false
-            )
             bot.groupsData[groupCacheId] = { lastFetchDate: Date.now(), groupData: groupInfo }
         }
     }
     return {
         groupInfo,
-        author
+        
     }
 }
 
