@@ -1,4 +1,4 @@
-import { WAMessage } from "@whiskeysockets/baileys";
+import { WAMessage, proto } from "@whiskeysockets/baileys";
 import { IBot, Media } from "./bot";
 
 import { GroupParticipant } from "@whiskeysockets/baileys";
@@ -51,5 +51,14 @@ export interface IMessage {
         mimeType?: string | undefined,
         mediaCaption?: string | undefined,
         options?: {}): Promise<IMessage | undefined>;
+
+    react(reaction: string, options?: {}): Promise<IMessage | undefined>;
 }
 
+export interface IReactionMessage {
+    react: {
+        text: string;
+        key: proto.IMessageKey
+    }
+    
+}

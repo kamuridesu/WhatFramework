@@ -1,6 +1,6 @@
 import { makeWASocket, proto } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
-import { IMessage } from "./message.js";
+import { IMessage, IReactionMessage } from "./message.js";
 import { IGroup } from './types.js';
 import Translations from "../libs/lang/interface.js";
 
@@ -12,14 +12,14 @@ interface GroupsData {
     }
 }
 
-interface Media {
+export interface Media {
     media: Buffer | string;
     messageType: string;
     mimeType: string;
     error: Error;
 }
 
-interface EntryPoint {
+export interface EntryPoint {
     botName: string;
     prefix: string;
     ownerNumber: string;
@@ -34,16 +34,16 @@ interface EntryPoint {
         messageData: IMessage) => void;
 }
 
-interface Module {
+export interface Module {
     Entrypoint: EntryPoint
 }
 
-interface IMessageHandler {
+export interface IMessageHandler {
     handle: (message: WAMessage, bot: IBot) => void
     handleUpdate: (key: WAMessageKey, updates: Partial<WAMessage>, ctx: IBot) => void
 }
 
-interface IBot {
+export interface IBot {
     connection?: ReturnType<typeof makeWASocket>;
 
     readonly name: string;
@@ -71,16 +71,8 @@ interface IBot {
     ): Promise<IMessage | undefined>;
 
     sendTextMessage(ctx: IMessage | string, text: string, options?: {}): Promise<IMessage | undefined>;
+    reactMessage(ctx: IMessage | string, reactionMessage: IReactionMessage, options?: any): Promise<IMessage | undefined>
 
     loadMessage(ctx: IMessage | WAMessageKey): Promise<IMessage | WAMessage | undefined>;
     createPoll(ctx: IMessage, poolName: string, options: Array<string>): Promise<boolean>;
-}
-
-export {
-    IBot,
-    Media,
-    GroupsData,
-    Module,
-    IMessageHandler,
-    EntryPoint
 }

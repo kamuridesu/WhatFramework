@@ -80,11 +80,11 @@ export class Message implements IMessage {
         this.reactionMessage = reactionMessage;
     }
 
-    async replyText(text: string, options?: {}): Promise<IMessage | undefined> {
+    replyText(text: string, options?: {}): Promise<IMessage | undefined> {
         return this.bot.replyText(this, text, options);
     }
 
-    async replyMedia(
+    replyMedia(
         media: string | Media,
         messageType: string,
         mimeType?: string | undefined,
@@ -92,5 +92,15 @@ export class Message implements IMessage {
         options?: {}
     ): Promise<IMessage | undefined> {
         return this.bot.replyMedia(this, media, messageType, mimeType, mediaCaption, options);
+    }
+
+    react(reaction: string): Promise<IMessage | undefined> {
+        const reactionMessage = {
+            react: {
+                text: reaction,
+                key: this.originalMessage.key
+            }
+        };
+        return this.bot.reactMessage(this, reactionMessage);
     }
 }

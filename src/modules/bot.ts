@@ -19,7 +19,7 @@ import {
 } from "../../@types/types.js";
 
 import { Language } from "../../libs/lang/language.js";
-import { IMessage } from '../../@types/message.js';
+import { IMessage, IReactionMessage } from '../../@types/message.js';
 import { parseMedia } from '../funcs/mediaParsers.js';
 import { checkJidInTextAndConvert } from '../../libs/text.js';
 import { parseMessage } from '../funcs/parser.js';
@@ -178,6 +178,28 @@ class WABot implements IBot {
                 text: textData.text,
                 mentions: textData.mentions,
             }, options)
+            if (response) sentMessage = await parseMessage(response, this);
+            await this.connection?.sendPresenceUpdate("paused", recipient);
+        } catch (e) {
+            console.error(e);
+        }
+        finally {
+            return sentMessage;
+        }
+    }
+
+    async reactMessage(ctx: IMessage | string, reactionMessage: IReactionMessage, options?: any) {
+        let recipient: string;
+        if (typeof ctx != "string" && ctx.originalMessage) {
+            recipient = ctx.author.chatJid;
+        } else {
+            recipient = ctx.toString();
+        }
+        let sentMessage: IMessage | undefined = undefined;
+        try {
+            await this.connection?.presenceSubscribe(recipient);
+            await this.connection?.sendPresenceUpdate("composing", recipient);
+            const response = await this.connection?.sendMessage(recipient, reactionMessage,options)
             if (response) sentMessage = await parseMessage(response, this);
             await this.connection?.sendPresenceUpdate("paused", recipient);
         } catch (e) {
