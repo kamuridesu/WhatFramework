@@ -4,9 +4,9 @@ import { Readable } from 'stream';
 
 export async function parseMedia(
     media: any,
-    mediaType: string | undefined,
-    mimeType: string | undefined,
-    caption: string | undefined
+    mediaType?: string,
+    mimeType?: string,
+    caption?: string
     ): Promise<AnyMediaMessageContent> {
     let info: AnyMediaMessageContent;
     switch (mediaType) {
@@ -41,7 +41,7 @@ export async function parseMedia(
             info = {
                 audio: media,
                 mimetype: mimeType,
-                caption: caption,
+                caption: caption
             };
             break;
         case "voice":
