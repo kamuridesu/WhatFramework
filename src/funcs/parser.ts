@@ -1,4 +1,4 @@
-import { IBot, IMessage, IAuthor, IGroup } from "../../@types/types.js";
+import { IBot, IMessage, IAuthor, IGroup, IQuotedMessageUnparsed } from "../../@types/types.js";
 import { WAMessage, proto } from "@whiskeysockets/baileys";
 import { Message, Group, Author } from "../data/message.js";
 
@@ -18,16 +18,19 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
         return;
     }
 
-    const type = messageTypes.find(type => Object.keys(key).includes(type));
-    const isMedia = ["imageMessage", "videoMessage"].includes(type as string);
+    const originJid = message.key.remoteJid ? message.key.remoteJid : "";
 
     let body: string | undefined | null;
     let mentionedUsers: string[] | undefined | null = [];
     let hasQuotedMessage: boolean = false;
     let quotedMessageType: string | undefined;
-    let quotedMessage: string | undefined;
+    let unparsedQuotedMessage: IQuotedMessageUnparsed | undefined;
+    let quotedMessage: IMessage | undefined;
     let isReactionMessage: boolean = false;
     let reactionMessage: any = undefined;
+
+    const type = messageTypes.find(type => Object.keys(key).includes(type));
+    const isMedia = ["imageMessage", "videoMessage"].includes(type as string);
     switch (type) {
         case "conversation":
             body = message.message?.conversation;
@@ -44,7 +47,9 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
             quotedMessageType = messageTypes.find(type => JSON.stringify(message.message).includes(type));
             if (quotedMessageType != undefined && ["conversation", "extendedTextMessage"].includes(quotedMessageType)) {
                 mentionedUsers = message.message?.extendedTextMessage?.contextInfo?.mentionedJid;
-                quotedMessage = JSON.parse(JSON.stringify(message).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo;
+                unparsedQuotedMessage = JSON.parse(JSON.stringify(message).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo;
+                const unparsedMessage = await bot.loadMessageById(originJid, unparsedQuotedMessage?.stanzaId!);
+                if (unparsedMessage) quotedMessage = (await parseMessage(unparsedMessage, bot));
             }
             break;
         case "reactionMessage":
@@ -54,7 +59,6 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
     }
     body = body ? body : "";
     mentionedUsers = mentionedUsers ? mentionedUsers : [];
-    const originJid = message.key.remoteJid ? message.key.remoteJid : "";
     quotedMessageType = quotedMessageType ? quotedMessageType : "";
 
     const {

@@ -3,6 +3,14 @@ import { IBot, Media } from "./bot";
 
 import { GroupParticipant } from "@whiskeysockets/baileys";
 
+export interface IQuotedMessageUnparsed {
+    stanzaId: string;
+    participant: string;
+    message: {
+        conversation: string;
+    }
+}
+
 export interface IGroup {
     name: string;
     description: string;
@@ -39,7 +47,7 @@ export interface IMessage {
     isMedia: boolean;
     hasQuotedMessage: boolean;
     quotedMessageType: any;
-    quotedMessage: any;
+    quotedMessage: IMessage | undefined;
     isReactionMessage: boolean;
     reactionMessage: any;
 

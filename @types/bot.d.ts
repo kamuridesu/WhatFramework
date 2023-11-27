@@ -74,5 +74,6 @@ export interface IBot {
     reactMessage(ctx: IMessage | string, reactionMessage: IReactionMessage, options?: any): Promise<IMessage | undefined>
 
     loadMessage(ctx: IMessage | WAMessageKey): Promise<IMessage | WAMessage | undefined>;
+    loadMessageById(originJid: string, stanzaId: string): Promise<proto.IWebMessageInfo | undefined>;
     createPoll(ctx: IMessage, poolName: string, options: Array<string>): Promise<boolean>;
 }

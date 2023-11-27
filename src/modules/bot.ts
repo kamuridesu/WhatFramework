@@ -44,7 +44,7 @@ const {
 } = await useMultiFileAuthState('./states');
 
 class WABot implements IBot {
-    public connection?: ReturnType<typeof makeWASocket>;
+    connection?: ReturnType<typeof makeWASocket>;
     reconnectOnClose: boolean;
 
     public readonly name: string;
@@ -72,7 +72,7 @@ class WABot implements IBot {
         this.language = language;
         this.reconnectOnClose = true;
         this.lang = new Language(this).get();
-        this.groupsData = {} // This is for caching purpose, details @ src/funcs/messageParsers.ts#65
+        this.groupsData = {} // This is for caching purpose, details @ src/funcs/parsers.ts#145
     }
 
     async getMessage(key: WAMessageKey): Promise<WAMessageContent | undefined> {
@@ -111,7 +111,7 @@ class WABot implements IBot {
             } else if (connection === 'open') {
                 console.log('opened connection')
             }
-        })
+        });
 
         storage.bind(this.connection.ev);
 
@@ -123,6 +123,10 @@ class WABot implements IBot {
                 }
             }
         });
+    }
+
+    async getGroups() {
+        return (await this.connection?.groupFetchAllParticipating());
     }
 
     async replyText(ctx: IMessage, text: string, options: any = {}): Promise<IMessage | undefined> {
@@ -237,7 +241,7 @@ class WABot implements IBot {
                 return undefined;
             }
             originJid = ctx.author.chatJid;
-            stanzaId = ctx.quotedMessage.stanzaId;
+            stanzaId = ctx.quotedMessage?.originalMessage.key?.id!;
         } else {
             if (!ctx.remoteJid || !ctx.id) {
                 return undefined;
@@ -245,9 +249,14 @@ class WABot implements IBot {
             originJid = ctx.remoteJid;
             stanzaId = ctx.id;
         }
+        const messageInformation = await this.loadMessageById(originJid, stanzaId);
+        return messageInformation != undefined ? (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation) : undefined;   
+    }
+
+    async loadMessageById(originJid: string, stanzaId: string) {
         const messageInformation = await storage.loadMessage(originJid, stanzaId);
         if (messageInformation) {
-            return (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation);
+            return messageInformation;
         }
         return undefined;
     }

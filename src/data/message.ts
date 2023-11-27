@@ -55,7 +55,7 @@ export class Message implements IMessage {
         public isMedia: boolean,
         public hasQuotedMessage: boolean,
         public quotedMessageType: any,
-        public quotedMessage: any,
+        public quotedMessage: IMessage | undefined,
         public isReactionMessage: boolean,
         public reactionMessage: any,
         public group?: IGroup,
