@@ -18,6 +18,7 @@ export interface IGroup {
     members: GroupParticipant[];
     admins: GroupParticipant[];
     locked: boolean;
+    botIsAdmin?: boolean;
     welcomeOn?: boolean;
 }
 

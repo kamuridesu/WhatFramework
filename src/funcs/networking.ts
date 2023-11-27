@@ -10,7 +10,6 @@ const defaultHeaders = {
     "Upgrade-Insecure-Request": "1"
 };
 
-
 async function sendRequest(url: string, options: RequestOptions = { headers: defaultHeaders }): Promise<Buffer | { error: any }> {
     try {
         const response = await axios({
@@ -23,7 +22,6 @@ async function sendRequest(url: string, options: RequestOptions = { headers: def
         return { error: error };
     }
 }
-
 
 async function saveTempFile(content: Buffer | import("stream").Transform, extension: string = ""): Promise<string> {
     const randomFilename = `temp/sticker${Math.random() * 1000}${extension}`;

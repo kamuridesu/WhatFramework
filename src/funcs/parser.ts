@@ -122,7 +122,6 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
         reactionMessage,
         groupInfo
     )
-
 }
 
 export function parseMetadata(context: { originJid: string, originalMessage: proto.IWebMessageInfo }, bot: IBot) {
