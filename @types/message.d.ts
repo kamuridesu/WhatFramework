@@ -62,6 +62,8 @@ export interface IMessage {
         options?: {}): Promise<IMessage | undefined>;
 
     react(reaction: string, options?: {}): Promise<IMessage | undefined>;
+
+    edit(text: string, options?: {}): Promise<IMessage | undefined>;
 }
 
 export interface IReactionMessage {

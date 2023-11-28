@@ -103,4 +103,8 @@ export class Message implements IMessage {
         };
         return this.bot.reactMessage(this, reactionMessage);
     }
+
+    edit(text: string, options?: {}): Promise<IMessage | undefined> {
+        return this.bot.sendTextMessage(this, text, {edit: this.originalMessage.key, ...options});
+    }
 }

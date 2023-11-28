@@ -123,6 +123,12 @@ class WABot implements IBot {
                 }
             }
         });
+
+        this.connection.ev.on("messages.reaction", async (handle) => {
+            for (let reaction of handle) {
+                console.log((reaction));
+            }
+        });
     }
 
     async getGroups() {
@@ -176,12 +182,20 @@ class WABot implements IBot {
             if (options && options.mentions) {
                 textData.mentions = textData.mentions.concat(options.mentions);
             }
-            await this.connection?.presenceSubscribe(recipient);
-            await this.connection?.sendPresenceUpdate("composing", recipient);
-            const response = await this.connection?.sendMessage(recipient, {
+
+            type MessageData = {text: string, mentions: string[], edit?: any}
+            let messageData: MessageData = {
                 text: textData.text,
                 mentions: textData.mentions,
-            }, options)
+            }
+            if (options.edit != undefined) {
+                messageData.edit = options.edit;
+                delete options.edit;
+            }
+
+            await this.connection?.presenceSubscribe(recipient);
+            await this.connection?.sendPresenceUpdate("composing", recipient);
+            const response = await this.connection?.sendMessage(recipient, messageData, options)
             if (response) sentMessage = await parseMessage(response, this);
             await this.connection?.sendPresenceUpdate("paused", recipient);
         } catch (e) {
