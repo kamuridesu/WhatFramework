@@ -99,7 +99,7 @@ class WABot implements IBot {
         this.connection.ev.on('creds.update', saveCreds);
 
         this.connection.ev.on('connection.update', (update) => {
-            this.botNumber = state.creds.me?.id;
+            this.botNumber = state.creds.me?.id.replace(/:\d/, "");
             const { connection, lastDisconnect } = update
             if (connection === 'close') {
                 const shouldReconnect = (lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut
