@@ -91,6 +91,7 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
         const senderIsGroupOwner = groupInfo?.members.some((element) => element.admin === "superadmin");
         const senderIsAdmin = groupInfo?.members.some((element) => element.id === messageSender && (element.admin === "admin" || element.admin === "superadmin"));
         const botIsAdmin = groupInfo?.members.some((element) => element.id === bot.botNumber && (element.admin === "admin" || element.admin === "superadmin"));
+        if (groupInfo) groupInfo.botIsAdmin = botIsAdmin;
         author = author = new Author(
             author.jid,
             author.name,
@@ -168,7 +169,7 @@ async function parseGroup(originJid: string, bot: IBot) {
     }
     return {
         groupInfo,
-        
+
     }
 }
 
