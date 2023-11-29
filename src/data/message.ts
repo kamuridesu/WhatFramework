@@ -55,7 +55,7 @@ export class Message implements IMessage {
         public isMedia: boolean,
         public hasQuotedMessage: boolean,
         public quotedMessageType: any,
-        public quotedMessage: any,
+        public quotedMessage: IMessage | undefined,
         public isReactionMessage: boolean,
         public reactionMessage: any,
         public group?: IGroup,
@@ -80,11 +80,11 @@ export class Message implements IMessage {
         this.reactionMessage = reactionMessage;
     }
 
-    async replyText(text: string, options?: {}): Promise<IMessage | undefined> {
+    replyText(text: string, options?: {}): Promise<IMessage | undefined> {
         return this.bot.replyText(this, text, options);
     }
 
-    async replyMedia(
+    replyMedia(
         media: string | Media,
         messageType: string,
         mimeType?: string | undefined,
@@ -92,5 +92,19 @@ export class Message implements IMessage {
         options?: {}
     ): Promise<IMessage | undefined> {
         return this.bot.replyMedia(this, media, messageType, mimeType, mediaCaption, options);
+    }
+
+    react(reaction: string): Promise<IMessage | undefined> {
+        const reactionMessage = {
+            react: {
+                text: reaction,
+                key: this.originalMessage.key
+            }
+        };
+        return this.bot.reactMessage(this, reactionMessage);
+    }
+
+    edit(text: string, options?: {}): Promise<IMessage | undefined> {
+        return this.bot.sendTextMessage(this, text, {edit: this.originalMessage.key, ...options});
     }
 }

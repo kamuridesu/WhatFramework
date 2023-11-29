@@ -3,7 +3,6 @@ import { ICommands } from "../@types/commands.js";
 import { Language } from "./lang/language.js";
 import { stringFormat } from "./text.js";
 
-
 export class CommandHandler {
 
     private commands: ICommands[] = [];
@@ -23,7 +22,10 @@ export class CommandHandler {
         for (let c of this.commands) {
             for (let com of c.commands) {
                 if (com.name === command || com.aliases.includes(command)) {
-                    return stringFormat(com.description, { prefix: bot.prefix, command: command });
+                    const text = stringFormat(com.description, { prefix: bot.prefix, command: command });
+                    return `${command}\n\n${text}` + (com.aliases.length > 0 ? 
+                            `\n\n[Aliases]:\n${com.aliases.join("\n")}` : 
+                            "");
                 }
             }
         }
@@ -42,6 +44,12 @@ export class CommandHandler {
         }
 
         return text.trim();
+    }
+
+    public getCommandsByCategory(bot: IBot, category: string) {
+        /**
+         * TODO: Create function body
+         */
     }
 
     public getHelp(bot: IBot, command: string | undefined) {

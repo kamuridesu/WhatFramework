@@ -10,7 +10,7 @@ import {
     IMessageHandler,
     EntryPoint
 } from './bot.js';
-import { IMessage, IGroup, IAuthor } from "./message.js";
+import { IMessage, IGroup, IAuthor, IReactionMessage, IQuotedMessageUnparsed } from "./message.js";
 import { ICommand, ICommands } from "./commands.js";
 
 export {
@@ -26,5 +26,7 @@ export {
     IGroup,
     ICommand,
     ICommands,
-    IAuthor
+    IAuthor,
+    IReactionMessage,
+    IQuotedMessageUnparsed
 }

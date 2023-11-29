@@ -1,7 +1,15 @@
-import { WAMessage } from "@whiskeysockets/baileys";
+import { WAMessage, proto } from "@whiskeysockets/baileys";
 import { IBot, Media } from "./bot";
 
 import { GroupParticipant } from "@whiskeysockets/baileys";
+
+export interface IQuotedMessageUnparsed {
+    stanzaId: string;
+    participant: string;
+    message: {
+        conversation: string;
+    }
+}
 
 export interface IGroup {
     name: string;
@@ -10,6 +18,7 @@ export interface IGroup {
     members: GroupParticipant[];
     admins: GroupParticipant[];
     locked: boolean;
+    botIsAdmin?: boolean;
     welcomeOn?: boolean;
 }
 
@@ -39,7 +48,7 @@ export interface IMessage {
     isMedia: boolean;
     hasQuotedMessage: boolean;
     quotedMessageType: any;
-    quotedMessage: any;
+    quotedMessage: IMessage | undefined;
     isReactionMessage: boolean;
     reactionMessage: any;
 
@@ -51,5 +60,16 @@ export interface IMessage {
         mimeType?: string | undefined,
         mediaCaption?: string | undefined,
         options?: {}): Promise<IMessage | undefined>;
+
+    react(reaction: string, options?: {}): Promise<IMessage | undefined>;
+
+    edit(text: string, options?: {}): Promise<IMessage | undefined>;
 }
 
+export interface IReactionMessage {
+    react: {
+        text: string;
+        key: proto.IMessageKey
+    }
+    
+}
