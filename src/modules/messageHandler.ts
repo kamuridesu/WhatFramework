@@ -1,4 +1,3 @@
-import { Bot } from './bot.js';
 import { parseMessage } from '../funcs/parser.js';
 import { pollParser } from '../funcs/updatesParsers.js';
 import { IMessageHandler, EntryPoint, IMessage, IBot } from '../../@types/types.js';
@@ -37,7 +36,7 @@ class WAMessageHandler implements IMessageHandler {
         if (this.isModule && messageData.body) {
             const messageBody = messageData.body;
             if (messageBody.startsWith(bot.prefix)) {
-                colors.paint(`Message from ${messageData.messageSender.split('@')[0]}: ${messageBody}`, colors.FgCyan, undefined, colors.Bright);
+                colors.paint(`Message from ${messageData.author.name}`, colors.FgCyan, undefined, colors.Bright);
                 const command = messageBody.split(bot.prefix)[1].split(' ')[0].toLowerCase();
                 if (command.length === 0) return;
                 const args = messageBody.split(' ').slice(1);

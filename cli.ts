@@ -35,11 +35,7 @@ async function initializeFramework(entrypointFile: string | undefined = undefine
     }
 
     const messageHandler = new MessageHandler(entryPointClass);
-    const commandsFilename = path.join(modulesPath, 
-        entryPointClass.commandsFilename
-        ? entryPointClass.commandsFilename 
-        : "");
-    const bot = botFactory(entryPointClass, commandsFilename);
+    const bot = botFactory(entryPointClass);
 
     await bot.init(messageHandler);
 }

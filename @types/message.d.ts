@@ -71,5 +71,5 @@ export interface IReactionMessage {
         text: string;
         key: proto.IMessageKey
     }
-    
+
 }

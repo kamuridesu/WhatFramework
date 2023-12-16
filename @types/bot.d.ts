@@ -24,7 +24,6 @@ export interface EntryPoint {
     prefix: string;
     ownerNumber: string;
     language: string | undefined;
-    commandsFilename: string | undefined;
     commandHandlers: (ctx: IBot,
         command: string,
         args: string[],
@@ -50,7 +49,6 @@ export interface IBot {
     readonly prefix: string;
     botNumber?: string;
     readonly ownerNumber: string;
-    readonly commandsFilename: string;
     readonly language: string;
     readonly lang: Translations;
     reconnectOnClose: boolean;

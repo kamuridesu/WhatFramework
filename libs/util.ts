@@ -3,11 +3,10 @@ import { Bot } from "../src/modules/bot.js";
 import { IBot } from "../@types/types.js";
 import { EntryPoint } from "../@types/types.js";
 
-export function botFactory(entryPointClass: EntryPoint, commandsFilename: string): IBot {
+export function botFactory(entryPointClass: EntryPoint): IBot {
     return new Bot(entryPointClass.botName,
         entryPointClass.prefix,
         entryPointClass.ownerNumber,
-        commandsFilename,
         entryPointClass.language ? entryPointClass.language : "en-us"
     );
 }

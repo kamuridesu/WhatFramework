@@ -51,7 +51,6 @@ class WABot implements IBot {
     public readonly prefix: string;
     public botNumber?: string;
     public readonly ownerNumber: string;
-    public readonly commandsFilename: string;
     public readonly language: string;
     public readonly lang: Translations;
     public groupsData: GroupsData;
@@ -60,7 +59,6 @@ class WABot implements IBot {
         name = 'bot',
         prefix = '!',
         ownerNumber = '',
-        commandsFilename = '',
         language = '',
     ) {
         this.connection = undefined;
@@ -68,7 +66,6 @@ class WABot implements IBot {
         this.prefix = prefix;
         this.botNumber = state.creds.me?.id;
         this.ownerNumber = ownerNumber;
-        this.commandsFilename = commandsFilename;
         this.language = language;
         this.reconnectOnClose = true;
         this.lang = new Language(this).get();
@@ -183,7 +180,7 @@ class WABot implements IBot {
                 textData.mentions = textData.mentions.concat(options.mentions);
             }
 
-            type MessageData = {text: string, mentions: string[], edit?: any}
+            type MessageData = { text: string, mentions: string[], edit?: any }
             let messageData: MessageData = {
                 text: textData.text,
                 mentions: textData.mentions,
@@ -216,7 +213,7 @@ class WABot implements IBot {
         let sentMessage: IMessage | undefined = undefined;
         try {
             await this.connection?.presenceSubscribe(recipient);
-            const response = await this.connection?.sendMessage(recipient, reactionMessage,options)
+            const response = await this.connection?.sendMessage(recipient, reactionMessage, options)
             if (response) sentMessage = await parseMessage(response, this);
             await this.connection?.sendPresenceUpdate("paused", recipient);
         } catch (e) {
@@ -264,7 +261,7 @@ class WABot implements IBot {
             stanzaId = ctx.id;
         }
         const messageInformation = await this.loadMessageById(originJid, stanzaId);
-        return messageInformation != undefined ? (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation) : undefined;   
+        return messageInformation != undefined ? (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation) : undefined;
     }
 
     async loadMessageById(originJid: string, stanzaId: string) {

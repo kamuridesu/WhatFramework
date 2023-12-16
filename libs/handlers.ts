@@ -23,9 +23,9 @@ export class CommandHandler {
             for (let com of c.commands) {
                 if (com.name === command || com.aliases.includes(command)) {
                     const text = stringFormat(com.description, { prefix: bot.prefix, command: command });
-                    return `${command}\n\n${text}` + (com.aliases.length > 0 ? 
-                            `\n\n[Aliases]:\n${com.aliases.join("\n")}` : 
-                            "");
+                    return `${command}\n\n${text}` + (com.aliases.length > 0 ?
+                        `\n\n[Aliases]:\n${com.aliases.join("\n")}` :
+                        "");
                 }
             }
         }
