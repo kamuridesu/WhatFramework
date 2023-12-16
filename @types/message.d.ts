@@ -3,6 +3,14 @@ import { IBot, Media } from "./bot";
 
 import { GroupParticipant } from "@whiskeysockets/baileys";
 
+export interface IQuotedMessageUnparsed {
+    stanzaId: string;
+    participant: string;
+    message: {
+        conversation: string;
+    }
+}
+
 export interface IGroup {
     name: string;
     description: string;
@@ -10,6 +18,7 @@ export interface IGroup {
     members: GroupParticipant[];
     admins: GroupParticipant[];
     locked: boolean;
+    botIsAdmin?: boolean;
     welcomeOn?: boolean;
 }
 
@@ -39,7 +48,7 @@ export interface IMessage {
     isMedia: boolean;
     hasQuotedMessage: boolean;
     quotedMessageType: any;
-    quotedMessage: any;
+    quotedMessage: IMessage | undefined;
     isReactionMessage: boolean;
     reactionMessage: any;
 
@@ -53,6 +62,8 @@ export interface IMessage {
         options?: {}): Promise<IMessage | undefined>;
 
     react(reaction: string, options?: {}): Promise<IMessage | undefined>;
+
+    edit(text: string, options?: {}): Promise<IMessage | undefined>;
 }
 
 export interface IReactionMessage {

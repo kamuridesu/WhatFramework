@@ -44,11 +44,10 @@ function checkJidInTextAndConvert(text: string): { text: string; mentions: strin
 	let s = this;
 	for (let key of Object.keys(valuesMap)) {
 		const value = `\$${key}`;
-		s = s.replace(value, valuesMap[key]);
+		s = s.replaceAll(value, valuesMap[key]);
 	}
 	return s;
 };
-
 
 function stringFormat(text: string, valuesMap: { [key: string]: string }): string {
 	return (text as any).format(valuesMap);

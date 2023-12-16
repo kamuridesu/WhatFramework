@@ -1,37 +1,4 @@
-interface IColors {
-    Reset: string
-    Bright: string
-    Dim: string
-    Underscore: string
-    Blink: string
-    Reverse: string
-    Hidden: string
-
-    FgBlack: string
-    FgRed: string
-    FgGreen: string
-    FgYellow: string
-    FgBlue: string
-    FgMagenta: string
-    FgCyan: string
-    FgWhite: string
-    FgGray: string
-
-    BgBlack: string
-    BgRed: string
-    BgGreen: string
-    BgYellow: string
-    BgBlue: string
-    BgMagenta: string
-    BgCyan: string
-    BgWhite: string
-    BgGray: string
-
-    paint: (text: string, textColor?: string, bgColor?: string, special?: string) => void;
-}
-
-
-class Colors implements IColors {
+class Colors {
     public readonly Reset = "\x1b[0m"
     public readonly Bright = "\x1b[1m"
     public readonly Dim = "\x1b[2m"

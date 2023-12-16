@@ -1,4 +1,4 @@
-import { makeWASocket, proto } from "@whiskeysockets/baileys";
+import { GroupMetadata, makeWASocket, proto } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
 import { IMessage, IReactionMessage } from "./message.js";
 import { IGroup } from './types.js';
@@ -72,7 +72,11 @@ export interface IBot {
 
     sendTextMessage(ctx: IMessage | string, text: string, options?: {}): Promise<IMessage | undefined>;
     reactMessage(ctx: IMessage | string, reactionMessage: IReactionMessage, options?: any): Promise<IMessage | undefined>
+    getGroups(): Promise<{
+        [_: string]: GroupMetadata;
+    } | undefined>
 
     loadMessage(ctx: IMessage | WAMessageKey): Promise<IMessage | WAMessage | undefined>;
+    loadMessageById(originJid: string, stanzaId: string): Promise<proto.IWebMessageInfo | undefined>;
     createPoll(ctx: IMessage, poolName: string, options: Array<string>): Promise<boolean>;
 }
