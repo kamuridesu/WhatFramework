@@ -123,7 +123,7 @@ class WABot implements IBot {
 
         this.connection.ev.on("messages.reaction", async (handle) => {
             for (let reaction of handle) {
-                console.log((reaction));
+                // console.log((reaction));
             }
         });
     }

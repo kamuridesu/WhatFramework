@@ -23,7 +23,7 @@ async function createSticker(context: IMessage, bot: Bot, author: string, packna
 }
 
 async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMessage, packName?: string, author?: string): Promise<IMessage | undefined> {
-    const randomFilename = `temp/sticker${Math.random() * 1000}.png`;
+    const randomFilename = `temp/sticker${Math.random() * 1000}`;
     let sentMessage: IMessage | undefined = undefined;
     ffmpeg(`${media}`)
         .input(media)
@@ -32,7 +32,7 @@ async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMes
         })
         .on('error', async (err: Error) => {
             console.error(err);
-            fs.unlinkSync(media);
+            // fs.unlinkSync(media);
         })
         .on('end', async () => {
             exec(`webpmux -set exif \"${await stickerMetadata(author ? author : "bot", packName ? packName : "bot")}\" ${randomFilename} -o ${randomFilename}`, async (error) => {
@@ -45,14 +45,16 @@ async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMes
                     };
                 }
                 sentMessage = await ctx.replyMedia(messageData, fs.readFileSync(randomFilename), "sticker");
-                fs.unlinkSync(media);
-                fs.unlinkSync(randomFilename);
+                // fs.unlinkSync(media);
+                // fs.unlinkSync(randomFilename);
             });
         })
         .addOutputOptions(["-vcodec",
             "libwebp",
+            "-sws_dither",
+            "none",
             "-vf",
-            "scale='min(120,iw)':min'(120,ih)':force_original_aspect_ratio=decrease,fps=15, pad=120:120:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse"
+            "scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad='min(320,iw)':min'(320,ih)':-1:-1:white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse"
         ])
         .toFormat("webp")
         .save(randomFilename);
