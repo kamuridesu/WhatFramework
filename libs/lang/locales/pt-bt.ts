@@ -1,4 +1,4 @@
-import Translations from "./interface.js";
+import Translations from "../interface.js";
 
 const TRANSLATIONS: Translations = {
     commands: "Comandos",

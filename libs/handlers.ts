@@ -53,7 +53,11 @@ export class CommandHandler {
     }
 
     public getHelp(bot: IBot, command: string | undefined) {
-        return (command == undefined || command.trim() == "") ?
+        return (command == undefined ||
+            command.trim() == "" || this.commands
+                .find(c => c.commands
+                    .find(s => s.aliases.includes(command) ||
+                        s.name == command) == undefined) == undefined) ?
             this.getCommandsMenu(bot) :
             this.getCommandDescription(bot, command);
     }

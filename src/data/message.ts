@@ -1,5 +1,6 @@
-import { GroupParticipant, WAMessage } from "@whiskeysockets/baileys";
+import { GroupParticipant, WAMessage, downloadMediaMessage } from "@whiskeysockets/baileys";
 import { IBot, Media, IMessage, IAuthor, IGroup } from "../../@types/types.js";
+import internal from "stream";
 
 export class Author implements IAuthor {
     constructor(
@@ -106,5 +107,10 @@ export class Message implements IMessage {
 
     edit(text: string, options?: {}): Promise<IMessage | undefined> {
         return this.bot.sendTextMessage(this, text, { edit: this.originalMessage.key, ...options });
+    }
+
+    downloadMedia(): Promise<Buffer | internal.Transform> {
+        const messageMedia = this.hasQuotedMessage ? JSON.parse(JSON.stringify(this.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : this.originalMessage;
+        return downloadMediaMessage(messageMedia, "buffer", {});
     }
 }

@@ -2,6 +2,7 @@ import { WAMessage, proto } from "@whiskeysockets/baileys";
 import { IBot, Media } from "./bot";
 
 import { GroupParticipant } from "@whiskeysockets/baileys";
+import internal from "stream";
 
 export interface IQuotedMessageUnparsed {
     stanzaId: string;
@@ -64,6 +65,8 @@ export interface IMessage {
     react(reaction: string, options?: {}): Promise<IMessage | undefined>;
 
     edit(text: string, options?: {}): Promise<IMessage | undefined>;
+
+    downloadMedia(): Promise<Buffer | internal.Transform>;
 }
 
 export interface IReactionMessage {

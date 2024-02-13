@@ -32,7 +32,7 @@ async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMes
         })
         .on('error', async (err: Error) => {
             console.error(err);
-            // fs.unlinkSync(media);
+            fs.unlinkSync(media);
         })
         .on('end', async () => {
             exec(`webpmux -set exif \"${await stickerMetadata(author ? author : "bot", packName ? packName : "bot")}\" ${randomFilename} -o ${randomFilename}`, async (error) => {
@@ -45,8 +45,8 @@ async function createStickerFromMedia(media: string, ctx: Bot, messageData: IMes
                     };
                 }
                 sentMessage = await ctx.replyMedia(messageData, fs.readFileSync(randomFilename), "sticker");
-                // fs.unlinkSync(media);
-                // fs.unlinkSync(randomFilename);
+                fs.unlinkSync(media);
+                fs.unlinkSync(randomFilename);
             });
         })
         .addOutputOptions(["-vcodec",

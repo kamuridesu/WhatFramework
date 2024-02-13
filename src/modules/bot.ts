@@ -41,7 +41,7 @@ setInterval(() => {
 const {
     state,
     saveCreds,
-} = await useMultiFileAuthState('./states');
+} = await useMultiFileAuthState('./states/auth');
 
 class WABot implements IBot {
     connection?: ReturnType<typeof makeWASocket>;
@@ -112,7 +112,7 @@ class WABot implements IBot {
 
         storage.bind(this.connection.ev);
 
-        this.connection.ev.on('messages.upsert', async (handle) => {
+        this.connection.ev.on('messages.upsert', async (handle: { messages: any; type: string; }) => {
             for (let message of handle.messages) {
                 if (!message.key.fromMe && handle.type === "notify") {
                     this.connection?.readMessages([message.key]);
