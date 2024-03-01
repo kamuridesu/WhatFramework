@@ -45,7 +45,7 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
             body = message.message?.extendedTextMessage?.text;
             hasQuotedMessage = true;
             quotedMessageType = messageTypes.find(type => JSON.stringify(message.message).includes(type));
-            if (quotedMessageType != undefined && ["conversation", "extendedTextMessage"].includes(quotedMessageType)) {
+            if (quotedMessageType != undefined) {
                 mentionedUsers = message.message?.extendedTextMessage?.contextInfo?.mentionedJid;
                 unparsedQuotedMessage = JSON.parse(JSON.stringify(message).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo;
                 const unparsedMessage = await bot.loadMessageById(originJid, unparsedQuotedMessage?.stanzaId!);

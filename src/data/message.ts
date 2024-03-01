@@ -109,8 +109,14 @@ export class Message implements IMessage {
         return this.bot.sendTextMessage(this, text, { edit: this.originalMessage.key, ...options });
     }
 
-    downloadMedia(): Promise<Buffer | internal.Transform> {
+    async downloadMedia(): Promise<Media> {
         const messageMedia = this.hasQuotedMessage ? JSON.parse(JSON.stringify(this.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : this.originalMessage;
-        return downloadMediaMessage(messageMedia, "buffer", {});
+        const media = await downloadMediaMessage(messageMedia, "buffer", {});
+        return {
+            media: media as Buffer,
+            messageType: this.type,
+            mimeType: "",
+            error: undefined
+        }
     }
 }

@@ -66,7 +66,7 @@ export interface IMessage {
 
     edit(text: string, options?: {}): Promise<IMessage | undefined>;
 
-    downloadMedia(): Promise<Buffer | internal.Transform>;
+    downloadMedia(): Promise<Media>;
 }
 
 export interface IReactionMessage {

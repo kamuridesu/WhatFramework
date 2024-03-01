@@ -115,7 +115,6 @@ class WABot implements IBot {
         this.connection.ev.on('messages.upsert', async (handle: { messages: any; type: string; }) => {
             for (let message of handle.messages) {
                 if (!message.key.fromMe && handle.type === "notify") {
-                    this.connection?.readMessages([message.key]);
                     messageHandler.handle(message, this);
                 }
             }

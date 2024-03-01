@@ -30,14 +30,13 @@ class WAMessageHandler implements IMessageHandler {
                 : message.message;
         const messageData: IMessage | undefined = await parseMessage(message, bot);
         if (!messageData) {
-            console.log("not message");
             return;
         }
         if (this.isModule && messageData.body) {
             const messageBody = messageData.body;
             if (messageBody.startsWith(bot.prefix)) {
-                colors.paint(`Message from ${messageData.author.name}`, colors.FgCyan, undefined, colors.Bright);
                 const command = messageBody.split(bot.prefix)[1].split(' ')[0].toLowerCase();
+                colors.paint(`Command ${command} from ${messageData.author.name}`, colors.FgCyan, undefined, colors.Bright);
                 if (command.length === 0) return;
                 const args = messageBody.split(' ').slice(1);
                 this.entryPointHandler?.commandHandlers!(bot, command, args, messageData);

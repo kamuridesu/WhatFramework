@@ -16,7 +16,7 @@ export interface Media {
     media: Buffer | string;
     messageType: string;
     mimeType: string;
-    error: Error;
+    error: Error | undefined;
 }
 
 export interface EntryPoint {
