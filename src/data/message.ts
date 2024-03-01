@@ -48,10 +48,6 @@ export class Message implements IMessage {
         public body: string,
         public mentionedUsers: string[],
         public author: IAuthor,
-        public messageSender: string,
-        public senderName: string,
-        public messageIsFrom: string,
-        public senderIsBotOwner: boolean,
         public chatIsGroup: boolean,
         public isMedia: boolean,
         public hasQuotedMessage: boolean,
@@ -68,10 +64,6 @@ export class Message implements IMessage {
         this.mentionedUsers;
         this.author = author;
         this.group = group;
-        this.messageSender = messageSender;
-        this.senderName = senderName;
-        this.messageIsFrom = messageIsFrom;
-        this.senderIsBotOwner = senderIsBotOwner;
         this.chatIsGroup = chatIsGroup;
         this.isMedia = isMedia;
         this.hasQuotedMessage = hasQuotedMessage;

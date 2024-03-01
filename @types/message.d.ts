@@ -41,10 +41,6 @@ export interface IMessage {
     mentionedUsers: string[];
     author: IAuthor;
     group?: IGroup;
-    messageSender: string;
-    senderName: string;
-    messageIsFrom: string;
-    senderIsBotOwner: boolean;
     chatIsGroup: boolean;
     isMedia: boolean;
     hasQuotedMessage: boolean;

@@ -29,7 +29,7 @@ export class CommandHandler {
                 }
             }
         }
-        return "";
+        return new Language(bot).get().commandNotFoundError;
     }
 
     public getCommandsMenu(bot: IBot) {

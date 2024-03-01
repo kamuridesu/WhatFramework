@@ -38,8 +38,8 @@ export interface Module {
 }
 
 export interface IMessageHandler {
-    handle: (message: WAMessage, bot: IBot) => void
-    handleUpdate: (key: WAMessageKey, updates: Partial<WAMessage>, ctx: IBot) => void
+    handle: (message: WAMessage, bot: IBot) => Promise<void>
+    handleUpdate: (key: WAMessageKey, updates: Partial<WAMessage>, ctx: IBot) => Promise<void>
 }
 
 export interface IBot {
