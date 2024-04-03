@@ -1,6 +1,7 @@
-import { IBot, IMessage, IAuthor, IGroup, IQuotedMessageUnparsed } from "../../@types/types.js";
+import { IBot, IMessage, IAuthor, IGroup, IQuotedMessageUnparsed,  } from "../../@types/types.js";
 import { WAMessage, proto } from "@whiskeysockets/baileys";
-import { Message, Group, Author } from "../data/message.js";
+import { Message, Group, Author, QuotedMessageParsed,  } from "../data/message.js";
+import { IQuotedMessageParsed } from "../../@types/message.js";
 
 const messageTypes = [
     "audioMessage",
@@ -25,7 +26,7 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
     let hasQuotedMessage: boolean = false;
     let quotedMessageType: string | undefined;
     let unparsedQuotedMessage: IQuotedMessageUnparsed | undefined;
-    let quotedMessage: IMessage | undefined | IQuotedMessageUnparsed;
+    let quotedMessage: IMessage | undefined | IQuotedMessageParsed;
     let isReactionMessage: boolean = false;
     let reactionMessage: any = undefined;
 
@@ -51,7 +52,6 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
                 // const unparsedMessage = await bot.loadMessageById(originJid, unparsedQuotedMessage?.stanzaId!);
                 // await parseMessage(unparsedQuotedMessage);
                 // if (unparsedMessage) quotedMessage = (await parseMessage(unparsedMessage, bot));
-                quotedMessage = unparsedQuotedMessage;
 
             }
             break;
@@ -103,6 +103,8 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
             author.isBot
         )
     }
+    if (unparsedQuotedMessage)
+    quotedMessage = new QuotedMessageParsed(unparsedQuotedMessage, author.chatJid);
 
     return new Message(
         bot,

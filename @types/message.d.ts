@@ -12,6 +12,12 @@ export interface IQuotedMessageUnparsed {
     }
 }
 
+export interface IQuotedMessageParsed {
+    stanzaId: string;
+    author: IAuthor;
+    body: string;
+}
+
 export interface IGroup {
     name: string;
     description: string;
@@ -45,7 +51,7 @@ export interface IMessage {
     isMedia: boolean;
     hasQuotedMessage: boolean;
     quotedMessageType: any;
-    quotedMessage: IMessage | undefined | IQuotedMessageUnparsed;
+    quotedMessage: IMessage | undefined | IQuotedMessageParsed;
     isReactionMessage: boolean;
     reactionMessage: any;
 

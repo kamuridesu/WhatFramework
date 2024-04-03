@@ -1,6 +1,7 @@
 import { GroupParticipant, WAMessage, downloadMediaMessage } from "@whiskeysockets/baileys";
 import { IBot, Media, IMessage, IAuthor, IGroup, IQuotedMessageUnparsed } from "../../@types/types.js";
 import internal from "stream";
+import { IQuotedMessageParsed } from "../../@types/message.js";
 
 export class Author implements IAuthor {
     constructor(
@@ -18,6 +19,35 @@ export class Author implements IAuthor {
         this.isGroupOwner = isGroupOwner;
         this.isBot = isBot;
     }
+}
+
+export class QuotedMessageParsed implements IQuotedMessageParsed {
+    author: Author;
+    stanzaId: string;
+    body: string;
+    constructor(
+        unparsedQuotedMessage: IQuotedMessageUnparsed,
+        chatJid: string,
+    ) {
+        this.stanzaId = unparsedQuotedMessage.stanzaId;
+        this.author = new Author(unparsedQuotedMessage.participant, "unknown", chatJid, false, false, false, false);
+        this.body = this.parseBody(unparsedQuotedMessage.message);
+    }
+
+    parseBody(body: any): string {
+        if (body == undefined) return "";
+        if (body.conversation) {
+            return body.conversation;
+        }
+        if (body.imageMessage) {
+            return body.imageMessage.caption;
+        }
+        if (body.videoMessage) {
+            return body.videoMessage.caption;
+        }
+        return "";
+    }
+
 }
 
 export class Group implements IGroup {
@@ -52,7 +82,7 @@ export class Message implements IMessage {
         public isMedia: boolean,
         public hasQuotedMessage: boolean,
         public quotedMessageType: any,
-        public quotedMessage: IMessage | undefined | IQuotedMessageUnparsed,
+        public quotedMessage: IMessage | undefined | IQuotedMessageParsed,
         public isReactionMessage: boolean,
         public reactionMessage: any,
         public group?: IGroup,
