@@ -32,11 +32,11 @@ const logger = Pino().child({
     stream: 'store',
 });
 
-const storage = makeInMemoryStore({ logger });
-storage.readFromFile("./states/baileys_storage_dump.json");
-setInterval(() => {
-    storage.writeToFile("./states/baileys_storage_dump.json");
-}, 10_000);
+// const storage = makeInMemoryStore({ logger });
+// storage.readFromFile("./states/baileys_storage_dump.json");
+// setInterval(() => {
+//     storage.writeToFile("./states/baileys_storage_dump.json");
+// }, 10_000);
 
 const {
     state,
@@ -73,11 +73,11 @@ class WABot implements IBot {
     }
 
     async getMessage(key: WAMessageKey): Promise<WAMessageContent | undefined> {
-        if (storage) {
-            const msg = await storage.loadMessage(key.remoteJid!,
-                key.id!)
-            return msg?.message || undefined
-        }
+        // if (storage) {
+        //     const msg = await storage.loadMessage(key.remoteJid!,
+        //         key.id!)
+        //     return msg?.message || undefined
+        // }
 
         // only if store is present
         return undefined;
@@ -110,7 +110,7 @@ class WABot implements IBot {
             }
         });
 
-        storage.bind(this.connection.ev);
+        // storage.bind(this.connection.ev);
 
         this.connection.ev.on('messages.upsert', async (handle: { messages: any; type: string; }) => {
             for (let message of handle.messages) {
@@ -264,10 +264,10 @@ class WABot implements IBot {
     }
 
     async loadMessageById(originJid: string, stanzaId: string) {
-        const messageInformation = await storage.loadMessage(originJid, stanzaId);
-        if (messageInformation) {
-            return messageInformation;
-        }
+        // const messageInformation = await storage.loadMessage(originJid, stanzaId);
+        // if (messageInformation) {
+        //     return messageInformation;
+        // }
         return undefined;
     }
 }
