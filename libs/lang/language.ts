@@ -1,7 +1,7 @@
 import { IBot } from "../../@types/types.js";
 import Translations from "./interface.js";
-import { TRANSLATIONS as ptbr } from "./pt-bt.js";
-import { TRANSLATIONS as enus } from "./en-us.js";
+import { TRANSLATIONS as ptbr } from "./locales/pt-bt.js";
+import { TRANSLATIONS as enus } from "./locales/en-us.js";
 
 interface LanguageMap {
     [key: string]: Translations;

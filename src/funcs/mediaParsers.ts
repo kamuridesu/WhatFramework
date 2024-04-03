@@ -7,7 +7,7 @@ export async function parseMedia(
     mediaType?: string,
     mimeType?: string,
     caption?: string
-    ): Promise<AnyMediaMessageContent> {
+): Promise<AnyMediaMessageContent> {
     let info: AnyMediaMessageContent;
     switch (mediaType) {
         case "sticker":

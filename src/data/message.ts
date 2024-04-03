@@ -1,5 +1,6 @@
-import { GroupParticipant, WAMessage } from "@whiskeysockets/baileys";
+import { GroupParticipant, WAMessage, downloadMediaMessage } from "@whiskeysockets/baileys";
 import { IBot, Media, IMessage, IAuthor, IGroup } from "../../@types/types.js";
+import internal from "stream";
 
 export class Author implements IAuthor {
     constructor(
@@ -47,10 +48,6 @@ export class Message implements IMessage {
         public body: string,
         public mentionedUsers: string[],
         public author: IAuthor,
-        public messageSender: string,
-        public senderName: string,
-        public messageIsFrom: string,
-        public senderIsBotOwner: boolean,
         public chatIsGroup: boolean,
         public isMedia: boolean,
         public hasQuotedMessage: boolean,
@@ -67,10 +64,6 @@ export class Message implements IMessage {
         this.mentionedUsers;
         this.author = author;
         this.group = group;
-        this.messageSender = messageSender;
-        this.senderName = senderName;
-        this.messageIsFrom = messageIsFrom;
-        this.senderIsBotOwner = senderIsBotOwner;
         this.chatIsGroup = chatIsGroup;
         this.isMedia = isMedia;
         this.hasQuotedMessage = hasQuotedMessage;
@@ -105,6 +98,17 @@ export class Message implements IMessage {
     }
 
     edit(text: string, options?: {}): Promise<IMessage | undefined> {
-        return this.bot.sendTextMessage(this, text, {edit: this.originalMessage.key, ...options});
+        return this.bot.sendTextMessage(this, text, { edit: this.originalMessage.key, ...options });
+    }
+
+    async downloadMedia(): Promise<Media> {
+        const messageMedia = this.hasQuotedMessage ? JSON.parse(JSON.stringify(this.originalMessage).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : this.originalMessage;
+        const media = await downloadMediaMessage(messageMedia, "buffer", {});
+        return {
+            media: media as Buffer,
+            messageType: this.type,
+            mimeType: "",
+            error: undefined
+        }
     }
 }

@@ -2,6 +2,7 @@ import { WAMessage, proto } from "@whiskeysockets/baileys";
 import { IBot, Media } from "./bot";
 
 import { GroupParticipant } from "@whiskeysockets/baileys";
+import internal from "stream";
 
 export interface IQuotedMessageUnparsed {
     stanzaId: string;
@@ -40,10 +41,6 @@ export interface IMessage {
     mentionedUsers: string[];
     author: IAuthor;
     group?: IGroup;
-    messageSender: string;
-    senderName: string;
-    messageIsFrom: string;
-    senderIsBotOwner: boolean;
     chatIsGroup: boolean;
     isMedia: boolean;
     hasQuotedMessage: boolean;
@@ -64,6 +61,8 @@ export interface IMessage {
     react(reaction: string, options?: {}): Promise<IMessage | undefined>;
 
     edit(text: string, options?: {}): Promise<IMessage | undefined>;
+
+    downloadMedia(): Promise<Media>;
 }
 
 export interface IReactionMessage {
@@ -71,5 +70,5 @@ export interface IReactionMessage {
         text: string;
         key: proto.IMessageKey
     }
-    
+
 }

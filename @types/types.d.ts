@@ -1,7 +1,7 @@
 import {
     VoteAggregation,
     PollVoteAggragation
-} from "./pollData.js";
+} from "./poll.js";
 import {
     IBot,
     Media,

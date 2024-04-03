@@ -45,7 +45,7 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
             body = message.message?.extendedTextMessage?.text;
             hasQuotedMessage = true;
             quotedMessageType = messageTypes.find(type => JSON.stringify(message.message).includes(type));
-            if (quotedMessageType != undefined && ["conversation", "extendedTextMessage"].includes(quotedMessageType)) {
+            if (quotedMessageType != undefined) {
                 mentionedUsers = message.message?.extendedTextMessage?.contextInfo?.mentionedJid;
                 unparsedQuotedMessage = JSON.parse(JSON.stringify(message).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo;
                 const unparsedMessage = await bot.loadMessageById(originJid, unparsedQuotedMessage?.stanzaId!);
@@ -64,8 +64,6 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
     const {
         messageSender,
         senderName,
-        messageIsFrom,
-        senderIsOwner,
         isGroup
     } = parseMetadata({
         originJid,
@@ -78,9 +76,9 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
         senderName,
         originJid,
         false,
+        bot.ownerNumber == messageSender.split("@")[0],
         false,
-        false,
-        false,
+        bot.botNumber + "@s.whatsapp.net" == messageSender,
     );
 
     if (isGroup) {
@@ -97,9 +95,9 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
             author.name,
             author.chatJid,
             senderIsAdmin ? senderIsAdmin : false,
-            undefined as any,
+            author.isBotOwner,
             senderIsGroupOwner ? senderIsGroupOwner : false,
-            false
+            author.isBot
         )
     }
 
@@ -110,10 +108,6 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
         body,
         mentionedUsers,
         author as IAuthor,
-        messageSender,
-        senderName,
-        messageIsFrom,
-        senderIsOwner,
         groupInfo != undefined,
         isMedia,
         hasQuotedMessage,

@@ -1,6 +1,6 @@
 import { Module } from "../../@types/types.js";
 
-export async function load(entrypoint_path: string): Promise<Module> {
-    const entrypoint = await import(entrypoint_path);
+export async function load(entrypointPath: string): Promise<Module> {
+    const entrypoint = await import(entrypointPath);
     return entrypoint;
 }

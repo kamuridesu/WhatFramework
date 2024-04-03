@@ -23,13 +23,13 @@ export class CommandHandler {
             for (let com of c.commands) {
                 if (com.name === command || com.aliases.includes(command)) {
                     const text = stringFormat(com.description, { prefix: bot.prefix, command: command });
-                    return `${command}\n\n${text}` + (com.aliases.length > 0 ? 
-                            `\n\n[Aliases]:\n${com.aliases.join("\n")}` : 
-                            "");
+                    return `${command}\n\n${text}` + (com.aliases.length > 0 ?
+                        `\n\n[Aliases]:\n${com.aliases.join("\n")}` :
+                        "");
                 }
             }
         }
-        return "";
+        return new Language(bot).get().commandNotFoundError;
     }
 
     public getCommandsMenu(bot: IBot) {
@@ -53,7 +53,11 @@ export class CommandHandler {
     }
 
     public getHelp(bot: IBot, command: string | undefined) {
-        return (command == undefined || command.trim() == "") ?
+        return (command == undefined ||
+            command.trim() == "" || this.commands
+                .find(c => c.commands
+                    .find(s => s.aliases.includes(command) ||
+                        s.name == command) == undefined) == undefined) ?
             this.getCommandsMenu(bot) :
             this.getCommandDescription(bot, command);
     }

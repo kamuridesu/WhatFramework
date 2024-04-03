@@ -9,7 +9,8 @@ import {
     WAMessage,
     makeCacheableSignalKeyStore,
     WAMessageContent,
-    WAMessageKey
+    WAMessageKey,
+    proto
 } from '@whiskeysockets/baileys'
 import {
     IBot,
@@ -28,20 +29,20 @@ import Translations from '../../libs/lang/interface.js';
 
 
 const logger = Pino().child({
-    level: 'error',
+    level: 'trace',
     stream: 'store',
 });
 
-const storage = makeInMemoryStore({ logger });
-storage.readFromFile("./states/baileys_storage_dump.json");
-setInterval(() => {
-    storage.writeToFile("./states/baileys_storage_dump.json");
-}, 10_000);
+// const storage = makeInMemoryStore({ logger });
+// storage.readFromFile("./states/baileys_storage_dump.json");
+// setInterval(() => {
+//     storage.writeToFile("./states/baileys_storage_dump.json");
+// }, 10_000);
 
 const {
     state,
     saveCreds,
-} = await useMultiFileAuthState('./states');
+} = await useMultiFileAuthState('./states/auth');
 
 class WABot implements IBot {
     connection?: ReturnType<typeof makeWASocket>;
@@ -51,7 +52,6 @@ class WABot implements IBot {
     public readonly prefix: string;
     public botNumber?: string;
     public readonly ownerNumber: string;
-    public readonly commandsFilename: string;
     public readonly language: string;
     public readonly lang: Translations;
     public groupsData: GroupsData;
@@ -60,7 +60,6 @@ class WABot implements IBot {
         name = 'bot',
         prefix = '!',
         ownerNumber = '',
-        commandsFilename = '',
         language = '',
     ) {
         this.connection = undefined;
@@ -68,7 +67,6 @@ class WABot implements IBot {
         this.prefix = prefix;
         this.botNumber = state.creds.me?.id;
         this.ownerNumber = ownerNumber;
-        this.commandsFilename = commandsFilename;
         this.language = language;
         this.reconnectOnClose = true;
         this.lang = new Language(this).get();
@@ -76,11 +74,11 @@ class WABot implements IBot {
     }
 
     async getMessage(key: WAMessageKey): Promise<WAMessageContent | undefined> {
-        if (storage) {
-            const msg = await storage.loadMessage(key.remoteJid!,
-                key.id!)
-            return msg?.message || undefined
-        }
+        // if (storage) {
+        //     const msg = await storage.loadMessage(key.remoteJid!,
+        //         key.id!)
+        //     return msg?.message || undefined
+        // }
 
         // only if store is present
         return undefined;
@@ -113,12 +111,11 @@ class WABot implements IBot {
             }
         });
 
-        storage.bind(this.connection.ev);
+        // storage.bind(this.connection.ev);
 
-        this.connection.ev.on('messages.upsert', async (handle) => {
+        this.connection.ev.on('messages.upsert', async (handle: { messages: any; type: string; }) => {
             for (let message of handle.messages) {
                 if (!message.key.fromMe && handle.type === "notify") {
-                    this.connection?.readMessages([message.key]);
                     messageHandler.handle(message, this);
                 }
             }
@@ -126,7 +123,7 @@ class WABot implements IBot {
 
         this.connection.ev.on("messages.reaction", async (handle) => {
             for (let reaction of handle) {
-                console.log((reaction));
+                // console.log((reaction));
             }
         });
     }
@@ -179,11 +176,11 @@ class WABot implements IBot {
         let sentMessage: IMessage | undefined = undefined;
         try {
             const textData = checkJidInTextAndConvert(text);
-            if (options && options.mentions) {
+            if (options != undefined && options.mentions) {
                 textData.mentions = textData.mentions.concat(options.mentions);
             }
 
-            type MessageData = {text: string, mentions: string[], edit?: any}
+            type MessageData = { text: string, mentions: string[], edit?: any }
             let messageData: MessageData = {
                 text: textData.text,
                 mentions: textData.mentions,
@@ -216,7 +213,7 @@ class WABot implements IBot {
         let sentMessage: IMessage | undefined = undefined;
         try {
             await this.connection?.presenceSubscribe(recipient);
-            const response = await this.connection?.sendMessage(recipient, reactionMessage,options)
+            const response = await this.connection?.sendMessage(recipient, reactionMessage, options == undefined ? {}: options)
             if (response) sentMessage = await parseMessage(response, this);
             await this.connection?.sendPresenceUpdate("paused", recipient);
         } catch (e) {
@@ -264,14 +261,14 @@ class WABot implements IBot {
             stanzaId = ctx.id;
         }
         const messageInformation = await this.loadMessageById(originJid, stanzaId);
-        return messageInformation != undefined ? (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation) : undefined;   
+        return messageInformation != undefined ? (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation) : undefined;
     }
 
-    async loadMessageById(originJid: string, stanzaId: string) {
-        const messageInformation = await storage.loadMessage(originJid, stanzaId);
-        if (messageInformation) {
-            return messageInformation;
-        }
+    async loadMessageById(originJid: string, stanzaId: string): Promise<proto.IWebMessageInfo | undefined> {
+        // const messageInformation = await storage.loadMessage(originJid, stanzaId);
+        // if (messageInformation) {
+        //     return messageInformation;
+        // }
         return undefined;
     }
 }
