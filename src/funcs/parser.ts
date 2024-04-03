@@ -25,7 +25,7 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
     let hasQuotedMessage: boolean = false;
     let quotedMessageType: string | undefined;
     let unparsedQuotedMessage: IQuotedMessageUnparsed | undefined;
-    let quotedMessage: IMessage | undefined;
+    let quotedMessage: IMessage | undefined | IQuotedMessageUnparsed;
     let isReactionMessage: boolean = false;
     let reactionMessage: any = undefined;
 
@@ -48,8 +48,11 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
             if (quotedMessageType != undefined) {
                 mentionedUsers = message.message?.extendedTextMessage?.contextInfo?.mentionedJid;
                 unparsedQuotedMessage = JSON.parse(JSON.stringify(message).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo;
-                const unparsedMessage = await bot.loadMessageById(originJid, unparsedQuotedMessage?.stanzaId!);
-                if (unparsedMessage) quotedMessage = (await parseMessage(unparsedMessage, bot));
+                // const unparsedMessage = await bot.loadMessageById(originJid, unparsedQuotedMessage?.stanzaId!);
+                // await parseMessage(unparsedQuotedMessage);
+                // if (unparsedMessage) quotedMessage = (await parseMessage(unparsedMessage, bot));
+                quotedMessage = unparsedQuotedMessage;
+
             }
             break;
         case "reactionMessage":

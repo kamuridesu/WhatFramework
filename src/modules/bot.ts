@@ -245,23 +245,24 @@ class WABot implements IBot {
     }
 
     async loadMessage(ctx: Message | WAMessageKey): Promise<IMessage | WAMessage | undefined> {
-        let originJid: string;
-        let stanzaId: string;
-        if (ctx instanceof Message) {
-            if (!ctx.hasQuotedMessage || ctx.quotedMessageType != "conversation") {
-                return undefined;
-            }
-            originJid = ctx.author.chatJid;
-            stanzaId = ctx.quotedMessage?.originalMessage.key?.id!;
-        } else {
-            if (!ctx.remoteJid || !ctx.id) {
-                return undefined;
-            }
-            originJid = ctx.remoteJid;
-            stanzaId = ctx.id;
-        }
-        const messageInformation = await this.loadMessageById(originJid, stanzaId);
-        return messageInformation != undefined ? (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation) : undefined;
+        // let originJid: string;
+        // let stanzaId: string;
+        // if (ctx instanceof Message) {
+        //     if (!ctx.hasQuotedMessage || ctx.quotedMessageType != "conversation") {
+        //         return undefined;
+        //     }
+        //     originJid = ctx.author.chatJid;
+        //     stanzaId = ctx.quotedMessage?.originalMessage.key?.id!;
+        // } else {
+        //     if (!ctx.remoteJid || !ctx.id) {
+        //         return undefined;
+        //     }
+        //     originJid = ctx.remoteJid;
+        //     stanzaId = ctx.id;
+        // }
+        // const messageInformation = await this.loadMessageById(originJid, stanzaId);
+        // return messageInformation != undefined ? (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation) : undefined;
+        return undefined;
     }
 
     async loadMessageById(originJid: string, stanzaId: string): Promise<proto.IWebMessageInfo | undefined> {

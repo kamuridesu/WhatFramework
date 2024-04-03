@@ -45,7 +45,7 @@ export interface IMessage {
     isMedia: boolean;
     hasQuotedMessage: boolean;
     quotedMessageType: any;
-    quotedMessage: IMessage | undefined;
+    quotedMessage: IMessage | undefined | IQuotedMessageUnparsed;
     isReactionMessage: boolean;
     reactionMessage: any;
 

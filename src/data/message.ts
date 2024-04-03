@@ -1,5 +1,5 @@
 import { GroupParticipant, WAMessage, downloadMediaMessage } from "@whiskeysockets/baileys";
-import { IBot, Media, IMessage, IAuthor, IGroup } from "../../@types/types.js";
+import { IBot, Media, IMessage, IAuthor, IGroup, IQuotedMessageUnparsed } from "../../@types/types.js";
 import internal from "stream";
 
 export class Author implements IAuthor {
@@ -52,7 +52,7 @@ export class Message implements IMessage {
         public isMedia: boolean,
         public hasQuotedMessage: boolean,
         public quotedMessageType: any,
-        public quotedMessage: IMessage | undefined,
+        public quotedMessage: IMessage | undefined | IQuotedMessageUnparsed,
         public isReactionMessage: boolean,
         public reactionMessage: any,
         public group?: IGroup,
