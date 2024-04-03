@@ -9,7 +9,8 @@ import {
     WAMessage,
     makeCacheableSignalKeyStore,
     WAMessageContent,
-    WAMessageKey
+    WAMessageKey,
+    proto
 } from '@whiskeysockets/baileys'
 import {
     IBot,
@@ -263,7 +264,7 @@ class WABot implements IBot {
         return messageInformation != undefined ? (ctx instanceof Message ? parseMessage(messageInformation, this) : messageInformation) : undefined;
     }
 
-    async loadMessageById(originJid: string, stanzaId: string) {
+    async loadMessageById(originJid: string, stanzaId: string): Promise<proto.IWebMessageInfo | undefined> {
         // const messageInformation = await storage.loadMessage(originJid, stanzaId);
         // if (messageInformation) {
         //     return messageInformation;
