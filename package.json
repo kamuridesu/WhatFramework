@@ -32,7 +32,7 @@
     "@hapi/boom": "^10.0.1",
     "@kamuridesu/kamuanimejs": "^1.0.5",
     "@whiskeysockets/baileys": "^6.5.0",
-    "axios": "^1.6.2",
+    "axios": "^1.6.3",
     "fluent-ffmpeg": "^2.1.2",
     "i": "^0.3.7",
     "link-preview-js": "^3.0.5",
