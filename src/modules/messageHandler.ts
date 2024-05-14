@@ -32,8 +32,8 @@ class WAMessageHandler implements IMessageHandler {
         if (!messageData) {
             return;
         }
-        if (this.isModule && messageData.body) {
-            const messageBody = messageData.body;
+        if (this.isModule) {
+            const messageBody = messageData.body ? messageData.body : "";
             if (messageBody.startsWith(bot.prefix)) {
                 const command = messageBody.split(bot.prefix)[1].split(' ')[0].toLowerCase();
                 colors.paint(`Command ${command} from ${messageData.author.name}`, colors.FgCyan, undefined, colors.Bright);

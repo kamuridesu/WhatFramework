@@ -2,7 +2,6 @@ import { WAMessage, proto } from "@whiskeysockets/baileys";
 import { IBot, Media } from "./bot";
 
 import { GroupParticipant } from "@whiskeysockets/baileys";
-import internal from "stream";
 
 export interface IQuotedMessageUnparsed {
     stanzaId: string;
