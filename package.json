@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",
-    "@whiskeysockets/baileys": "^6.6.0",
+    "@whiskeysockets/baileys": "^6.7.0",
     "axios": "^1.6.4",
     "fluent-ffmpeg": "^2.1.2",
     "i": "^0.3.7",
