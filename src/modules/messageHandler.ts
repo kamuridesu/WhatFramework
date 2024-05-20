@@ -3,7 +3,7 @@ import { pollParser } from '../funcs/updatesParsers.js';
 import { IMessageHandler, EntryPoint, IMessage, IBot } from '../../@types/types.js';
 import { colors } from '../../libs/std.js';
 
-import { WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
+import { ParticipantAction, WAMessage, WAMessageKey } from '@whiskeysockets/baileys';
 
 class WAMessageHandler implements IMessageHandler {
     private isModule: boolean;
@@ -52,6 +52,36 @@ class WAMessageHandler implements IMessageHandler {
                 const pollData = await pollParser(key, updates, bot);
             }
         }
+    }
+
+    async handleNewMember(data: {
+        id: string;
+        author: string;
+        participants: string[];
+        action: ParticipantAction;
+    }, bot: IBot) {
+        const newData = {
+            id: data.id,
+            author: data.author,
+            participants: data.participants,
+        }
+        if (this.entryPointHandler?.addMemberHandlers)
+        this.entryPointHandler?.addMemberHandlers(bot, newData);
+    }
+
+    async handleRemoveMember(data: {
+        id: string;
+        author: string;
+        participants: string[];
+        action: ParticipantAction;
+    }, bot: IBot) {
+        const newData = {
+            id: data.id,
+            author: data.author,
+            participants: data.participants,
+        }
+        if (this.entryPointHandler?.removeMemberHandlers)
+        this.entryPointHandler?.removeMemberHandlers(bot, newData);
     }
 }
 

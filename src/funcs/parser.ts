@@ -78,29 +78,23 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
         messageSender,
         senderName,
         originJid,
-        false,
         bot.ownerNumber == messageSender.split("@")[0],
-        false,
         bot.botNumber + "@s.whatsapp.net" == messageSender,
+        groupInfo,
     );
 
     if (isGroup) {
-        ({ groupInfo } = await parseGroup(
+        (groupInfo = await parseGroup(
             originJid,
             bot,
         ));
-        const senderIsGroupOwner = groupInfo?.members.some((element) => element.admin === "superadmin");
-        const senderIsAdmin = groupInfo?.members.some((element) => element.id === messageSender && (element.admin === "admin" || element.admin === "superadmin"));
-        const botIsAdmin = groupInfo?.members.some((element) => element.id === bot.botNumber && (element.admin === "admin" || element.admin === "superadmin"));
-        if (groupInfo) groupInfo.botIsAdmin = botIsAdmin;
         author = author = new Author(
             author.jid,
             author.name,
             author.chatJid,
-            senderIsAdmin ? senderIsAdmin : false,
             author.isBotOwner,
-            senderIsGroupOwner ? senderIsGroupOwner : false,
-            author.isBot
+            author.isBot,
+            groupInfo
         )
     }
     if (unparsedQuotedMessage)
@@ -138,38 +132,7 @@ export function parseMetadata(context: { originJid: string, originalMessage: pro
 }
 
 async function parseGroup(originJid: string, bot: IBot) {
-    let groupInfo: IGroup | undefined;
-    let groupCacheId = originJid.split("@g.us")[1];
-    const cachedGroupData = bot.groupsData[groupCacheId];
-    if (cachedGroupData && ((Date.now() - cachedGroupData.lastFetchDate) / 1000) <= 10) {
-        groupInfo = cachedGroupData.groupData;
-    } else {
-        const groupMetadata = await bot.connection?.groupMetadata(originJid);
-        if (groupMetadata === undefined) {
-            groupInfo = undefined;
-        } else {
-            let { subject: name, id: groupId, desc: description, participants: members, owner: groupOwner, announce } = groupMetadata;
-            const admins = members.filter((element) => element.admin === "admin" || element.admin === "superadmin");
-            const isLocked = announce !== undefined ? JSON.parse(JSON.stringify(announce).replace(/"/g, "")) : false;
-
-            description = description ? description : "";
-            groupOwner = groupOwner ? groupOwner : "";
-            groupId = groupId.split("-")[1];
-            groupInfo = new Group(
-                name,
-                description,
-                groupId,
-                members,
-                admins,
-                isLocked
-            );
-            bot.groupsData[groupCacheId] = { lastFetchDate: Date.now(), groupData: groupInfo }
-        }
-    }
-    return {
-        groupInfo,
-
-    }
+    return new Group(bot, originJid);
 }
 
 export function convertNumberToMention(text: string): string[] | string {

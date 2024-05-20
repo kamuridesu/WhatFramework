@@ -1,6 +1,6 @@
 {
   "name": "@kamuridesu/whatframework",
-  "version": "0.1.45b",
+  "version": "0.1.48b",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
   "main": "dist/cli.js",
   "module": "dist",
@@ -50,5 +50,6 @@
     "nodemon": "^3.0.1",
     "tslib": "^2.5.0",
     "typescript": "^5.0.3"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

@@ -1,4 +1,4 @@
-import { GroupMetadata, makeWASocket, proto } from "@whiskeysockets/baileys";
+import { GroupMetadata, makeWASocket, ParticipantAction, proto } from "@whiskeysockets/baileys";
 import { WAMessage, WAMessageKey } from "@whiskeysockets/baileys";
 import { IMessage, IReactionMessage } from "./message.js";
 import { IGroup } from './types.js';
@@ -31,6 +31,18 @@ export interface EntryPoint {
     chatHandlers: (ctx: IBot,
         messageBody: string,
         messageData: IMessage) => void;
+    addMemberHandlers?: (ctx: IBot,
+        data: {
+            id: string;
+            author: string;
+            participants: string[];
+        }) => void;
+    removeMemberHandlers?: (ctx: IBot,
+        data: {
+            id: string;
+            author: string;
+            participants: string[];
+        }) => void;
 }
 
 export interface Module {
@@ -40,6 +52,18 @@ export interface Module {
 export interface IMessageHandler {
     handle: (message: WAMessage, bot: IBot) => Promise<void>
     handleUpdate: (key: WAMessageKey, updates: Partial<WAMessage>, ctx: IBot) => Promise<void>
+    handleRemoveMember(data: {
+        id: string;
+        author: string;
+        participants: string[];
+        action: ParticipantAction;
+    }, bot: IBot): Promise<void>
+    handleNewMember(data: {
+        id: string;
+        author: string;
+        participants: string[];
+        action: ParticipantAction;
+    }, bot: IBot): Promise<void>
 }
 
 export interface IBot {

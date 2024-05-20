@@ -91,7 +91,8 @@ class WABot implements IBot {
                 creds: state.creds,
                 keys: makeCacheableSignalKeyStore(state.keys, logger)
             },
-            getMessage: this.getMessage
+            getMessage: this.getMessage,
+            version: [2, 2413, 1]
         });
 
         this.connection.ev.on('creds.update', saveCreds);
@@ -126,6 +127,15 @@ class WABot implements IBot {
                 // console.log((reaction));
             }
         });
+
+        this.connection.ev.on("group-participants.update", async (handle) => {
+            if (handle.action == "add") {
+                return messageHandler.handleNewMember(handle, this);
+            }
+            if (handle.action == "remove") {
+                return messageHandler.handleRemoveMember(handle, this);
+            }
+        })
     }
 
     async getGroups() {
