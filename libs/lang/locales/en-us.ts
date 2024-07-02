@@ -4,7 +4,8 @@ const TRANSLATIONS: Translations = {
     commands: "Commands",
     missingStickerMedia: "Error! Message has to be an image, video or gif!",
     sendingMediaError: "An error hapenned while sending media file",
-    commandNotFoundError: "Command not found!"
+    commandNotFoundError: "Command not found!",
+    groupLimitReached: "Maximum number of groups reached!",
 };
 
 export { TRANSLATIONS };

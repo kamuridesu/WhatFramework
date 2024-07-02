@@ -2,7 +2,6 @@ import { WAMessage, proto } from "@whiskeysockets/baileys";
 import { IBot, Media } from "./bot";
 
 import { GroupParticipant } from "@whiskeysockets/baileys";
-import internal from "stream";
 
 export interface IQuotedMessageUnparsed {
     stanzaId: string;
@@ -12,24 +11,29 @@ export interface IQuotedMessageUnparsed {
     }
 }
 
+export interface IQuotedMessageParsed {
+    stanzaId: string;
+    author: IAuthor;
+    body: string;
+}
+
 export interface IGroup {
-    name: string;
-    description: string;
-    groupId: string;
-    members: GroupParticipant[];
-    admins: GroupParticipant[];
-    locked: boolean;
-    botIsAdmin?: boolean;
-    welcomeOn?: boolean;
+    name: Promise<string>;
+    description: Promise<string | undefined>;
+    groupId: Promise<string>;
+    members: Promise<GroupParticipant[]>;
+    admins: Promise<GroupParticipant[]>;
+    locked: Promise<boolean>;
+    botIsAdmin?: Promise<boolean>;
 }
 
 export interface IAuthor {
     jid: string;
     name: string;
     chatJid: string;
-    isAdmin: boolean;
+    isAdmin: Promise<boolean>;
     isBotOwner: boolean;
-    isGroupOwner: boolean;
+    isGroupOwner: Promise<boolean>;
     isBot: boolean;
 }
 
@@ -45,7 +49,7 @@ export interface IMessage {
     isMedia: boolean;
     hasQuotedMessage: boolean;
     quotedMessageType: any;
-    quotedMessage: IMessage | undefined;
+    quotedMessage: IMessage | undefined | IQuotedMessageParsed;
     isReactionMessage: boolean;
     reactionMessage: any;
 
