@@ -3,6 +3,7 @@ interface Translations {
     missingStickerMedia: string;
     sendingMediaError: string;
     commandNotFoundError: string;
+    groupLimitReached: string;
 }
 
 export default Translations;

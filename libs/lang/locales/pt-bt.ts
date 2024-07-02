@@ -5,6 +5,7 @@ const TRANSLATIONS: Translations = {
     missingStickerMedia: "Erro! Preciso que a mensagem seja uma imagem, vídeo ou gif!",
     sendingMediaError: "Ocorreu um erro ao enviar a mídia!",
     commandNotFoundError: "Comando não encontrado!",
+    groupLimitReached: "Limite de grupos atingido!",
 };
 
 export { TRANSLATIONS };

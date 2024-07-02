@@ -30,7 +30,11 @@
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",
+<<<<<<< HEAD
     "@whiskeysockets/baileys": "^6.7.1",
+=======
+    "@whiskeysockets/baileys": "^6.7.5",
+>>>>>>> 7d3eeb8 (fix: deps)
     "axios": "^1.6.4",
     "fluent-ffmpeg": "^2.1.2",
     "i": "^0.3.7",
@@ -38,7 +42,7 @@
     "nekosapi": "^0.5.3",
     "npm": "^10.5.0",
     "qrcode-terminal": "^0.12.0",
-    "wa-sticker-formatter": "^4.4.4"
+    "wa-sticker-formatter": "^1.6.0"
   },
   "devDependencies": {
     "@kamuridesu/kamtube": "^0.1.21",
