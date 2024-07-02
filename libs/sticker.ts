@@ -1,4 +1,4 @@
-import { createSticker as mcreateSticker, Sticker, StickerTypes } from "wa-sticker-formatter";
+import { Sticker, StickerTypes } from "wa-sticker-formatter";
 
 import { Bot } from "../src/modules/bot.js";
 import * as fs from "fs";
