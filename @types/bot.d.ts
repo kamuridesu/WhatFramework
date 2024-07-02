@@ -24,6 +24,7 @@ export interface EntryPoint {
     prefix: string;
     ownerNumber: string;
     language: string | undefined;
+    maxGroupsLimit: number | undefined;
     commandHandlers: (ctx: IBot,
         command: string,
         args: string[],
