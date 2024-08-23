@@ -92,7 +92,7 @@ class WABot implements IBot {
                 keys: makeCacheableSignalKeyStore(state.keys, logger)
             },
             getMessage: this.getMessage,
-            version: [2, 2413, 1]
+            version: [2, 3000, 1015901307]
         });
 
         this.connection.ev.on('creds.update', saveCreds);
