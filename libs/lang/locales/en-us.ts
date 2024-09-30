@@ -6,6 +6,7 @@ const TRANSLATIONS: Translations = {
     sendingMediaError: "An error hapenned while sending media file",
     commandNotFoundError: "Command not found!",
     groupLimitReached: "Maximum number of groups reached!",
+    category: "Category",
 };
 
 export { TRANSLATIONS };
