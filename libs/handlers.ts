@@ -9,6 +9,17 @@ export class CommandHandler {
 
     public register(...commands: ICommands[]) {
         this.commands = this.commands.concat(commands);
+        const allCommands: string[] = [];
+        this.commands
+        .flatMap(command => command.commands)
+        .forEach(cmd => {
+            [...cmd.aliases, cmd.name].forEach(aliasOrName => {
+            if (allCommands.includes(aliasOrName)) {
+                throw new Error("Alias or command already exists!");
+            }
+            allCommands.push(aliasOrName);
+            });
+        });
     }
 
     public handle(command: string, bot: IBot, message: IMessage, args: string[]) {
@@ -47,9 +58,8 @@ export class CommandHandler {
     }
 
     public getCommandsByCategory(bot: IBot, category: string) {
-        /**
-         * TODO: Create function body
-         */
+        const filtered = this.commands.find(c => c.category = category);
+        
     }
 
     public getHelp(bot: IBot, command: string | undefined) {

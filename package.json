@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",
+    "@kamuridesu/whatframework": "file:",
     "@whiskeysockets/baileys": "^6.7.5",
     "axios": "^1.6.4",
     "fluent-ffmpeg": "^2.1.2",
