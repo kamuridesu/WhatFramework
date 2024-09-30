@@ -4,6 +4,7 @@ interface Translations {
     sendingMediaError: string;
     commandNotFoundError: string;
     groupLimitReached: string;
+    category: string;
 }
 
 export default Translations;

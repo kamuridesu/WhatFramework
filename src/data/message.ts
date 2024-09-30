@@ -1,6 +1,5 @@
-import { GroupParticipant, WAMessage, downloadMediaMessage, reduceBinaryNodeToDictionary } from "@whiskeysockets/baileys";
+import { GroupParticipant, WAMessage, downloadMediaMessage } from "@whiskeysockets/baileys";
 import { IBot, Media, IMessage, IAuthor, IGroup, IQuotedMessageUnparsed } from "../../@types/types.js";
-import internal from "stream";
 import { IQuotedMessageParsed } from "../../@types/message.js";
 
 export class Author implements IAuthor {
@@ -77,8 +76,8 @@ export class Group implements IGroup {
     private __botIsAdmin: boolean | undefined;
 
     constructor(
-       bot: IBot,
-       originJid: string
+        bot: IBot,
+        originJid: string
     ) {
         this.bot = bot;
         this.context = originJid;
@@ -139,13 +138,13 @@ export class Group implements IGroup {
     set members(m: GroupParticipant[]) {
         this.__members = m;
     }
-    
+
     get admins(): Promise<GroupParticipant[]> {
         return (async () => {
             if (this.__admins != undefined) return this.__admins;
             const a = (await this.bot.connection!.groupMetadata(this.context))
-                    .participants
-                    .filter((element) => element.admin === "admin" || element.admin === "superadmin");
+                .participants
+                .filter((element) => element.admin === "admin" || element.admin === "superadmin");
             this.__admins = a;
             return a;
         })();
@@ -154,7 +153,7 @@ export class Group implements IGroup {
     set admins(m: GroupParticipant[]) {
         this.__admins = m;
     }
-    
+
     get locked(): Promise<boolean> {
         return (async () => {
             const announce = (await this.bot.connection!.groupMetadata(this.context)).announce;

@@ -8,18 +8,18 @@ export class CommandHandler {
     private commands: ICommands[] = [];
 
     public register(...commands: ICommands[]) {
-        this.commands = this.commands.concat(commands);
         const allCommands: string[] = [];
-        this.commands
-        .flatMap(command => command.commands)
-        .forEach(cmd => {
-            [...cmd.aliases, cmd.name].forEach(aliasOrName => {
-            if (allCommands.includes(aliasOrName)) {
-                throw new Error("Alias or command already exists!");
-            }
-            allCommands.push(aliasOrName);
+        commands
+            .flatMap(command => command.commands)
+            .forEach(cmd => {
+                [...cmd.aliases, cmd.name].forEach(aliasOrName => {
+                    if (allCommands.includes(aliasOrName)) {
+                        throw new Error("Alias or command already exists!");
+                    }
+                    allCommands.push(aliasOrName);
+                });
             });
-        });
+        this.commands = this.commands.concat(commands);
     }
 
     public handle(command: string, bot: IBot, message: IMessage, args: string[]) {
@@ -49,7 +49,7 @@ export class CommandHandler {
         for (let c of this.commands) {
             text += `${c.category}:\n`;
             for (let com of c.commands) {
-                text += "-|" + com.name + "\n";
+                text += "/" + com.name + "\n";
             }
             text += "\n"
         }
@@ -59,7 +59,16 @@ export class CommandHandler {
 
     public getCommandsByCategory(bot: IBot, category: string) {
         const filtered = this.commands.find(c => c.category = category);
-        
+        if (!filtered) {
+            return null;
+        }
+        const lang = new Language(bot).get();
+        let text = `--=={${bot.name}}==--\n\n${lang.category}: ${filtered.category}:\n\n`;
+        for (let c of filtered.commands) {
+            text += "/" + c.name + "\n";
+        }
+        return text.trim();
+
     }
 
     public getHelp(bot: IBot, command: string | undefined) {
@@ -69,6 +78,8 @@ export class CommandHandler {
                     .find(s => s.aliases.includes(command) ||
                         s.name == command) == undefined) == undefined) ?
             this.getCommandsMenu(bot) :
-            this.getCommandDescription(bot, command);
+            this.commands.find(c => c.category == command) ?
+                this.getCommandsByCategory(bot, command) :
+                this.getCommandDescription(bot, command);
     }
 }
