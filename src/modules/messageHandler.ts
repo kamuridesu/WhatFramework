@@ -66,7 +66,7 @@ class WAMessageHandler implements IMessageHandler {
             participants: data.participants,
         }
         if (this.entryPointHandler?.addMemberHandlers)
-        this.entryPointHandler?.addMemberHandlers(bot, newData);
+            this.entryPointHandler?.addMemberHandlers(bot, newData);
     }
 
     async handleRemoveMember(data: {
@@ -81,7 +81,7 @@ class WAMessageHandler implements IMessageHandler {
             participants: data.participants,
         }
         if (this.entryPointHandler?.removeMemberHandlers)
-        this.entryPointHandler?.removeMemberHandlers(bot, newData);
+            this.entryPointHandler?.removeMemberHandlers(bot, newData);
     }
 }
 

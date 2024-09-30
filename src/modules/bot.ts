@@ -223,7 +223,7 @@ class WABot implements IBot {
         let sentMessage: IMessage | undefined = undefined;
         try {
             await this.connection?.presenceSubscribe(recipient);
-            const response = await this.connection?.sendMessage(recipient, reactionMessage, options == undefined ? {}: options)
+            const response = await this.connection?.sendMessage(recipient, reactionMessage, options == undefined ? {} : options)
             if (response) sentMessage = await parseMessage(response, this);
             await this.connection?.sendPresenceUpdate("paused", recipient);
         } catch (e) {

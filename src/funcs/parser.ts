@@ -1,6 +1,6 @@
-import { IBot, IMessage, IAuthor, IGroup, IQuotedMessageUnparsed,  } from "../../@types/types.js";
+import { IBot, IMessage, IAuthor, IGroup, IQuotedMessageUnparsed, } from "../../@types/types.js";
 import { WAMessage, proto } from "@whiskeysockets/baileys";
-import { Message, Group, Author, QuotedMessageParsed,  } from "../data/message.js";
+import { Message, Group, Author, QuotedMessageParsed, } from "../data/message.js";
 import { IQuotedMessageParsed } from "../../@types/message.js";
 
 const messageTypes = [
@@ -98,7 +98,7 @@ export async function parseMessage(message: WAMessage, bot: IBot): Promise<IMess
         )
     }
     if (unparsedQuotedMessage)
-    quotedMessage = new QuotedMessageParsed(unparsedQuotedMessage, author.chatJid);
+        quotedMessage = new QuotedMessageParsed(unparsedQuotedMessage, author.chatJid);
 
     return new Message(
         bot,
