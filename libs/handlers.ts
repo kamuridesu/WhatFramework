@@ -14,7 +14,7 @@ export class CommandHandler {
             .forEach(cmd => {
                 [...cmd.aliases, cmd.name].forEach(aliasOrName => {
                     if (allCommands.includes(aliasOrName)) {
-                        throw new Error("Alias or command already exists!");
+                        throw new Error(`Alias or command ${aliasOrName} already exists!`);
                     }
                     allCommands.push(aliasOrName);
                 });
@@ -58,7 +58,7 @@ export class CommandHandler {
     }
 
     public getCommandsByCategory(bot: IBot, category: string) {
-        const filtered = this.commands.find(c => c.category = category);
+        const filtered = this.commands.find(c => c.category.toLowerCase() == category);
         if (!filtered) {
             return null;
         }
@@ -78,8 +78,8 @@ export class CommandHandler {
                     .find(s => s.aliases.includes(command) ||
                         s.name == command) == undefined) == undefined) ?
             this.getCommandsMenu(bot) :
-            this.commands.find(c => c.category == command) ?
-                this.getCommandsByCategory(bot, command) :
+            this.commands.find(c => c.category.toLowerCase() == command.toLowerCase()) ?
+                this.getCommandsByCategory(bot, command.toLowerCase()) :
                 this.getCommandDescription(bot, command);
     }
 }
