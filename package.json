@@ -1,6 +1,6 @@
 {
   "name": "@kamuridesu/whatframework",
-  "version": "0.1.54b",
+  "version": "0.1.58b",
   "description": "A simple WhatsApp Bot Framework on top of Baileys",
   "main": "dist/cli.js",
   "module": "dist",
@@ -30,13 +30,11 @@
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",
-    "@whiskeysockets/baileys": "^6.7.7",
     "axios": "^1.7.7",
+    "baileys": "^6.7.17",
     "fluent-ffmpeg": "^2.1.2",
-    "link-preview-js": "^3.0.5",
     "npm": "^10.5.0",
-    "qrcode-terminal": "^0.12.0",
-    "wa-sticker-formatter": "^4.4.4"
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "@kamuridesu/kamtube": "^0.1.21",
@@ -44,10 +42,18 @@
     "@kamuridesu/simplelyrics": "^1.0.2",
     "@types/fluent-ffmpeg": "^2.1.21",
     "@types/node": "^18.15.11",
+    "@types/qrcode": "^1.5.5",
     "@types/ws": "^8.5.4",
+    "jimp": "^0.16.13",
+    "link-preview-js": "^3.1.0",
+    "nekosapi": "^0.6.4",
     "nodemon": "^3.0.1",
+    "sharp": "^0.32.6",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
     "tslib": "^2.5.0",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.3",
+    "wa-sticker-formatter": "^4.4.4"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
