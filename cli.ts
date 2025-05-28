@@ -2,7 +2,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import { load } from './src/modules/dynamicModules.js';
 import { botFactory } from './libs/util.js';
 import { MessageHandler } from './src/modules/messageHandler.js';
 import { EntryPoint } from './@types/types.js';
@@ -22,20 +21,18 @@ async function initializeFramework(entrypointFile: string | undefined = undefine
     } else {
         entrypointFile = path.resolve(entrypointFile);
     }
-    const entryPoint = path.join(entrypointFile);
-    const entryPointModule = await load(entryPoint);
-    const entryPointClass: EntryPoint = new (entryPointModule.Entrypoint as any)();
+    const entryPoint: EntryPoint = new ((await import(path.join(entrypointFile))).Entrypoint as any)();
 
-    if (entryPointClass.language) {
-        if (!SUPPORTED_LANGUAGES.includes(entryPointClass.language)) {
+    if (entryPoint.language) {
+        if (!SUPPORTED_LANGUAGES.includes(entryPoint.language)) {
             throw new Error("Language is not supported!");
         }
     } else {
-        entryPointClass.language = "en-us";
+        entryPoint.language = "en-us";
     }
 
-    const messageHandler = new MessageHandler(entryPointClass);
-    const bot = botFactory(entryPointClass);
+    const messageHandler = new MessageHandler(entryPoint);
+    const bot = botFactory(entryPoint);
 
     await bot.init(messageHandler);
 }

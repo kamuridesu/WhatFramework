@@ -4,20 +4,18 @@ import {
 } from "./poll.js";
 import {
     IBot,
-    Media,
     GroupsData,
-    Module,
     IMessageHandler,
-    EntryPoint
 } from './bot.js';
-import { IMessage, IGroup, IAuthor, IReactionMessage, IQuotedMessageUnparsed } from "./message.js";
+import { IMessage, IGroup, IAuthor, IReactionMessage, IQuotedMessageUnparsed, Media } from "./message.js";
 import { ICommand, ICommands } from "./commands.js";
+import { PostgreSQLConfig, State } from "./database.js";
+import { EntryPoint } from "./module.js";
 
 export {
     IBot,
     Media,
     GroupsData,
-    Module,
     IMessageHandler,
     EntryPoint,
     VoteAggregation,
@@ -28,5 +26,6 @@ export {
     ICommands,
     IAuthor,
     IReactionMessage,
-    IQuotedMessageUnparsed
+    IQuotedMessageUnparsed,
+    PostgreSQLConfig, State
 }

@@ -24,7 +24,7 @@ async function createSticker(context: IMessage, bot: Bot, author: string, packna
             return createStickerFromMedia(tempFile, bot, context, packname, author);
         }
     }
-    return bot.replyText(context, language.missingStickerMedia);
+    return bot.reply(context, language.missingStickerMedia);
 }
 
 async function scaleAnimatedMedia(tempFile: string, bot: IBot, context: IMessage, author: string, packname: string) {

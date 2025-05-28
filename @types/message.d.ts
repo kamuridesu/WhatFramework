@@ -1,7 +1,15 @@
 import { WAMessage, proto } from "@whiskeysockets/baileys";
-import { IBot, Media } from "./bot";
+import { IBot } from "./bot";
 
 import { GroupParticipant } from "@whiskeysockets/baileys";
+
+export interface Media {
+    media: Buffer;
+    messageType: string;
+    mimeType: string;
+    caption?: string;
+    error?: Error;
+}
 
 export interface IQuotedMessageUnparsed {
     stanzaId: string;
@@ -53,14 +61,7 @@ export interface IMessage {
     isReactionMessage: boolean;
     reactionMessage: any;
 
-    replyText(text: string, options?: {}): Promise<IMessage | undefined>;
-
-    replyMedia(
-        media: string | Media,
-        messageType: string,
-        mimeType?: string | undefined,
-        mediaCaption?: string | undefined,
-        options?: {}): Promise<IMessage | undefined>;
+    reply(text?: string, media?: Media, options?: {}): Promise<IMessage | undefined>;
 
     react(reaction: string, options?: {}): Promise<IMessage | undefined>;
 

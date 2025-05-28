@@ -1,48 +1,37 @@
+import { Boom } from '@hapi/boom';
 import Pino from 'pino';
-import { Boom } from '@hapi/boom'
-
 import {
-    makeWASocket,
     DisconnectReason,
-    makeInMemoryStore,
+    makeCacheableSignalKeyStore,
+    makeWASocket,
+    proto,
     useMultiFileAuthState,
     WAMessage,
-    makeCacheableSignalKeyStore,
     WAMessageContent,
-    WAMessageKey,
-    proto
-} from '@whiskeysockets/baileys'
+    WAMessageKey
+} from '@whiskeysockets/baileys';
 import {
     IBot,
-    GroupsData,
+    IMessageHandler,
     Media,
-    IMessageHandler
+    PostgreSQLConfig,
+    State
 } from "../../@types/types.js";
-
-import { Language } from "../../libs/lang/language.js";
 import { IMessage, IReactionMessage } from '../../@types/message.js';
-import { parseMedia } from '../funcs/mediaParsers.js';
-import { checkJidInTextAndConvert } from '../../libs/text.js';
-import { parseMessage } from '../funcs/parser.js';
-import { Message } from '../data/message.js';
 import Translations from '../../libs/lang/interface.js';
+import { Language } from "../../libs/lang/language.js";
+import { checkJidInTextAndConvert } from '../../libs/text.js';
+import { Message } from '../data/message.js';
+import { parseMedia } from '../funcs/mediaParsers.js';
+import { parseMessage } from '../funcs/parser.js';
+
+import { usePostgreSQLAuthState } from 'postgres-baileys';
 
 
 const logger = Pino().child({
     level: 'trace',
     stream: 'store',
 });
-
-// const storage = makeInMemoryStore({ logger });
-// storage.readFromFile("./states/baileys_storage_dump.json");
-// setInterval(() => {
-//     storage.writeToFile("./states/baileys_storage_dump.json");
-// }, 10_000);
-
-const {
-    state,
-    saveCreds,
-} = await useMultiFileAuthState('./states/auth');
 
 class WABot implements IBot {
     connection?: ReturnType<typeof makeWASocket>;
@@ -54,23 +43,28 @@ class WABot implements IBot {
     public readonly ownerNumber: string;
     public readonly language: string;
     public readonly lang: Translations;
-    public groupsData: GroupsData;
+
+    private postgresConfig?: PostgreSQLConfig;
+
+    private state?: State;
+    private saveCreds?: () => Promise<void>;
 
     constructor(
         name = 'bot',
         prefix = '!',
         ownerNumber = '',
         language = '',
+        postgresConfig?: PostgreSQLConfig
     ) {
         this.connection = undefined;
         this.name = name;
         this.prefix = prefix;
-        this.botNumber = state.creds.me?.id;
+        this.botNumber = undefined;
         this.ownerNumber = ownerNumber;
         this.language = language;
         this.reconnectOnClose = true;
         this.lang = new Language(this).get();
-        this.groupsData = {} // This is for caching purpose, details @ src/funcs/parsers.ts#145
+        this.postgresConfig = postgresConfig;
     }
 
     async getMessage(key: WAMessageKey): Promise<WAMessageContent | undefined> {
@@ -84,26 +78,42 @@ class WABot implements IBot {
         return undefined;
     }
 
+    async setStateHandler() {
+        if (this.state == undefined || this.saveCreds == undefined) {
+            if (this.postgresConfig) {
+                const { state, saveCreds } = await usePostgreSQLAuthState(this.postgresConfig, this.name);
+                this.state = state;
+                this.saveCreds = saveCreds;
+                return;
+            }
+            const { state, saveCreds } = await useMultiFileAuthState(this.name);
+            this.state = state;
+            this.saveCreds = saveCreds;
+        }
+    }
+
     async init(messageHandler: IMessageHandler): Promise<void> {
+
+        await this.setStateHandler();
+
         this.connection = makeWASocket({
             printQRInTerminal: true,
             auth: {
-                creds: state.creds,
-                keys: makeCacheableSignalKeyStore(state.keys, logger)
+                creds: this.state!.creds,
+                keys: makeCacheableSignalKeyStore(this.state!.keys, logger)
             },
             getMessage: this.getMessage,
-            version: [2, 3000, 1015901307]
+            version: [2, 3000, 1015901307],
         });
 
-        this.connection.ev.on('creds.update', saveCreds);
+        this.connection.ev.on('creds.update', this.saveCreds!);
 
         this.connection.ev.on('connection.update', (update) => {
-            this.botNumber = state.creds.me?.id.replace(/:\d+/, "");
+            this.botNumber = this.state?.creds.me?.id.replace(/:\d+/, "");
             const { connection, lastDisconnect } = update
             if (connection === 'close') {
                 const shouldReconnect = (lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut
                 console.log('connection closed due to ', lastDisconnect?.error, ', reconnecting ', shouldReconnect)
-                // reconnect if not logged out
                 if (shouldReconnect) {
                     this.init(messageHandler);
                 }
@@ -142,14 +152,21 @@ class WABot implements IBot {
         return (await this.connection?.groupFetchAllParticipating());
     }
 
-    async replyText(ctx: IMessage, text: string, options: any = {}): Promise<IMessage | undefined> {
+    async reply(ctx: IMessage, text: string = "", media?: Media, options?: any): Promise<IMessage | undefined> {
+        if (media) {
+            return await this.replyMedia(ctx, media.media, media.messageType, media.mimeType, media.caption, options);
+        }
+        return await this.replyText(ctx, text, options);
+    }
+
+    private async replyText(ctx: IMessage, text: string, options: any = {}): Promise<IMessage | undefined> {
         options.quoted = ctx.originalMessage;
         return await this.sendTextMessage(ctx, text, options);
     }
 
-    async replyMedia(
+    private async replyMedia(
         ctx: IMessage,
-        media: string | Media | Buffer,
+        media: ArrayBuffer,
         messageType: string,
         mimeType?: string,
         mediaCaption?: string,
@@ -231,26 +248,6 @@ class WABot implements IBot {
         }
         finally {
             return sentMessage;
-        }
-    }
-
-    async createPoll(ctx: IMessage, pollName: string, options: Array<string>): Promise<boolean> {
-        console.log(pollName)
-        console.log(options)
-        try {
-            console.log("creting poll");
-            console.log(await this.connection?.sendMessage(ctx.author.chatJid, {
-                poll: {
-                    name: pollName,
-                    values: options,
-                    selectableCount: options.length
-                },
-            }));
-            console.log("done")
-            return true;
-        } catch (e) {
-            console.error(e);
-            return false;
         }
     }
 

@@ -1,5 +1,4 @@
 import { parseMessage } from '../funcs/parser.js';
-import { pollParser } from '../funcs/updatesParsers.js';
 import { IMessageHandler, EntryPoint, IMessage, IBot } from '../../@types/types.js';
 import { colors } from '../../libs/std.js';
 
@@ -42,14 +41,6 @@ class WAMessageHandler implements IMessageHandler {
                 this.entryPointHandler?.commandHandlers!(bot, command, args, messageData);
             } else {
                 this.entryPointHandler?.chatHandlers!(bot, messageBody, messageData);
-            }
-        }
-    }
-
-    async handleUpdate(key: WAMessageKey, updates: Partial<WAMessage>, bot: IBot) {
-        if (key) {
-            if (updates.pollUpdates) {
-                const pollData = await pollParser(key, updates, bot);
             }
         }
     }

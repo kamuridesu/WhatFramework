@@ -7,7 +7,8 @@ export function botFactory(entryPointClass: EntryPoint): IBot {
     return new Bot(entryPointClass.botName,
         entryPointClass.prefix,
         entryPointClass.ownerNumber,
-        entryPointClass.language ? entryPointClass.language : "en-us"
+        entryPointClass.language ? entryPointClass.language : "en-us",
+        entryPointClass.postgresConfig ? entryPointClass.postgresConfig : undefined
     );
 }
 

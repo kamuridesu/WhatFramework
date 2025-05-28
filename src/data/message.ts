@@ -1,4 +1,4 @@
-import { GroupParticipant, WAMessage, downloadMediaMessage } from "@whiskeysockets/baileys";
+import { GroupMetadata, GroupParticipant, WAMessage, downloadMediaMessage } from "@whiskeysockets/baileys";
 import { IBot, Media, IMessage, IAuthor, IGroup, IQuotedMessageUnparsed } from "../../@types/types.js";
 import { IQuotedMessageParsed } from "../../@types/message.js";
 
@@ -74,6 +74,7 @@ export class Group implements IGroup {
     private __admins: GroupParticipant[] | undefined;
     private __locked: boolean | undefined;
     private __botIsAdmin: boolean | undefined;
+    private __metadata: GroupMetadata | undefined;
 
     constructor(
         bot: IBot,
@@ -83,12 +84,25 @@ export class Group implements IGroup {
         this.context = originJid;
     }
 
+    get metadata(): Promise<GroupMetadata> {
+        return (async () => {
+            if (this.__metadata != undefined) return this.__metadata;
+            const metadata = await this.bot.connection!.groupMetadata(this.context);
+            this.__metadata = metadata;
+            return metadata;
+        })();
+    }
+
+    set metadata(m: GroupMetadata) {
+        this.__metadata = m;
+    }
+
     get name(): Promise<string> {
         return (async () => {
             if (this.__name != undefined) {
                 return this.__name;
             }
-            const x = (await this.bot.connection!.groupMetadata(this.context)).subject;
+            const x = (await this.metadata).subject;
             this.__name = x;
             return x;
         })();
@@ -103,7 +117,7 @@ export class Group implements IGroup {
             if (this.__description != undefined) {
                 return this.__description
             }
-            const desc = (await this.bot.connection!.groupMetadata(this.context)).desc;
+            const desc = (await this.metadata).desc;
             this.__description = desc;
             return desc;
         })();
@@ -116,7 +130,7 @@ export class Group implements IGroup {
     get groupId(): Promise<string> {
         return (async () => {
             if (this.__groupId != undefined) return this.__groupId;
-            const id = (await this.bot.connection!.groupMetadata(this.context)).id;
+            const id = (await this.metadata).id;
             this.__groupId = id;
             return id;
         })();
@@ -129,7 +143,7 @@ export class Group implements IGroup {
     get members(): Promise<GroupParticipant[]> {
         return (async () => {
             if (this.__members != undefined) return this.__members;
-            const members = (await this.bot.connection!.groupMetadata(this.context)).participants;
+            const members = (await this.metadata).participants;
             this.__members = members;
             return members;
         })();
@@ -142,7 +156,7 @@ export class Group implements IGroup {
     get admins(): Promise<GroupParticipant[]> {
         return (async () => {
             if (this.__admins != undefined) return this.__admins;
-            const a = (await this.bot.connection!.groupMetadata(this.context))
+            const a = (await this.metadata)
                 .participants
                 .filter((element) => element.admin === "admin" || element.admin === "superadmin");
             this.__admins = a;
@@ -156,7 +170,7 @@ export class Group implements IGroup {
 
     get locked(): Promise<boolean> {
         return (async () => {
-            const announce = (await this.bot.connection!.groupMetadata(this.context)).announce;
+            const announce = (await this.metadata).announce;
             return announce !== undefined ? JSON.parse(JSON.stringify(announce).replace(/"/g, "")) : false;
         })();
     }
@@ -213,18 +227,8 @@ export class Message implements IMessage {
         this.reactionMessage = reactionMessage;
     }
 
-    replyText(text: string, options?: {}): Promise<IMessage | undefined> {
-        return this.bot.replyText(this, text, options);
-    }
-
-    replyMedia(
-        media: string | Media,
-        messageType: string,
-        mimeType?: string | undefined,
-        mediaCaption?: string | undefined,
-        options?: {}
-    ): Promise<IMessage | undefined> {
-        return this.bot.replyMedia(this, media, messageType, mimeType, mediaCaption, options);
+    reply(text?: string, media?: Media, options?: {}): Promise<IMessage | undefined> {
+        return this.bot.reply(this, text, media, options);
     }
 
     react(reaction: string): Promise<IMessage | undefined> {
